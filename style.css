@@ -7,6 +7,9 @@
     grid-gap: 1rem;
   }
   
+  a {
+    color: yellow;
+  }
 
     .text {
         margin: auto;
