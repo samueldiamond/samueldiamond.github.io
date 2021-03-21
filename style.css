@@ -5,15 +5,17 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100% 100%;
     grid-gap: 1rem;
+    border: black;
   }
   
   a {
-    color: white;
+    color: black;
     font-weight: bold;
   }
 
     .text {
         margin: auto;
+        border: black;
         min-height: 150px;
         position: relative;
         min-width: 250px;
@@ -31,13 +33,13 @@
     
     
     h1 {
-        color: white;
+        color:black;
         font-family: 'ZCOOL KuaiLe';
     font-size: 36;
     }
 
     p {
-        color:whitesmoke;
+        color: black;
         font-family: roboto;
         font-size: 12;
     }
