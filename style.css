@@ -5,7 +5,6 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100% 100%;
     grid-gap: 1rem;
-    border: black;
   }
   
   a {
@@ -42,6 +41,7 @@
         color: white;
         font-family: roboto;
         font-size: 12;
+        font-weight: bold;
     }
 
     .images {
@@ -81,5 +81,23 @@ max-width: 400px;
     @media screen and (max-width: 768px) {
         .container {
             grid-template-columns: 1fr;
-            grid-template-rows: 1fr 1fr; }
         }
+
+        @media (max-width: 767px) {                  
+            .images {
+               display: none;
+        
+            }
+            .text {
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: auto;
+                margin-right: auto;
+padding: auto;
+                position: auto;
+                
+                align-content: center;
+                height: fit-content;
+                width: fit-content;
+                }
+            }}
