@@ -96,8 +96,6 @@ max-width: 400px;
                 margin-right: auto;
 padding: auto;
                 position: relative;
-                max-width: 100vw;
-                max-height: 100vh;
                 align-content: center;
            
                 }
@@ -126,8 +124,7 @@ padding: auto;
             margin-right: auto;
 padding: auto;
             position: relative;
-            max-width: 100vw;
-            max-height: 100vh;
+    
             align-content: center;
        
             }
