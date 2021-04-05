@@ -109,6 +109,31 @@ padding: auto;
             @media only screen 
     and (device-width: 390px) 
     and (device-height: 844px) 
-    and (-webkit-device-pixel-ratio: 3) { }
+    and (-webkit-device-pixel-ratio: 3) { .container {
+        grid-template-columns: 1fr;
+    }
+           
+        .images {
+           display: none;
+    
+        }
+        .text {
+            overflow-x: hidden;
+            overflow-y: hidden;
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            margin-right: auto;
+padding: auto;
+            position: relative;
+            max-width: 100vw;
+            max-height: 100vh;
+            align-content: center;
+       
+            }
+            body {
+                position: relative;
+              }
+        }
 
 
