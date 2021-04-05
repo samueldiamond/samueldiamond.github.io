@@ -92,7 +92,7 @@ max-width: 400px;
             }
             .text {
                 overflow-x: hidden;
-
+                overflow-y: hidden;
                 margin-top: auto;
                 margin-bottom: auto;
                 margin-left: auto;
