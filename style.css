@@ -8,7 +8,7 @@
   }
   
   a {
-    color:white;
+    color:black;
     font-weight: bold;
   }
 
@@ -25,7 +25,7 @@
         }
     
     body {
-        background-color: blue; 
+        background-color: rgb(255, 255, 255); 
     }
 
  
@@ -33,12 +33,12 @@
     
     h1 {
         color: white;
-        font-family: 'ZCOOL KuaiLe';
+        font-family: 'roboto';
     font-size: 36;
     }
 
     p {
-        color: white;
+        color: black;
         font-family: roboto;
         font-size: 12;
         font-weight: bold;
