@@ -1,11 +1,10 @@
 html,body {
-    margin: 200px;
+    margin: auto;
     padding: 200px;
     border: 0px;
     left: 0px;
     top: 0px;
     margin: auto;
-     border: black;
         min-height: 150px;
         position: relative;
         width: 300;
