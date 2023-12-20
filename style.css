@@ -6,14 +6,14 @@ html,body,text {
     padding: 10%;
     background-color: white; 
         }
-    h1 {
-        color: #black;
+    h1 {color: #black;
         font-family: "Flaco", Helvetica, Arial, sans-serif;
-        font-style: st;
-    font-size: 36;
-    font-weight: 2000;
-    text-rendering: optimizeLegibility;
-}
+        font-size: 40;
+        font-weight: 2000;
+        text-rendering: optimizeLegibility
+    }
+    
+    
     h2 {
         color: black;
         font-family: "Flaco", Helvetica, Arial, sans-serif;
@@ -26,7 +26,7 @@ html,body,text {
     p {
         color: black;
         font-family: "Flaco", Helvetica, Arial, sans-serif;
-        font-size: 16;
+        font-size: 12;
         font-weight: 250;
         line-height: 25px;
         text-rendering: optimizeLegibility;
