@@ -26,13 +26,13 @@ html,body {
     
     h1 {
         color: black;
-        font-family: 'eb garamond';
+        font-family: eb garamond;
     font-size: 36;
     }
 
     p {
         color: black;
-        font-family: roboto;
+        font-family: eb garamond;
         font-size: 12;
         font-weight: bold;
     }
