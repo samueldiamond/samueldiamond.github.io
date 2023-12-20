@@ -1,0 +1,39 @@
+html,body {
+    margin: 20px;
+    padding: 20px;
+    border: 0px;
+    left: 0px;
+    top: 0px;
+    }
+    text {
+        margin: auto;
+        border: black;
+        min-height: 150px;
+        position: relative;
+        min-width: 250px;
+        width: 250px;
+        align-content: left;
+        height: fit-content;
+        height: fit-content;
+        }
+    
+    body {
+        background-color: white; 
+    }
+
+ 
+    
+    
+    h1 {
+        color: black;
+        font-family: 'eb garamond';
+    font-size: 36;
+    }
+
+    p {
+        color: black;
+        font-family: roboto;
+        font-size: 12;
+        font-weight: bold;
+
+        
