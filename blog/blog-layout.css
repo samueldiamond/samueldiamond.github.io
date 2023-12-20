@@ -1,11 +1,8 @@
 html,body,text {
-    padding: auto;
-    left: 100px;
-    top: 300px;
-    margin: 5%;
+    margin: auto;
+    padding: 4%;
     min-width: auto;
     max-width: 700px;
-    align-content: left;
     background-color: white; 
         }
  
