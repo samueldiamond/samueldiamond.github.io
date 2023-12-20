@@ -1,44 +1,101 @@
-html,body {
-    margin: auto;
-    padding: 200px;
-    border: 0px;
-    left: 0px;
-    top: 0px;
-    margin: auto;
-        min-height: 150px;
-        position: relative;
-        width: 300;
-        align-content: left;
-        height: fit-content;
-        height: fit-content;
+html,body,text {
+    padding: auto;
+    left: 100px;
+    top: 300px;
+    margin: 5%;
+    min-width: auto;
+    max-width: 700px;
+    align-content: left;
+    background-color: white; 
         }
-    text {
-        margin: auto;
-        border: black;
-        min-height: 150px;
-        position: relative;
-        width: 1000px;
-        align-content: left;
-        height: fit-content;
-        height: fit-content;
-        }
-    
-    body {
-        background-color: white; 
-    }
-
  
-    
-    
     h1 {
+        color: #0096FF;
+        font-family: "Flaco", Helvetica, Arial, sans-serif;
+        font-style: st;
+    font-size: 30;
+    font-weight: 2000;
+    line-height: 25px;
+    text-rendering: optimizeLegibility;
+    }
+    h2 {
         color: black;
-        font-family: eb garamond;
-    font-size: 36;
+        font-family: "Flaco", Helvetica, Arial, sans-serif;
+    font-size: 18;
+    font-weight: 500;
+    line-height: 25px;
+    text-rendering: optimizeLegibility;
     }
 
     p {
         color: black;
-        font-family: eb garamond;
-        font-size: 12;
-        font-weight: bold;
+        font-family: "Flaco", Helvetica, Arial, sans-serif;
+        font-size: 16;
+        font-weight: 500;
+        line-height: 25px;
+        text-rendering: optimizeLegibility;
     }
+    @import url("https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700,700i");@font-face {
+        font-family: 'Flaco';
+        src: url("../fonts/FlacoLig/Flaco-Lig.eot");
+        src: url("../fonts/FlacoLig/Flaco-Lig.eot?#iefix") format("embedded-opentype"),url("../fonts/FlacoLig/Flaco-Lig.woff") format("woff"),url("../fonts/FlacoLig/Flaco-Lig.ttf") format("truetype"),url("../fonts/FlacoLig/Flaco-Lig.svg#Flaco-Lig") format("svg");
+        font-style: normal;
+        font-weight: 400;
+        text-rendering:optimizeLegibility}
+    
+    @font-face {
+        font-family: 'Flaco';
+        src: url("../fonts/FlacoReg/Flaco-Reg.eot");
+        src: url("../fonts/FlacoReg/Flaco-Reg.eot?#iefix") format("embedded-opentype"),url("../fonts/FlacoReg/Flaco-Reg.woff") format("woff"),url("../fonts/FlacoReg/Flaco-Reg.ttf") format("truetype"),url("../fonts/FlacoReg/Flaco-Reg.svg#Flaco-Reg") format("svg");
+        font-style: normal;
+        font-weight: 500;
+        text-rendering:optimizeLegibility}
+    
+    @font-face {
+        font-family: 'Flaco';
+        src: url("../fonts/webfonts/39F18E_0_0.eot");
+        src: url("../fonts/webfonts/39F18E_0_0.eot?#iefix") format("embedded-opentype"),url("../fonts/webfonts/39F18E_0_0.woff") format("woff"),url("../fonts/webfonts/39F18E_0_0.ttf") format("truetype");
+        font-style: italic;
+        font-weight: 500;
+        text-rendering:optimizeLegibility}
+    
+    @font-face {
+        font-family: 'Flaco';
+        src: url("../fonts/FlacoMedium/Flaco-Medium.eot");
+        src: url("../fonts/FlacoMedium/Flaco-Medium.eot?#iefix") format("embedded-opentype"),url("../fonts/FlacoMedium/Flaco-Medium.woff") format("woff"),url("../fonts/FlacoMedium/Flaco-Medium.ttf") format("truetype"),url("../fonts/FlacoMedium/Flaco-Medium.svg#Flaco-Medium") format("svg");
+        font-style: normal;
+        font-weight: 600;
+        text-rendering:optimizeLegibility}
+    
+    @font-face {
+        font-family: 'Flaco';
+        src: url("../fonts/FlacoBol/Flaco-Bol.eot");
+        src: url("../fonts/FlacoBol/Flaco-Bol.eot?#iefix") format("embedded-opentype"),url("../fonts/FlacoBol/Flaco-Bol.woff") format("woff"),url("../fonts/FlacoBol/Flaco-Bol.ttf") format("truetype"),url("../fonts/FlacoBol/Flaco-Bol.svg#Flaco-Bol") format("svg");
+        font-style: normal;
+        font-weight: 700;
+        text-rendering:optimizeLegibility}
+    
+    @font-face {
+        font-family: 'Flaco';
+        src: url("../fonts/FlacoXBol/Flaco-XBol.eot");
+        src: url("../fonts/FlacoXBol/Flaco-XBol.eot?#iefix") format("embedded-opentype"),url("../fonts/FlacoXBol/Flaco-XBol.woff") format("woff"),url("../fonts/FlacoXBol/Flaco-XBol.ttf") format("truetype"),url("../fonts/FlacoXBol/Flaco-XBol.svg#Flaco-XBol") format("svg");
+        font-style: normal;
+        font-weight: 800;
+        text-rendering:optimizeLegibility}
+    
+    @font-face {
+        font-family: 'Flaco';
+        src: url("../fonts/FlacoHeavy/Flaco-Heavy.eot");
+        src: url("../fonts/FlacoHeavy/Flaco-Heavy.eot?#iefix") format("embedded-opentype"),url("../fonts/FlacoHeavy/Flaco-Heavy.woff") format("woff"),url("../fonts/FlacoHeavy/Flaco-Heavy.ttf") format("truetype"),url("../fonts/FlacoHeavy/Flaco-Heavy.svg#Flaco-Heavy") format("svg");
+        font-style: normal;
+        font-weight: 900;
+        text-rendering:optimizeLegibility}
+    
+    @font-face {
+        font-family: 'Flaco Mono';
+        src: url("../fonts/FlacoMono/FlacoMono-Reg.eot");
+        src: url("../fonts/FlacoMono/FlacoMono-Reg.eot?#iefix") format("embedded-opentype"),url("../fonts/FlacoMono/FlacoMono-Reg.woff") format("woff"),url("../fonts/FlacoMono/FlacoMono-Reg.ttf") format("truetype"),url("../fonts/FlacoMono/FlacoMono-Reg.svg#FlacoMono-Reg") format("svg");
+        font-style: normal;
+        font-weight: normal;
+        text-rendering:optimizeLegibility}
+    
