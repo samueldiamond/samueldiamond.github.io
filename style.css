@@ -23,8 +23,6 @@ body.dark-mode {
     width: 100%;
     height: 100%;
     padding: 25%;
-    margin: 0 auto; /* Horizontally center the container and keep it at the top */
-    position: relative;
 }
 
 h1 {
