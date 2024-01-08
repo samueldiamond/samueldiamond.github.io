@@ -55,6 +55,17 @@ p {
     margin-bottom: 15px; /* Add some bottom margin for spacing */
 }
 
+p a {
+    color: inherit; /* Inherit the color from the parent, so it works in both light and dark modes */
+    text-decoration: underline; /* Add underline to make links distinguishable */
+}
+
+/* Additional styles for dark mode */
+body.dark-mode p a {
+    color: white; /* Set the link color to white in dark mode */
+}
+
+
 @media only screen and (max-width: 300px) {
     .container {
         padding: 5%;
