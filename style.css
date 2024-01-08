@@ -32,7 +32,6 @@ body.dark-mode {
 .inner-container {
     max-width: 50%;
     padding: 25px;
-    text-align: left; /* Left-align the text within the container */
 }
 
 h1 {
