@@ -33,4 +33,19 @@ p {
     text-rendering: optimizeLegibility;
 }
 
-/* Your @font-face rules remain unchanged */
+/* Media Query for smaller screens */
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    p {
+        font-size: 10px;
+        line-height: 20px;
+    }
+}
