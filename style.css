@@ -26,11 +26,13 @@ body.dark-mode {
     width: 100%;
     height: 100%;
     display: flex;
+    justify-content: center; /* Horizontal centering */
 }
 
 .inner-container {
     max-width: 50%;
     padding: 25px;
+    text-align: left; /* Left-align the text within the container */
 }
 
 h1 {
