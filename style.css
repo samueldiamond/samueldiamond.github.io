@@ -22,6 +22,8 @@ body.dark-mode {
 }
 
 .container {
+    width: 100%;
+    padding: 50%;
     margin: 0 auto; /* Horizontally center the container and keep it at the top */
     position: relative;
 }
