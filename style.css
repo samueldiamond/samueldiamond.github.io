@@ -13,6 +13,9 @@ body {
     background-color: white;
     color: black;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the container horizontally */
 }
 
 body.dark-mode {
