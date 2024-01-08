@@ -1,13 +1,19 @@
-html, body {
-    margin: auto;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Flaco", Helvetica, Arial, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color change */
+}
+
+.container {
     width: 50%;
     min-width: 250px;
     height: 50%;
     padding: 5%;
     background-color: white; 
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color change */
     color: black;
     position: relative;
+    margin: auto;
 }
 
 body.dark-mode {
@@ -20,42 +26,36 @@ body.dark-mode {
     top: 10px;
     right: 10px;
     cursor: pointer;
-    font-family: "Flaco", Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 500;
     text-rendering: optimizeLegibility;
     z-index: 999; /* Ensure it's above other content */
 }
 
-h1, h2, p {
-    color: inherit; /* Use the color property from the parent */
-}
-
 h1 {
-    font-family: "Flaco", Helvetica, Arial, sans-serif;
     font-size: 40px;
     font-weight: 2000;
-    text-rendering: optimizeLegibility;
 }
 
 h2 {
-    font-family: "Flaco", Helvetica, Arial, sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 25px;
-    text-rendering: optimizeLegibility;
 }
 
 p {
-    font-family: "Flaco", Helvetica, Arial, sans-serif;
     font-size: 12px;
     font-weight: 250;
     line-height: 25px;
-    text-rendering: optimizeLegibility;
 }
 
 /* Media Query for smaller screens */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1500px) {
+    .container {
+        width: 100%;
+        padding: 5%;
+    }
+
     h1 {
         font-size: 30px;
     }
