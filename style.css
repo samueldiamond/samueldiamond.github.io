@@ -31,33 +31,35 @@ body.dark-mode {
 }
 
 .inner-container {
-    max-width: 50%;
     text-align: left; /* Left-align the text within the container */
     padding: 25px;
     box-sizing: border-box; /* Include padding in width calculation */
+    max-width: 80%; /* Adjust as needed */
 }
 
 h1 {
     font-size: 40px;
     font-weight: 2000;
+    margin-bottom: 20px; /* Add some bottom margin for spacing */
 }
 
 h2 {
     font-size: 18px;
     font-weight: 500;
     line-height: 25px;
+    margin-bottom: 15px; /* Add some bottom margin for spacing */
 }
 
 p {
     font-size: 12px;
     font-weight: 250;
     line-height: 25px;
+    margin-bottom: 15px; /* Add some bottom margin for spacing */
 }
 
 /* Media Query for smaller screens */
 @media only screen and (max-width: 1500px) {
     .inner-container {
-        width: 100%;
         padding: 15px;
     }
 
