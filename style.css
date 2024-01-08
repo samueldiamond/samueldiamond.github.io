@@ -34,7 +34,7 @@ p {
 }
 
 /* Media Query for smaller screens */
-@media only screen and (max-width: 20px) {
+@media only screen and (max-width: 3000px) {
     h1 {
         font-size: 30px;
     }
