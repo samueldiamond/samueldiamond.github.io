@@ -9,14 +9,14 @@ body {
     width: 50%;
     min-width: 250px;
     margin: auto;
-    padding: 5% 10%;
+    padding: 25% 5%;
     background-color: white;
     color: black;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center the container horizontally */
-    align-items: center; /* Center the text vertically */
+    justify-content: left; /* Center the container horizontally */
+    align-items: left; /* Center the text vertically */
 }
 
 body.dark-mode {
