@@ -9,7 +9,7 @@ body {
     width: 50%;
     min-width: 250px;
     margin: auto; /* Horizontally center the container */
-    padding: 50%;
+    padding: 5% 50%;
     background-color: white;
     color: black;
     position: relative;
