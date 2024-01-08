@@ -5,7 +5,9 @@ html, body {
     height: 50%;
     padding: 5%;
     background-color: white; 
-    transition: background-color 0.3s ease; /* Smooth transition for background color change */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color change */
+    color: black;
+    position: relative;
 }
 
 body.dark-mode {
@@ -13,14 +15,42 @@ body.dark-mode {
     color: white;
 }
 
-h1, h2, p {
-    color: black;
+#mode-switch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
     font-family: "Flaco", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+}
+
+h1 {
+    font-family: "Flaco", Helvetica, Arial, sans-serif;
+    font-size: 40px;
+    font-weight: 2000;
+    text-rendering: optimizeLegibility;
+}
+
+h2 {
+    font-family: "Flaco", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 25px;
+    text-rendering: optimizeLegibility;
+}
+
+p {
+    font-family: "Flaco", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 250;
+    line-height: 25px;
     text-rendering: optimizeLegibility;
 }
 
 /* Media Query for smaller screens */
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1500px) {
     h1 {
         font-size: 30px;
     }
