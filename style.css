@@ -1,3 +1,19 @@
+body.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+#mode-switch {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+    z-index: 999; /* Ensure it's above other content */
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -16,21 +32,7 @@ body {
     text-align: left; /* Left-align the text within the container */
 }
 
-body.dark-mode {
-    background-color: black;
-    color: white;
-}
 
-#mode-switch {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    text-rendering: optimizeLegibility;
-    z-index: 999; /* Ensure it's above other content */
-}
 
 h1 {
     font-size: 40px;
