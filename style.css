@@ -27,6 +27,10 @@ body.dark-mode {
     z-index: 999; /* Ensure it's above other content */
 }
 
+h1, h2, p {
+    color: inherit; /* Use the color property from the parent */
+}
+
 h1 {
     font-family: "Flaco", Helvetica, Arial, sans-serif;
     font-size: 40px;
