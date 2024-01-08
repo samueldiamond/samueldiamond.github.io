@@ -55,13 +55,20 @@ p {
     margin-bottom: 15px; /* Add some bottom margin for spacing */
 }
 
-/* Media Query for smaller screens */
 @media only screen and (max-width: 1000px) {
+    .container {
+        width: 100%;
+        padding: 5%;
+        text-align: center; /* Center the text within the container */
+    }
+
     .inner-container {
+        max-width: 100%;
+    }
+
+    h1, h2, p {
         text-align: left; /* Left-align the text within the container */
-        padding: 25px;
-        box-sizing: border-box; /* Include padding in width calculation */
-        max-width: 80%; /* Adjust as needed */    }
+    }
 
     h1 {
         font-size: 30px;
