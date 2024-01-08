@@ -13,7 +13,6 @@ body {
     background-color: white; 
     color: black;
     position: relative;
-    overflow: hidden; /* Add this line */
 }
 
 body.dark-mode {
@@ -35,18 +34,21 @@ body.dark-mode {
 h1 {
     font-size: 40px;
     font-weight: 2000;
+    margin: 0; /* Add this line */
 }
 
 h2 {
     font-size: 18px;
     font-weight: 500;
     line-height: 25px;
+    margin: 0; /* Add this line */
 }
 
 p {
     font-size: 12px;
     font-weight: 250;
     line-height: 25px;
+    margin: 0; /* Add this line */
 }
 
 /* Media Query for smaller screens */
