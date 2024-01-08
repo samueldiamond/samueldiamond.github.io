@@ -16,6 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center the container horizontally */
+    align-items: center; /* Center the text vertically */
 }
 
 body.dark-mode {
