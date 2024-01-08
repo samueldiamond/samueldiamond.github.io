@@ -9,8 +9,8 @@ body {
     width: 50%;
     min-width: 250px;
     margin: auto;
-    padding: 5%;
-    background-color: white; 
+    padding: 5% 10%;
+    background-color: white;
     color: black;
     position: relative;
 }
@@ -29,10 +29,6 @@ body.dark-mode {
     font-weight: 500;
     text-rendering: optimizeLegibility;
     z-index: 999; /* Ensure it's above other content */
-}
-
-h1, h2, p {
-    margin: 0; /* Reset margin */
 }
 
 h1 {
