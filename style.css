@@ -3,33 +3,19 @@ html, body {
     width: 50%;
     min-width: 250px;
     height: 50%;
-    padding: 5%; /* Adjust the padding value as needed */
+    padding: 5%;
     background-color: white; 
+    transition: background-color 0.3s ease; /* Smooth transition for background color change */
 }
 
-h1 {
-    color: black;
-    font-family: "Flaco", Helvetica, Arial, sans-serif;
-    font-size: 40px;
-    font-weight: 2000;
-    text-rendering: optimizeLegibility;
+body.dark-mode {
+    background-color: black;
+    color: white;
 }
 
-h2 {
+h1, h2, p {
     color: black;
     font-family: "Flaco", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 25px;
-    text-rendering: optimizeLegibility;
-}
-
-p {
-    color: black;
-    font-family: "Flaco", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 250;
-    line-height: 25px;
     text-rendering: optimizeLegibility;
 }
 

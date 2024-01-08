@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SK6TTCY3RN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SK6TTCY3RN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-SK6TTCY3RN');
-</script>
+        gtag('config', 'G-SK6TTCY3RN');
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,10 +19,20 @@
 </head>
 
 <body>
-                <h1>Sam Diamond</h1>
-                <h2>Standard definition</h2>
-                <p><a href="mailto:samdiamond1990@gmail.com">email</a><br>
-                <a href="https://twitter.com/samueldiamond">x</a><br>
-                <a href="https://soundcloud.com/spdspdspd">soundcloud</a></p>
-        </body>
+    <div id="mode-switch" onclick="toggleDarkMode()">Toggle Dark Mode</div>
+    <h1>Sam Diamond</h1>
+    <h2>Standard definition</h2>
+    <p>
+        <a href="mailto:samdiamond1990@gmail.com">email</a><br>
+        <a href="https://twitter.com/samueldiamond">x</a><br>
+        <a href="https://soundcloud.com/spdspdspd">soundcloud</a>
+    </p>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
+</body>
+
 </html>
