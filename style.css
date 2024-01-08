@@ -13,7 +13,7 @@ body {
     background-color: white; 
     color: black;
     position: relative;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    overflow: hidden; /* Add this line */
 }
 
 body.dark-mode {
