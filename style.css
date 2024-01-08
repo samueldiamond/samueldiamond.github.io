@@ -60,6 +60,16 @@ p a {
 }
 
 /* Additional styles for dark mode */
+body.dark-mode #mode-switch::before {
+    content: '☀️'; /* Sun symbol in dark mode */
+    color: white;
+}
+
+body:not(.dark-mode) #mode-switch::before {
+    content: '🌙'; /* Moon symbol in light mode */
+    color: black;
+}
+
 body.dark-mode p a {
     color: white; /* Set the link color to white in dark mode */
 }
