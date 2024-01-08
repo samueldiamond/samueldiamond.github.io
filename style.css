@@ -3,7 +3,7 @@ html, body {
     width: 50%;
     min-width: 250px;
     height: 50%;
-    padding: 10%;
+    padding: 5%; /* Adjust the padding value as needed */
     background-color: white; 
 }
 
@@ -34,7 +34,7 @@ p {
 }
 
 /* Media Query for smaller screens */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 600px) {
     h1 {
         font-size: 30px;
     }
