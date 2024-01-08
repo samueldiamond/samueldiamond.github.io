@@ -1,6 +1,4 @@
 body {
-    margin: 0;
-    padding: 0;
     font-family: "Flaco", Helvetica, Arial, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color change */
 }
