@@ -55,7 +55,7 @@ p {
     margin-bottom: 15px; /* Add some bottom margin for spacing */
 }
 
-@media only screen {
+@media only screen and (max-device-width: 768px) {
     .container {
         width: 100%;
         padding: 5%;
@@ -84,3 +84,4 @@ p {
         line-height: 20px;
     }
 }
+
