@@ -55,7 +55,7 @@ p {
     margin-bottom: 15px; /* Add some bottom margin for spacing */
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen {
     .container {
         width: 100%;
         padding: 5%;
