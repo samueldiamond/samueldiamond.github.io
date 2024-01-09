@@ -76,18 +76,6 @@ body.dark-mode p a {
 
 @media only screen and (max-width: 750px) {
 
-    .container {
-        height: 100vh; /* 100% of viewport height */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .inner-container {
-        width: 80%;
-        padding: 25px;
-    }
-
     h1 {
         font-size: 30px;
     }
