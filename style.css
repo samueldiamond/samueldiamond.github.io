@@ -4,6 +4,7 @@ body {
     font-family: "Flaco", Helvetica, Arial, sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color change */
     overflow: hidden; /* Prevent scrolling */
+    -webkit-font-smoothing: antialiased;
 }
 
 body.dark-mode {
@@ -39,12 +40,15 @@ body.dark-mode {
 h1 {
     font-size: 40px;
     font-weight: 2000;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
 }
 
 h2 {
     font-size: 18px;
     font-weight: 500;
     line-height: 25px;
+    -webkit-font-smoothing: antialiased;
 }
 
 p {
@@ -52,11 +56,13 @@ p {
     font-weight: 250;
     line-height: 25px;
     margin-bottom: 15px; /* Add some bottom margin for spacing */
+    -webkit-font-smoothing: antialiased;
 }
 
 p a {
     color: inherit; /* Inherit the color from the parent, so it works in both light and dark modes */
     text-decoration: underline; /* Add underline to make links distinguishable */
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Additional styles for dark mode */
