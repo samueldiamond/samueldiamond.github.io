@@ -1,7 +1,11 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Flaco", Helvetica, Arial, sans-serif;
+    font-family: 'Amazon Ember';
+    src: url("chrome-extension://cgdjpilhipecahhcilnafpblkieebhea/fonts/AmazonEmber_Rg.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color change */
     overflow: hidden; /* Prevent scrolling */
     -webkit-font-smoothing: antialiased;
@@ -31,16 +35,14 @@ body.dark-mode {
 }
 
 .inner-container {
-    text-align: left; /* Left-align the text within the container */
-    max-width: 80%;
-    padding: 25px;
-    box-sizing: border-box;
+    padding-top: 20px;
+    text-align: justify; /* Left-align the text within the container */
+    width: 450px;
 }
 
 h1 {
-    font-size: 40px;
-    font-weight: 2000;
-    letter-spacing: -0.01em;
+    font-size: 36px;
+    font-weight: bold;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -52,47 +54,31 @@ h2 {
 }
 
 p {
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 250;
-    line-height: 25px;
     margin-bottom: 15px; /* Add some bottom margin for spacing */
     -webkit-font-smoothing: antialiased;
 }
 
-p a {
-    color: inherit; /* Inherit the color from the parent, so it works in both light and dark modes */
-    text-decoration: underline; /* Add underline to make links distinguishable */
+a {
+    font-size: 18px;
+    color: #6495ED;
     -webkit-font-smoothing: antialiased;
+    text-decoration: none;
 }
 
 /* Additional styles for dark mode */
 body.dark-mode #mode-switch::before {
-    content: '☀️'; /* Sun symbol in dark mode */
+    content: 'LIGHT'; /* Sun symbol in dark mode */
     color: white;
 }
 
 body:not(.dark-mode) #mode-switch::before {
-    content: '🌙'; /* Moon symbol in light mode */
+    content: 'DARK'; /* Moon symbol in light mode */
     color: black;
 }
 
 body.dark-mode p a {
-    color: white; /* Set the link color to white in dark mode */
+    color: #6495ED; /* Set the link color to white in dark mode */
 }
 
-@media only screen and (max-width: 750px) {
-
-    h1 {
-        font-size: 30px;
-    }
-
-    h2 {
-        font-size: 16px;
-        line-height: 20px;
-    }
-
-    p {
-        font-size: 10px;
-        line-height: 20px;
-    }
-}
