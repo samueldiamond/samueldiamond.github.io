@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Amazon Ember';
+    font-family: 'Amazon Ember', sans-serif;
     src: url("chrome-extension://cgdjpilhipecahhcilnafpblkieebhea/fonts/AmazonEmber_Rg.ttf");
     font-weight: normal;
     font-style: normal;
