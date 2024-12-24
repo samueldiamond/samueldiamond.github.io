@@ -5,25 +5,8 @@ body {
     font-weight: normal;
     font-style: normal;
     font-display: swap; 
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color change */
     overflow: hidden; /* Prevent scrolling */
     -webkit-font-smoothing: antialiased;
-}
-
-body.dark-mode {
-    background-color: black;
-    color: white;
-}
-
-#mode-switch {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    text-rendering: optimizeLegibility;
-    z-index: 999; /* Ensure it's above other content */
 }
 
 .container {
@@ -67,41 +50,26 @@ a {
     text-decoration: none;
 }
 
-/* Additional styles for dark mode */
-body.dark-mode #mode-switch::before {
-    content: 'LIGHT'; /* Sun symbol in dark mode */
-    color: white;
-}
-
-body:not(.dark-mode) #mode-switch::before {
-    content: 'DARK'; /* Moon symbol in light mode */
-    color: black;
-}
-
-body.dark-mode p a {
-    color: #6495ED; /* Set the link color to white in dark mode */
-}
-
 @media screen and (max-width: 768px) {
     .inner-container {
         width: 400px; /* Set a percentage for maximum width on smaller screens */
     }
-
 }
+
 @media screen and (max-width: 600px) {
     .inner-container {
-    width: 350px; /* Set a percentage for maximum width on smaller screens */
-}
+        width: 350px; /* Set a percentage for maximum width on smaller screens */
+    }
 }
 
 @media screen and (max-width: 400px) {
     .inner-container {
-    width: 300px; /* Set a percentage for maximum width on smaller screens */
-}
+        width: 300px; /* Set a percentage for maximum width on smaller screens */
+    }
 }
       
 @media screen and (max-width: 300px) {
     .inner-container {
-    width: 250px; /* Set a percentage for maximum width on smaller screens */
-}
+        width: 250px; /* Set a percentage for maximum width on smaller screens */
+    }
 }
