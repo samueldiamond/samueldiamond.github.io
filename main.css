@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "lora", serif;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color change */
+    overflow: hidden; /* Prevent scrolling */
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    height: 40vh; /* 100% of viewport height */
+    padding: 1vh;
+    padding-top: 60px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-container {
+    text-align: center; /* Left-align the text within the container */
+    max-width: 80%;
+    padding-top: 60px; 
+    padding: 100px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: left; /* Left-align the text within the container */
+    font-size: 40px;
+    font-weight: 2000;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 25px;
+    -webkit-font-smoothing: antialiased;
+}
+
+p {
+    font: arial;
+    font-size: 16px; /* Increase font size for better readability */
+    font-weight: 250;
+    line-height: 150%;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    font-family: arial;
+    text-decoration: none;
+    color: blue;
+}
+
+/* Additional styles for dark mode */
+body.dark-mode #mode-switch::before {
+    content: 'LIGHT'; /* Sun symbol in dark mode */
+    color: white;
+}
+
+body:not(.dark-mode) #mode-switch::before {
+    content: 'DARK'; /* Moon symbol in light mode */
+    color: black;
+}
+
+body.dark-mode p a {
+    color: #6495ED; /* Set the link color to white in dark mode */
+}
+
+/* Media Query for smaller screens/mobile */
+@media screen and (max-width: 768px) {
+    .container {
+        padding-top: 20px; /* Ensure consistent top padding for mobile views */
+    }
+
+    .inner-container {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 30px; /* Adjust font size for smaller screens */
+    }
+
+    h2 {
+        font-size: 16px; /* Adjust font size for smaller screens */
+        line-height: 20px; /* Adjust line height for smaller screens */
+    }
+
+    p {
+        font-size: 12px; /* Keep font size the same for smaller screens */
+    }
+}

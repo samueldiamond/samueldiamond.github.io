@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Times New Roman", Times, serif;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color change */
+    overflow-y: scroll; /* Allow vertical scrolling */
+    -webkit-font-smoothing: antialiased;
+}
+
+body.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+#mode-switch {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+    z-index: 999; /* Ensure it's above other content */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    
+.inner-container {
+    padding-top: 20px;
+    text-align: justify; /* Left-align the text within the container */
+    width: 450px;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px; /* Increase font size for better readability */
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+}
+
+h2 {
+    font-size: 18px; /* Increase font size for better readability */
+    font-weight: 250;
+    -webkit-font-smoothing: antialiased;
+}
+p {
+    font-size: 18px; /* Increase font size for better readability */
+    font-weight: 250;
+    line-height: 150%;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Additional styles for dark mode */
+body.dark-mode #mode-switch::before {
+    content: 'LIGHT'; /* Sun symbol in dark mode */
+    color: white;
+}
+
+body:not(.dark-mode) #mode-switch::before {
+    content: 'DARK'; /* Moon symbol in light mode */
+    color: black;
+}
+
+body.dark-mode p a {
+    color: #6495ED; /* Set the link color to white in dark mode */
+}
+
+/* Media Query for smaller screens/mobile */
+@media screen and (max-width: 900px) {
+    .inner-container {
+        width: 500px; /* Set a percentage for maximum width on smaller screens */
+    }
+img {
+    width: 100%;
+    height: 100%;
+}
+}
+
+@media screen and (max-width: 768px) {
+    .inner-container {
+        width: 400px; /* Set a percentage for maximum width on smaller screens */
+    }
+img {
+    width: 100%;
+    height: 100%;
+}
+
+}
+@media screen and (max-width: 600px) {
+    .inner-container {
+    width: 350px; /* Set a percentage for maximum width on smaller screens */
+}
+}
+
+@media screen and (max-width: 400px) {
+    .inner-container {
+    width: 300px; /* Set a percentage for maximum width on smaller screens */
+}
+}
+      
+@media screen and (max-width: 300px) {
+    .inner-container {
+    width: 250px; /* Set a percentage for maximum width on smaller screens */
+}
+}
+
