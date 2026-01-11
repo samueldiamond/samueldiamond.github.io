@@ -110,17 +110,12 @@
 
         // Fetch books from a specific shelf
         async function fetchShelf(shelfName) {
-            let text;
             const url = `https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&shelf=${shelfName}`;
 
-            try {
-                const directResponse = await fetch(url);
-                text = await directResponse.text();
-            } catch (corsError) {
-                console.log(`Direct fetch failed for ${shelfName}, trying CORS proxy...`);
-                const proxyResponse = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
-                text = await proxyResponse.text();
-            }
+            // Use CORS proxy directly to avoid CORS issues
+            console.log(`Fetching ${shelfName} shelf via CORS proxy...`);
+            const proxyResponse = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
+            const text = await proxyResponse.text();
 
             return text;
         }
@@ -260,6 +255,16 @@
                 const imgElement = tempDiv.querySelector('img');
                 if (imgElement) {
                     coverUrl = improveImageUrl(imgElement.getAttribute('src') || '');
+
+                    // Try to extract author from image alt text if we don't have it yet
+                    if (!author) {
+                        const altText = imgElement.getAttribute('alt') || '';
+                        // Alt text format is often "Book Title by Author Name"
+                        const altMatch = altText.match(/by\s+(.+?)(?:\s*$)/i);
+                        if (altMatch) {
+                            author = altMatch[1].trim();
+                        }
+                    }
                 }
 
                 // Extract review text (Goodreads puts user review in description)
