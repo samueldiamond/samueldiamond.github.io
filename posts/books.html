@@ -201,7 +201,8 @@
                 let author = '';
 
                 // First, check for author/creator tags in the RSS item
-                const authorTag = item.querySelector('author')?.textContent ||
+                const authorTag = item.querySelector('author_name')?.textContent ||
+                                 item.querySelector('author')?.textContent ||
                                  item.querySelector('dc\\:creator')?.textContent ||
                                  item.querySelector('creator')?.textContent || '';
                 if (authorTag) {
