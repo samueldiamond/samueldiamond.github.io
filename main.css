@@ -64,6 +64,19 @@ a:hover {
     color: #ffffff;
 }
 
+/* Section organization */
+.section {
+    margin-bottom: 30px;
+}
+
+.section-label {
+    font-size: 11px;
+    color: #666666;
+    margin-bottom: 8px;
+    text-transform: lowercase;
+    font-style: italic;
+}
+
 /* Minimalist info widget */
 .info-widget {
     position: fixed;
