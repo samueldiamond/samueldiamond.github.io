@@ -39,6 +39,76 @@
         </div>
     </div>
 
+    <!-- Minimalist info widget -->
+    <div class="info-widget">
+        <div class="time" id="time"></div>
+        <div class="date" id="date"></div>
+        <div class="location" id="location">loading location...</div>
+        <div class="weather" id="weather"></div>
+    </div>
+
+    <script>
+        // Update time every second
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
+
+            // Update date
+            const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+            document.getElementById('date').textContent = now.toLocaleDateString('en-US', options).toLowerCase();
+        }
+
+        // Get location and weather
+        async function getLocationAndWeather() {
+            try {
+                // Get user's position
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        async (position) => {
+                            const lat = position.coords.latitude;
+                            const lon = position.coords.longitude;
+
+                            // Get location name using reverse geocoding
+                            try {
+                                const geoResponse = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
+                                const geoData = await geoResponse.json();
+                                document.getElementById('location').textContent = `${geoData.city || geoData.locality || 'unknown'}`.toLowerCase();
+                            } catch (error) {
+                                document.getElementById('location').textContent = 'location unavailable';
+                            }
+
+                            // Get weather using Open-Meteo (no API key needed)
+                            try {
+                                const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&temperature_unit=fahrenheit`);
+                                const weatherData = await weatherResponse.json();
+                                const temp = Math.round(weatherData.current_weather.temperature);
+                                document.getElementById('weather').textContent = `${temp}°f`;
+                            } catch (error) {
+                                document.getElementById('weather').textContent = '';
+                            }
+                        },
+                        (error) => {
+                            document.getElementById('location').textContent = 'location disabled';
+                            document.getElementById('weather').textContent = '';
+                        }
+                    );
+                } else {
+                    document.getElementById('location').textContent = 'location unavailable';
+                }
+            } catch (error) {
+                console.error('Error getting location/weather:', error);
+            }
+        }
+
+        // Initialize
+        updateTime();
+        setInterval(updateTime, 1000);
+        getLocationAndWeather();
+    </script>
+
 </body>
 
 </html>
