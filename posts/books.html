@@ -142,6 +142,9 @@
                 currentlyReading = parseBookFeed(parser.parseFromString(currentlyReadingText, 'text/xml'));
                 readBooks = parseBookFeed(parser.parseFromString(readText, 'text/xml'));
 
+                console.log('Currently reading books:', currentlyReading.length);
+                console.log('Read books:', readBooks.length);
+
                 // Sort read books by read date (most recent first)
                 readBooks.sort((a, b) => b.timestamp - a.timestamp);
 
@@ -290,6 +293,13 @@
                     day: 'numeric',
                     year: 'numeric'
                 }).toLowerCase();
+
+                // Debug logging
+                console.log('Book found:', {
+                    title: bookTitle,
+                    author: author,
+                    rawTitle: title
+                });
 
                 books.push({
                     title: bookTitle,
