@@ -150,14 +150,33 @@
         // Parse RSS feed and extract film data
         async function loadFilms() {
             try {
-                // Use CORS proxy to fetch RSS feed
-                const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://letterboxd.com/sdiamond/rss/'));
-                const text = await response.text();
+                // Try direct fetch first (works in most browsers)
+                let text;
+                try {
+                    const directResponse = await fetch('https://letterboxd.com/sdiamond/rss/');
+                    text = await directResponse.text();
+                } catch (corsError) {
+                    console.log('Direct fetch failed, trying CORS proxy...');
+                    // Fallback to CORS proxy
+                    const proxyResponse = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://letterboxd.com/sdiamond/rss/'));
+                    text = await proxyResponse.text();
+                }
 
                 // Parse XML
                 const parser = new DOMParser();
                 const xml = parser.parseFromString(text, 'text/xml');
+
+                // Check for parse errors
+                const parseError = xml.querySelector('parsererror');
+                if (parseError) {
+                    throw new Error('Failed to parse RSS feed');
+                }
+
                 const items = xml.querySelectorAll('item');
+
+                if (items.length === 0) {
+                    throw new Error('No films found in RSS feed');
+                }
 
                 allFilms = [];
 
@@ -311,7 +330,13 @@
                 displayFilms('all');
             } catch (error) {
                 console.error('Error loading films:', error);
-                document.getElementById('filmList').innerHTML = '<p style="color: #666;">unable to load films</p>';
+                document.getElementById('filmList').innerHTML = `
+                    <p style="color: #666;">unable to load films</p>
+                    <p style="color: #555; font-size: 12px; margin-top: 10px;">
+                        try refreshing the page<br>
+                        error: ${error.message || 'unknown error'}
+                    </p>
+                `;
             }
         }
 
