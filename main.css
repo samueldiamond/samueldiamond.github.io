@@ -26,9 +26,11 @@ body {
 
 h1 {
     text-align: left; /* Left-align the text within the container */
-    font-size: 40px;
-    font-weight: 2000;
-    letter-spacing: -0.01em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -79,7 +81,7 @@ body.dark-mode p a {
     }
 
     h1 {
-        font-size: 30px; /* Adjust font size for smaller screens */
+        font-size: 35px; /* Adjust font size for smaller screens */
     }
 
     h2 {
