@@ -85,8 +85,12 @@ a:hover {
 
 .info-widget .date,
 .info-widget .location,
-.info-widget .weather {
+.info-widget .weather,
+.info-widget .weather-desc,
+.info-widget .sun-times,
+.info-widget .celestial {
     color: #666666;
+    font-size: 11px;
 }
 
 /* Media Query for smaller screens/mobile */

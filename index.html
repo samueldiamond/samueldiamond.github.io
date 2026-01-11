@@ -43,70 +43,134 @@
     <div class="info-widget">
         <div class="time" id="time"></div>
         <div class="date" id="date"></div>
-        <div class="location" id="location">loading location...</div>
+        <div class="location" id="location">berlin</div>
         <div class="weather" id="weather"></div>
+        <div class="weather-desc" id="weather-desc"></div>
+        <div class="sun-times" id="sun-times"></div>
+        <div class="celestial" id="celestial"></div>
     </div>
 
     <script>
-        // Update time every second
+        // Update time every second (Berlin timezone)
         function updateTime() {
             const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
+            // Format time in Berlin timezone
+            const berlinTime = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'Europe/Berlin',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).format(now);
+            document.getElementById('time').textContent = berlinTime;
 
-            // Update date
-            const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
-            document.getElementById('date').textContent = now.toLocaleDateString('en-US', options).toLowerCase();
+            // Format date in Berlin timezone
+            const berlinDate = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'Europe/Berlin',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            }).format(now).toLowerCase();
+            document.getElementById('date').textContent = berlinDate;
         }
 
-        // Get location and weather
-        async function getLocationAndWeather() {
+        // Weather code descriptions
+        const weatherDescriptions = {
+            0: 'clear skies',
+            1: 'mainly clear',
+            2: 'partly cloudy',
+            3: 'overcast',
+            45: 'foggy',
+            48: 'foggy',
+            51: 'light drizzle',
+            53: 'drizzle',
+            55: 'heavy drizzle',
+            61: 'light rain',
+            63: 'rain',
+            65: 'heavy rain',
+            71: 'light snow',
+            73: 'snow',
+            75: 'heavy snow',
+            77: 'snow grains',
+            80: 'rain showers',
+            81: 'rain showers',
+            82: 'heavy rain showers',
+            85: 'snow showers',
+            86: 'heavy snow showers',
+            95: 'thunderstorm',
+            96: 'thunderstorm',
+            99: 'thunderstorm'
+        };
+
+        // Get prominent celestial object based on month
+        function getCelestialObject() {
+            const month = new Date().getMonth();
+            const celestialCalendar = [
+                'orion visible',        // January
+                'sirius brightest',     // February
+                'venus evening',        // March
+                'mars visible',         // April
+                'jupiter rising',       // May
+                'saturn visible',       // June
+                'milky way peak',       // July
+                'perseid meteors',      // August
+                'harvest moon',         // September
+                'orionids active',      // October
+                'taurids active',       // November
+                'geminids peak'         // December
+            ];
+            return celestialCalendar[month];
+        }
+
+        // Get Berlin weather and info
+        async function getBerlinWeather() {
             try {
-                // Get user's position
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        async (position) => {
-                            const lat = position.coords.latitude;
-                            const lon = position.coords.longitude;
+                // Set location to Berlin
+                document.getElementById('location').textContent = 'berlin';
 
-                            // Get location name using reverse geocoding
-                            try {
-                                const geoResponse = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
-                                const geoData = await geoResponse.json();
-                                document.getElementById('location').textContent = `${geoData.city || geoData.locality || 'unknown'}`.toLowerCase();
-                            } catch (error) {
-                                document.getElementById('location').textContent = 'location unavailable';
-                            }
+                // Get weather for Berlin (52.52°N, 13.405°E) with daily data
+                const weatherResponse = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.405&current_weather=true&daily=sunrise,sunset&temperature_unit=celsius&timezone=Europe/Berlin');
+                const weatherData = await weatherResponse.json();
 
-                            // Get weather using Open-Meteo (no API key needed)
-                            try {
-                                const weatherResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&temperature_unit=fahrenheit`);
-                                const weatherData = await weatherResponse.json();
-                                const temp = Math.round(weatherData.current_weather.temperature);
-                                document.getElementById('weather').textContent = `${temp}°f`;
-                            } catch (error) {
-                                document.getElementById('weather').textContent = '';
-                            }
-                        },
-                        (error) => {
-                            document.getElementById('location').textContent = 'location disabled';
-                            document.getElementById('weather').textContent = '';
-                        }
-                    );
-                } else {
-                    document.getElementById('location').textContent = 'location unavailable';
-                }
+                // Current temperature
+                const temp = Math.round(weatherData.current_weather.temperature);
+                document.getElementById('weather').textContent = `${temp}°c`;
+
+                // Weather description
+                const weatherCode = weatherData.current_weather.weathercode;
+                const description = weatherDescriptions[weatherCode] || 'clear';
+                document.getElementById('weather-desc').textContent = description;
+
+                // Sunrise and sunset
+                const sunrise = new Date(weatherData.daily.sunrise[0]).toLocaleTimeString('en-US', {
+                    timeZone: 'Europe/Berlin',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                const sunset = new Date(weatherData.daily.sunset[0]).toLocaleTimeString('en-US', {
+                    timeZone: 'Europe/Berlin',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                document.getElementById('sun-times').textContent = `sunrise ${sunrise} / sunset ${sunset}`;
+
+                // Celestial object
+                document.getElementById('celestial').textContent = getCelestialObject();
             } catch (error) {
-                console.error('Error getting location/weather:', error);
+                console.error('Error getting weather:', error);
+                document.getElementById('weather').textContent = '';
             }
         }
 
         // Initialize
         updateTime();
         setInterval(updateTime, 1000);
-        getLocationAndWeather();
+        getBerlinWeather();
+        // Update weather every 10 minutes
+        setInterval(getBerlinWeather, 600000);
     </script>
 
 </body>
