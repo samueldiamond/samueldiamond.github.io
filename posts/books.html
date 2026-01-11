@@ -260,6 +260,16 @@
                 const imgElement = tempDiv.querySelector('img');
                 if (imgElement) {
                     coverUrl = improveImageUrl(imgElement.getAttribute('src') || '');
+
+                    // Try to extract author from image alt text if we don't have it yet
+                    if (!author) {
+                        const altText = imgElement.getAttribute('alt') || '';
+                        // Alt text format is often "Book Title by Author Name"
+                        const altMatch = altText.match(/by\s+(.+?)(?:\s*$)/i);
+                        if (altMatch) {
+                            author = altMatch[1].trim();
+                        }
+                    }
                 }
 
                 // Extract review text (Goodreads puts user review in description)
