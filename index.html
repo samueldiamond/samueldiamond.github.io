@@ -45,6 +45,9 @@
         <div class="date" id="date"></div>
         <div class="location" id="location">berlin</div>
         <div class="weather" id="weather"></div>
+        <div class="weather-desc" id="weather-desc"></div>
+        <div class="sun-times" id="sun-times"></div>
+        <div class="celestial" id="celestial"></div>
     </div>
 
     <script>
@@ -72,17 +75,90 @@
             document.getElementById('date').textContent = berlinDate;
         }
 
-        // Get Berlin weather
+        // Weather code descriptions
+        const weatherDescriptions = {
+            0: 'clear skies',
+            1: 'mainly clear',
+            2: 'partly cloudy',
+            3: 'overcast',
+            45: 'foggy',
+            48: 'foggy',
+            51: 'light drizzle',
+            53: 'drizzle',
+            55: 'heavy drizzle',
+            61: 'light rain',
+            63: 'rain',
+            65: 'heavy rain',
+            71: 'light snow',
+            73: 'snow',
+            75: 'heavy snow',
+            77: 'snow grains',
+            80: 'rain showers',
+            81: 'rain showers',
+            82: 'heavy rain showers',
+            85: 'snow showers',
+            86: 'heavy snow showers',
+            95: 'thunderstorm',
+            96: 'thunderstorm',
+            99: 'thunderstorm'
+        };
+
+        // Get prominent celestial object based on month
+        function getCelestialObject() {
+            const month = new Date().getMonth();
+            const celestialCalendar = [
+                'orion visible',        // January
+                'sirius brightest',     // February
+                'venus evening',        // March
+                'mars visible',         // April
+                'jupiter rising',       // May
+                'saturn visible',       // June
+                'milky way peak',       // July
+                'perseid meteors',      // August
+                'harvest moon',         // September
+                'orionids active',      // October
+                'taurids active',       // November
+                'geminids peak'         // December
+            ];
+            return celestialCalendar[month];
+        }
+
+        // Get Berlin weather and info
         async function getBerlinWeather() {
             try {
                 // Set location to Berlin
                 document.getElementById('location').textContent = 'berlin';
 
-                // Get weather for Berlin (52.52°N, 13.405°E) in Celsius
-                const weatherResponse = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.405&current_weather=true&temperature_unit=celsius');
+                // Get weather for Berlin (52.52°N, 13.405°E) with daily data
+                const weatherResponse = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.405&current_weather=true&daily=sunrise,sunset&temperature_unit=celsius&timezone=Europe/Berlin');
                 const weatherData = await weatherResponse.json();
+
+                // Current temperature
                 const temp = Math.round(weatherData.current_weather.temperature);
                 document.getElementById('weather').textContent = `${temp}°c`;
+
+                // Weather description
+                const weatherCode = weatherData.current_weather.weathercode;
+                const description = weatherDescriptions[weatherCode] || 'clear';
+                document.getElementById('weather-desc').textContent = description;
+
+                // Sunrise and sunset
+                const sunrise = new Date(weatherData.daily.sunrise[0]).toLocaleTimeString('en-US', {
+                    timeZone: 'Europe/Berlin',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                const sunset = new Date(weatherData.daily.sunset[0]).toLocaleTimeString('en-US', {
+                    timeZone: 'Europe/Berlin',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                });
+                document.getElementById('sun-times').textContent = `sunrise ${sunrise} / sunset ${sunset}`;
+
+                // Celestial object
+                document.getElementById('celestial').textContent = getCelestialObject();
             } catch (error) {
                 console.error('Error getting weather:', error);
                 document.getElementById('weather').textContent = '';
