@@ -110,11 +110,18 @@
 
         // Fetch books from a specific shelf
         async function fetchShelf(shelfName) {
-            const url = `https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&shelf=${shelfName}`;
+            // Add cache-busting parameter to force fresh data
+            const timestamp = Date.now();
+            const url = `https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&shelf=${shelfName}&_=${timestamp}`;
 
             // Use CORS proxy directly to avoid CORS issues
             console.log(`Fetching ${shelfName} shelf via CORS proxy...`);
-            const proxyResponse = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
+            const proxyResponse = await fetch('https://corsproxy.io/?' + encodeURIComponent(url), {
+                cache: 'no-store',
+                headers: {
+                    'Cache-Control': 'no-cache'
+                }
+            });
 
             if (!proxyResponse.ok) {
                 console.error(`Failed to fetch ${shelfName}: ${proxyResponse.status} ${proxyResponse.statusText}`);
