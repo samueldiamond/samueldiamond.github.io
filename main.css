@@ -74,6 +74,7 @@ a:hover {
     color: #666666;
     margin-bottom: 8px;
     text-transform: lowercase;
+    font-style: italic;
 }
 
 /* Minimalist info widget */
