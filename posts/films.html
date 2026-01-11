@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>films - sam diamond</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon yellow.ico">
+    <link rel="stylesheet" href="blog.css">
+    <style>
+        .film-entry {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .film-title {
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .film-meta {
+            color: #666666;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        .film-rating {
+            color: #888888;
+            margin-left: 8px;
+        }
+
+        .year-filter {
+            margin-bottom: 25px;
+            font-size: 12px;
+        }
+
+        .year-filter a {
+            color: #666666;
+            margin-right: 12px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .year-filter a.active {
+            color: #ffffff;
+        }
+
+        .loading {
+            color: #666666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <h1>films</h1>
+
+            <div class="year-filter" id="yearFilter">
+                <a class="active" data-year="all">all</a>
+            </div>
+
+            <div id="filmList" class="loading">loading films...</div>
+        </div>
+    </div>
+
+    <script>
+        let allFilms = [];
+
+        // Parse RSS feed and extract film data
+        async function loadFilms() {
+            try {
+                // Use CORS proxy to fetch RSS feed
+                const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://letterboxd.com/sdiamond/rss/'));
+                const text = await response.text();
+
+                // Parse XML
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(text, 'text/xml');
+                const items = xml.querySelectorAll('item');
+
+                allFilms = [];
+
+                items.forEach(item => {
+                    const title = item.querySelector('title')?.textContent || '';
+                    const link = item.querySelector('link')?.textContent || '';
+                    const description = item.querySelector('description')?.textContent || '';
+                    const pubDate = item.querySelector('pubDate')?.textContent || '';
+
+                    // Extract film details from description (Letterboxd includes this in description)
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = description;
+
+                    // Try to extract year and director from the description
+                    const text = tempDiv.textContent || tempDiv.innerText;
+
+                    // Parse rating from description (stars)
+                    let rating = '';
+                    const ratingMatch = description.match(/★+/);
+                    if (ratingMatch) {
+                        rating = ratingMatch[0];
+                    }
+
+                    // Extract year from title (usually in format "Film Title, Year")
+                    const yearMatch = title.match(/,\s*(\d{4})/);
+                    const year = yearMatch ? yearMatch[1] : '';
+
+                    // Clean title (remove year if present)
+                    const cleanTitle = title.replace(/,\s*\d{4}.*$/, '').trim();
+
+                    // Format date watched
+                    const watchDate = new Date(pubDate);
+                    const watchYear = watchDate.getFullYear();
+                    const watchDateStr = watchDate.toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                    }).toLowerCase();
+
+                    // Try to find director in the text (this is tricky without full HTML parsing)
+                    // Letterboxd often includes "Directed by" in the description
+                    let director = '';
+                    const directorMatch = text.match(/[dD]irected by ([^.\n]+)/);
+                    if (directorMatch) {
+                        director = directorMatch[1].trim();
+                    }
+
+                    allFilms.push({
+                        title: cleanTitle,
+                        year: year,
+                        director: director,
+                        rating: rating,
+                        watchDate: watchDateStr,
+                        watchYear: watchYear,
+                        link: link,
+                        timestamp: watchDate.getTime()
+                    });
+                });
+
+                // Sort by watch date (most recent first)
+                allFilms.sort((a, b) => b.timestamp - a.timestamp);
+
+                // Get unique years
+                const years = [...new Set(allFilms.map(f => f.watchYear))].sort((a, b) => b - a);
+
+                // Create year filter
+                const yearFilterHTML = ['<a class="active" data-year="all">all</a>']
+                    .concat(years.map(year => `<a data-year="${year}">${year}</a>`))
+                    .join('');
+
+                document.getElementById('yearFilter').innerHTML = yearFilterHTML;
+
+                // Add click handlers to year filters
+                document.querySelectorAll('.year-filter a').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        document.querySelectorAll('.year-filter a').forEach(a => a.classList.remove('active'));
+                        this.classList.add('active');
+                        displayFilms(this.getAttribute('data-year'));
+                    });
+                });
+
+                displayFilms('all');
+            } catch (error) {
+                console.error('Error loading films:', error);
+                document.getElementById('filmList').innerHTML = '<p style="color: #666;">unable to load films</p>';
+            }
+        }
+
+        // Display films filtered by year
+        function displayFilms(year) {
+            const filtered = year === 'all'
+                ? allFilms
+                : allFilms.filter(f => f.watchYear.toString() === year);
+
+            if (filtered.length === 0) {
+                document.getElementById('filmList').innerHTML = '<p style="color: #666;">no films found</p>';
+                return;
+            }
+
+            const html = filtered.map(film => {
+                const meta = [
+                    film.year,
+                    film.director
+                ].filter(Boolean).join(', ');
+
+                return `
+                    <div class="film-entry">
+                        <span class="film-title">${film.title}</span>
+                        ${meta ? `<span class="film-meta">${meta}</span>` : ''}
+                        ${film.rating ? `<span class="film-rating">${film.rating}</span>` : ''}
+                        <span class="film-meta"> — ${film.watchDate}</span>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('filmList').innerHTML = html;
+        }
+
+        // Load films on page load
+        loadFilms();
+    </script>
+
+</body>
+
+</html>
