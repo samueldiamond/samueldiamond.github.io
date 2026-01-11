@@ -115,7 +115,15 @@
             // Use CORS proxy directly to avoid CORS issues
             console.log(`Fetching ${shelfName} shelf via CORS proxy...`);
             const proxyResponse = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
+
+            if (!proxyResponse.ok) {
+                console.error(`Failed to fetch ${shelfName}: ${proxyResponse.status} ${proxyResponse.statusText}`);
+                throw new Error(`HTTP ${proxyResponse.status}`);
+            }
+
             const text = await proxyResponse.text();
+            console.log(`Received ${text.length} characters for ${shelfName} shelf`);
+            console.log(`First 300 chars of ${shelfName} response:`, text.substring(0, 300));
 
             return text;
         }
@@ -168,12 +176,21 @@
             }
 
             const items = xml.querySelectorAll('item');
+            console.log(`Found ${items.length} items in feed`);
 
-            items.forEach(item => {
+            items.forEach((item, index) => {
+                console.log(`\n=== Processing item ${index + 1} ===`);
                 const title = item.querySelector('title')?.textContent || '';
                 const link = item.querySelector('link')?.textContent || '';
                 const description = item.querySelector('description')?.textContent || '';
                 const pubDate = item.querySelector('pubDate')?.textContent || '';
+
+                console.log('Raw title:', title);
+                console.log('Raw description (first 200 chars):', description.substring(0, 200));
+
+                // Log all available tags in the item
+                const allTags = Array.from(item.children).map(child => child.tagName);
+                console.log('Available XML tags:', allTags.join(', '));
 
                 // Extract book details from description HTML
                 const tempDiv = document.createElement('div');
@@ -300,10 +317,12 @@
                 }).toLowerCase();
 
                 // Debug logging
-                console.log('Book found:', {
+                console.log('FINAL EXTRACTED DATA:', {
                     title: bookTitle,
-                    author: author,
-                    rawTitle: title
+                    author: author || 'NO AUTHOR FOUND',
+                    publicationYear: publicationYear || 'NO YEAR',
+                    hasCover: !!coverUrl,
+                    hasReview: !!review
                 });
 
                 books.push({
