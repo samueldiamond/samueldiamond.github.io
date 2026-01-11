@@ -8,29 +8,36 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon yellow.ico">
     <link rel="stylesheet" href="blog.css">
     <style>
+        body {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .inner-container {
+            max-height: none;
+            padding-bottom: 40px;
+        }
+
         .film-entry {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             line-height: 1.5;
+            font-size: 14px;
         }
 
         .film-title {
             color: #ffffff;
-            font-size: 14px;
         }
 
         .film-meta {
             color: #666666;
-            font-size: 12px;
-            margin-left: 8px;
         }
 
         .film-rating {
             color: #888888;
-            margin-left: 8px;
         }
 
         .year-filter {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-size: 12px;
         }
 
@@ -88,26 +95,69 @@
                     const description = item.querySelector('description')?.textContent || '';
                     const pubDate = item.querySelector('pubDate')?.textContent || '';
 
-                    // Extract film details from description (Letterboxd includes this in description)
+                    // Check if this is a film diary entry (not a list or review)
+                    if (!description || title.toLowerCase().includes('list')) {
+                        return;
+                    }
+
+                    // Extract film details from description
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = description;
 
-                    // Try to extract year and director from the description
-                    const text = tempDiv.textContent || tempDiv.innerText;
+                    // Get all the text and images from description
+                    const descText = tempDiv.textContent || tempDiv.innerText || '';
+                    const imgElements = tempDiv.querySelectorAll('img');
 
-                    // Parse rating from description (stars)
+                    // Parse rating from img alt text (Letterboxd uses images for stars)
                     let rating = '';
-                    const ratingMatch = description.match(/★+/);
-                    if (ratingMatch) {
-                        rating = ratingMatch[0];
+                    imgElements.forEach(img => {
+                        const alt = img.getAttribute('alt') || '';
+                        if (alt.includes('★') || alt.includes('star')) {
+                            // Extract stars from alt text
+                            const stars = alt.match(/★+/);
+                            if (stars) {
+                                rating = stars[0];
+                            } else {
+                                // Try to count "star" mentions
+                                const starCount = (alt.match(/star/gi) || []).length;
+                                if (starCount > 0) {
+                                    rating = '★'.repeat(Math.min(starCount, 5));
+                                }
+                            }
+                        }
+                    });
+
+                    // Also try to find stars in the description text itself
+                    if (!rating) {
+                        const starsInText = description.match(/★+/);
+                        if (starsInText) {
+                            rating = starsInText[0];
+                        }
                     }
 
-                    // Extract year from title (usually in format "Film Title, Year")
+                    // Extract year from title (format: "Film Title, Year")
                     const yearMatch = title.match(/,\s*(\d{4})/);
                     const year = yearMatch ? yearMatch[1] : '';
 
-                    // Clean title (remove year if present)
-                    const cleanTitle = title.replace(/,\s*\d{4}.*$/, '').trim();
+                    // Clean title (remove year and rating text)
+                    let cleanTitle = title.replace(/,\s*\d{4}.*$/, '').trim();
+                    // Remove any leading rating text like "★★★★★"
+                    cleanTitle = cleanTitle.replace(/^★+\s*/, '').trim();
+
+                    // Try to find director - Letterboxd includes "Directed by" in descriptions
+                    let director = '';
+                    const directorPatterns = [
+                        /[dD]irected by ([^.\n<]+)/,
+                        /[dD]irector:?\s*([^.\n<]+)/
+                    ];
+
+                    for (const pattern of directorPatterns) {
+                        const match = descText.match(pattern);
+                        if (match) {
+                            director = match[1].trim().replace(/\s+/g, ' ');
+                            break;
+                        }
+                    }
 
                     // Format date watched
                     const watchDate = new Date(pubDate);
@@ -117,14 +167,6 @@
                         day: 'numeric',
                         year: 'numeric'
                     }).toLowerCase();
-
-                    // Try to find director in the text (this is tricky without full HTML parsing)
-                    // Letterboxd often includes "Directed by" in the description
-                    let director = '';
-                    const directorMatch = text.match(/[dD]irected by ([^.\n]+)/);
-                    if (directorMatch) {
-                        director = directorMatch[1].trim();
-                    }
 
                     allFilms.push({
                         title: cleanTitle,
@@ -180,19 +222,30 @@
             }
 
             const html = filtered.map(film => {
-                const meta = [
-                    film.year,
-                    film.director
-                ].filter(Boolean).join(', ');
+                const parts = [];
 
-                return `
-                    <div class="film-entry">
-                        <span class="film-title">${film.title}</span>
-                        ${meta ? `<span class="film-meta">${meta}</span>` : ''}
-                        ${film.rating ? `<span class="film-rating">${film.rating}</span>` : ''}
-                        <span class="film-meta"> — ${film.watchDate}</span>
-                    </div>
-                `;
+                // Title
+                parts.push(`<span class="film-title">${film.title}</span>`);
+
+                // Year
+                if (film.year) {
+                    parts.push(`<span class="film-meta"> ${film.year}</span>`);
+                }
+
+                // Director
+                if (film.director) {
+                    parts.push(`<span class="film-meta">, ${film.director}</span>`);
+                }
+
+                // Rating
+                if (film.rating) {
+                    parts.push(`<span class="film-rating"> ${film.rating}</span>`);
+                }
+
+                // Watch date
+                parts.push(`<span class="film-meta"> — ${film.watchDate}</span>`);
+
+                return `<div class="film-entry">${parts.join('')}</div>`;
             }).join('');
 
             document.getElementById('filmList').innerHTML = html;
