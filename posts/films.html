@@ -100,61 +100,73 @@
                         return;
                     }
 
-                    // Extract film details from description
+                    // Try Letterboxd-specific namespace tags first
+                    const filmTitle = item.querySelector('filmTitle')?.textContent ||
+                                    item.querySelector('letterboxd\\:filmTitle')?.textContent || '';
+                    const filmYear = item.querySelector('filmYear')?.textContent ||
+                                   item.querySelector('letterboxd\\:filmYear')?.textContent || '';
+                    const memberRating = item.querySelector('memberRating')?.textContent ||
+                                       item.querySelector('letterboxd\\:memberRating')?.textContent || '';
+
+                    // Extract film details from description HTML
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = description;
 
-                    // Get all the text and images from description
-                    const descText = tempDiv.textContent || tempDiv.innerText || '';
-                    const imgElements = tempDiv.querySelectorAll('img');
-
-                    // Parse rating from img alt text (Letterboxd uses images for stars)
+                    // Extract rating
                     let rating = '';
-                    imgElements.forEach(img => {
-                        const alt = img.getAttribute('alt') || '';
-                        if (alt.includes('★') || alt.includes('star')) {
-                            // Extract stars from alt text
-                            const stars = alt.match(/★+/);
-                            if (stars) {
-                                rating = stars[0];
-                            } else {
-                                // Try to count "star" mentions
-                                const starCount = (alt.match(/star/gi) || []).length;
-                                if (starCount > 0) {
-                                    rating = '★'.repeat(Math.min(starCount, 5));
-                                }
-                            }
-                        }
-                    });
-
-                    // Also try to find stars in the description text itself
-                    if (!rating) {
-                        const starsInText = description.match(/★+/);
-                        if (starsInText) {
-                            rating = starsInText[0];
+                    if (memberRating) {
+                        // Convert numeric rating (0-5) to stars
+                        const numRating = parseFloat(memberRating);
+                        if (numRating > 0) {
+                            rating = '★'.repeat(Math.round(numRating));
                         }
                     }
 
-                    // Extract year from title (format: "Film Title, Year")
-                    const yearMatch = title.match(/,\s*(\d{4})/);
-                    const year = yearMatch ? yearMatch[1] : '';
+                    // If no memberRating tag, look in description
+                    if (!rating) {
+                        // Look for rating in paragraphs (Letterboxd includes stars in <p> tags)
+                        const paragraphs = tempDiv.querySelectorAll('p');
+                        for (const p of paragraphs) {
+                            const pText = p.textContent || '';
+                            const starsMatch = pText.match(/★+/);
+                            if (starsMatch) {
+                                rating = starsMatch[0];
+                                break;
+                            }
+                        }
+                    }
 
-                    // Clean title (remove year and rating text)
-                    let cleanTitle = title.replace(/,\s*\d{4}.*$/, '').trim();
-                    // Remove any leading rating text like "★★★★★"
+                    // Extract year from title or use filmYear
+                    let year = filmYear;
+                    if (!year) {
+                        const yearMatch = title.match(/,\s*(\d{4})/);
+                        year = yearMatch ? yearMatch[1] : '';
+                    }
+
+                    // Use filmTitle if available, otherwise clean the title
+                    let cleanTitle = filmTitle || title.replace(/,\s*\d{4}.*$/, '').trim();
                     cleanTitle = cleanTitle.replace(/^★+\s*/, '').trim();
 
-                    // Try to find director - Letterboxd includes "Directed by" in descriptions
+                    // Try to extract director from description text
+                    const descText = tempDiv.textContent || '';
                     let director = '';
+
+                    // Letterboxd format: "Watched [Film Title] [Year] Directed by [Director]"
                     const directorPatterns = [
-                        /[dD]irected by ([^.\n<]+)/,
-                        /[dD]irector:?\s*([^.\n<]+)/
+                        /Directed by ([^\n.]+?)(?:\.|$)/i,
+                        /Director:\s*([^\n.]+?)(?:\.|$)/i,
+                        /\b(\w+\s+\w+)\s+\(director\)/i
                     ];
 
                     for (const pattern of directorPatterns) {
                         const match = descText.match(pattern);
                         if (match) {
-                            director = match[1].trim().replace(/\s+/g, ' ');
+                            director = match[1].trim()
+                                .replace(/\s+/g, ' ')
+                                .replace(/\.$/, '')
+                                .trim();
+                            // Clean up common suffixes
+                            director = director.split(/[,\n]/)[0].trim();
                             break;
                         }
                     }
@@ -222,30 +234,27 @@
             }
 
             const html = filtered.map(film => {
-                const parts = [];
+                let line = `<span class="film-title">${film.title}</span>`;
 
-                // Title
-                parts.push(`<span class="film-title">${film.title}</span>`);
+                // Build metadata parts
+                const metaParts = [];
+                if (film.year) metaParts.push(film.year);
+                if (film.director) metaParts.push(film.director);
 
-                // Year
-                if (film.year) {
-                    parts.push(`<span class="film-meta"> ${film.year}</span>`);
+                // Add metadata
+                if (metaParts.length > 0) {
+                    line += ` <span class="film-meta">${metaParts.join(', ')}</span>`;
                 }
 
-                // Director
-                if (film.director) {
-                    parts.push(`<span class="film-meta">, ${film.director}</span>`);
-                }
-
-                // Rating
+                // Add rating
                 if (film.rating) {
-                    parts.push(`<span class="film-rating"> ${film.rating}</span>`);
+                    line += ` <span class="film-rating">${film.rating}</span>`;
                 }
 
-                // Watch date
-                parts.push(`<span class="film-meta"> — ${film.watchDate}</span>`);
+                // Add watch date
+                line += ` <span class="film-meta">— ${film.watchDate}</span>`;
 
-                return `<div class="film-entry">${parts.join('')}</div>`;
+                return `<div class="film-entry">${line}</div>`;
             }).join('');
 
             document.getElementById('filmList').innerHTML = html;
