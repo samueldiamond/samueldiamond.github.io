@@ -5,11 +5,12 @@ body {
     background-color: #000000;
     color: #ffffff;
     -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .container {
-    min-height: 100vh;
+    height: 100vh;
     padding: 60px;
     padding-left: 15%;
     display: flex;
