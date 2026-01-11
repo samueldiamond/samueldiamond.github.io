@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>films - sam diamond</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon yellow.ico">
+    <link rel="stylesheet" href="blog.css">
+    <style>
+        body {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .inner-container {
+            max-height: none;
+            padding-bottom: 40px;
+        }
+
+        .film-entry {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .film-poster {
+            width: 60px;
+            height: 90px;
+            object-fit: cover;
+            flex-shrink: 0;
+            opacity: 0.85;
+        }
+
+        .film-info {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .film-title {
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .film-title:hover {
+            color: #cccccc;
+        }
+
+        .film-details {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 3px;
+        }
+
+        .film-meta {
+            color: #666666;
+            font-size: 13px;
+        }
+
+        .film-rating {
+            color: #888888;
+        }
+
+        .year-filter {
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+
+        .year-filter a {
+            color: #666666;
+            margin-right: 12px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .year-filter a.active {
+            color: #ffffff;
+        }
+
+        .loading {
+            color: #666666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <h1>films</h1>
+
+            <div class="year-filter" id="yearFilter">
+                <a class="active" data-year="all">all</a>
+            </div>
+
+            <div id="filmList" class="loading">loading films...</div>
+        </div>
+    </div>
+
+    <script>
+        const TMDB_API_KEY = '012eea67ce972aaf460122deb6b45745';
+        const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+        const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w92'; // Small poster size
+
+        let allFilms = [];
+
+        // Fetch film data from TMDB
+        async function fetchTMDBData(title, year) {
+            try {
+                // Search for the film
+                const searchUrl = `${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(title)}&year=${year}`;
+                const searchResponse = await fetch(searchUrl);
+                const searchData = await searchResponse.json();
+
+                if (!searchData.results || searchData.results.length === 0) {
+                    return null;
+                }
+
+                const movie = searchData.results[0];
+                const movieId = movie.id;
+
+                // Get movie details including credits
+                const detailsUrl = `${TMDB_BASE_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=credits,external_ids`;
+                const detailsResponse = await fetch(detailsUrl);
+                const details = await detailsResponse.json();
+
+                // Extract director from crew
+                let director = '';
+                if (details.credits && details.credits.crew) {
+                    const directorCredit = details.credits.crew.find(person => person.job === 'Director');
+                    if (directorCredit) {
+                        director = directorCredit.name;
+                    }
+                }
+
+                // Build Wikipedia URL from IMDB ID
+                let wikiUrl = '';
+                if (details.external_ids && details.external_ids.imdb_id) {
+                    // Use Wikipedia search with film title
+                    wikiUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(title.replace(/ /g, '_'))}`;
+                }
+
+                return {
+                    director: director,
+                    posterPath: movie.poster_path ? `${TMDB_IMAGE_BASE}${movie.poster_path}` : '',
+                    wikiUrl: wikiUrl,
+                    tmdbId: movieId
+                };
+            } catch (error) {
+                console.error('Error fetching TMDB data:', error);
+                return null;
+            }
+        }
+
+        // Parse RSS feed and extract film data
+        async function loadFilms() {
+            try {
+                // Try direct fetch first (works in most browsers)
+                let text;
+                try {
+                    const directResponse = await fetch('https://letterboxd.com/sdiamond/rss/');
+                    text = await directResponse.text();
+                } catch (corsError) {
+                    console.log('Direct fetch failed, trying CORS proxy...');
+                    // Fallback to CORS proxy
+                    const proxyResponse = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://letterboxd.com/sdiamond/rss/'));
+                    text = await proxyResponse.text();
+                }
+
+                // Parse XML
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(text, 'text/xml');
+
+                // Check for parse errors
+                const parseError = xml.querySelector('parsererror');
+                if (parseError) {
+                    throw new Error('Failed to parse RSS feed');
+                }
+
+                const items = xml.querySelectorAll('item');
+
+                if (items.length === 0) {
+                    throw new Error('No films found in RSS feed');
+                }
+
+                allFilms = [];
+
+                items.forEach(item => {
+                    const title = item.querySelector('title')?.textContent || '';
+                    const link = item.querySelector('link')?.textContent || '';
+                    const description = item.querySelector('description')?.textContent || '';
+                    const pubDate = item.querySelector('pubDate')?.textContent || '';
+
+                    // Check if this is a film diary entry (not a list or review)
+                    if (!description || title.toLowerCase().includes('list')) {
+                        return;
+                    }
+
+                    // Try Letterboxd-specific namespace tags first
+                    const filmTitle = item.querySelector('filmTitle')?.textContent ||
+                                    item.querySelector('letterboxd\\:filmTitle')?.textContent || '';
+                    const filmYear = item.querySelector('filmYear')?.textContent ||
+                                   item.querySelector('letterboxd\\:filmYear')?.textContent || '';
+                    const memberRating = item.querySelector('memberRating')?.textContent ||
+                                       item.querySelector('letterboxd\\:memberRating')?.textContent || '';
+
+                    // Extract film details from description HTML
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = description;
+
+                    // Extract rating
+                    let rating = '';
+                    if (memberRating) {
+                        // Convert numeric rating (0-5) to stars
+                        const numRating = parseFloat(memberRating);
+                        if (numRating > 0) {
+                            rating = '★'.repeat(Math.round(numRating));
+                        }
+                    }
+
+                    // If no memberRating tag, look in description
+                    if (!rating) {
+                        // Look for rating in paragraphs (Letterboxd includes stars in <p> tags)
+                        const paragraphs = tempDiv.querySelectorAll('p');
+                        for (const p of paragraphs) {
+                            const pText = p.textContent || '';
+                            const starsMatch = pText.match(/★+/);
+                            if (starsMatch) {
+                                rating = starsMatch[0];
+                                break;
+                            }
+                        }
+                    }
+
+                    // Extract year from title or use filmYear
+                    let year = filmYear;
+                    if (!year) {
+                        const yearMatch = title.match(/,\s*(\d{4})/);
+                        year = yearMatch ? yearMatch[1] : '';
+                    }
+
+                    // Use filmTitle if available, otherwise clean the title
+                    let cleanTitle = filmTitle || title.replace(/,\s*\d{4}.*$/, '').trim();
+                    cleanTitle = cleanTitle.replace(/^★+\s*/, '').trim();
+
+                    // Try to extract director from description text
+                    const descText = tempDiv.textContent || '';
+                    let director = '';
+
+                    // Letterboxd format: "Watched [Film Title] [Year] Directed by [Director]"
+                    const directorPatterns = [
+                        /Directed by ([^\n.]+?)(?:\.|$)/i,
+                        /Director:\s*([^\n.]+?)(?:\.|$)/i,
+                        /\b(\w+\s+\w+)\s+\(director\)/i
+                    ];
+
+                    for (const pattern of directorPatterns) {
+                        const match = descText.match(pattern);
+                        if (match) {
+                            director = match[1].trim()
+                                .replace(/\s+/g, ' ')
+                                .replace(/\.$/, '')
+                                .trim();
+                            // Clean up common suffixes
+                            director = director.split(/[,\n]/)[0].trim();
+                            break;
+                        }
+                    }
+
+                    // Format date watched
+                    const watchDate = new Date(pubDate);
+                    const watchYear = watchDate.getFullYear();
+                    const watchDateStr = watchDate.toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                    }).toLowerCase();
+
+                    allFilms.push({
+                        title: cleanTitle,
+                        year: year,
+                        director: director,
+                        rating: rating,
+                        watchDate: watchDateStr,
+                        watchYear: watchYear,
+                        link: link,
+                        timestamp: watchDate.getTime(),
+                        posterPath: '',
+                        wikiUrl: '',
+                        tmdbFetched: false
+                    });
+                });
+
+                // Sort by watch date (most recent first)
+                allFilms.sort((a, b) => b.timestamp - a.timestamp);
+
+                // Fetch TMDB data for all films
+                document.getElementById('filmList').innerHTML = '<p style="color: #666;">loading film details...</p>';
+
+                for (let i = 0; i < allFilms.length; i++) {
+                    const film = allFilms[i];
+                    if (film.year) {
+                        const tmdbData = await fetchTMDBData(film.title, film.year);
+                        if (tmdbData) {
+                            film.director = tmdbData.director || film.director;
+                            film.posterPath = tmdbData.posterPath;
+                            film.wikiUrl = tmdbData.wikiUrl;
+                            film.tmdbFetched = true;
+                        }
+                        // Small delay to avoid rate limiting
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                    }
+                }
+
+                // Get unique years
+                const years = [...new Set(allFilms.map(f => f.watchYear))].sort((a, b) => b - a);
+
+                // Create year filter
+                const yearFilterHTML = ['<a class="active" data-year="all">all</a>']
+                    .concat(years.map(year => `<a data-year="${year}">${year}</a>`))
+                    .join('');
+
+                document.getElementById('yearFilter').innerHTML = yearFilterHTML;
+
+                // Add click handlers to year filters
+                document.querySelectorAll('.year-filter a').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        document.querySelectorAll('.year-filter a').forEach(a => a.classList.remove('active'));
+                        this.classList.add('active');
+                        displayFilms(this.getAttribute('data-year'));
+                    });
+                });
+
+                displayFilms('all');
+            } catch (error) {
+                console.error('Error loading films:', error);
+                document.getElementById('filmList').innerHTML = `
+                    <p style="color: #666;">unable to load films</p>
+                    <p style="color: #555; font-size: 12px; margin-top: 10px;">
+                        try refreshing the page<br>
+                        error: ${error.message || 'unknown error'}
+                    </p>
+                `;
+            }
+        }
+
+        // Display films filtered by year
+        function displayFilms(year) {
+            const filtered = year === 'all'
+                ? allFilms
+                : allFilms.filter(f => f.watchYear.toString() === year);
+
+            if (filtered.length === 0) {
+                document.getElementById('filmList').innerHTML = '<p style="color: #666;">no films found</p>';
+                return;
+            }
+
+            const html = filtered.map(film => {
+                let entry = '<div class="film-entry">';
+
+                // Add poster if available
+                if (film.posterPath) {
+                    entry += `<img src="${film.posterPath}" class="film-poster" alt="${film.title} poster">`;
+                }
+
+                // Film info container
+                entry += '<div class="film-info">';
+
+                // Title (clickable to Wikipedia if available)
+                if (film.wikiUrl) {
+                    entry += `<a href="${film.wikiUrl}" target="_blank" class="film-title">${film.title}</a>`;
+                } else {
+                    entry += `<span class="film-title">${film.title}</span>`;
+                }
+
+                // Year and Director line
+                const detailsParts = [];
+                if (film.year) detailsParts.push(film.year);
+                if (film.director) detailsParts.push(`dir. ${film.director}`);
+
+                if (detailsParts.length > 0) {
+                    entry += `<div class="film-details">${detailsParts.join(', ')}</div>`;
+                }
+
+                // Rating and watch date line
+                const metaParts = [];
+                if (film.rating) {
+                    metaParts.push(`<span class="film-rating">${film.rating}</span>`);
+                }
+                metaParts.push(film.watchDate);
+
+                entry += `<div class="film-meta">${metaParts.join(' — ')}</div>`;
+
+                entry += '</div></div>';
+
+                return entry;
+            }).join('');
+
+            document.getElementById('filmList').innerHTML = html;
+        }
+
+        // Load films on page load
+        loadFilms();
+    </script>
+
+</body>
+
+</html>
