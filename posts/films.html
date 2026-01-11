@@ -19,37 +19,46 @@
         }
 
         .film-entry {
-            margin-bottom: 18px;
-            line-height: 1.5;
-            font-size: 14px;
+            margin-bottom: 25px;
             display: flex;
             align-items: flex-start;
-            gap: 12px;
+            gap: 15px;
         }
 
         .film-poster {
-            width: 40px;
-            height: 60px;
+            width: 60px;
+            height: 90px;
             object-fit: cover;
             flex-shrink: 0;
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         .film-info {
             flex: 1;
+            line-height: 1.6;
         }
 
         .film-title {
             color: #ffffff;
             cursor: pointer;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
         }
 
         .film-title:hover {
             color: #cccccc;
         }
 
+        .film-details {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 3px;
+        }
+
         .film-meta {
             color: #666666;
+            font-size: 13px;
         }
 
         .film-rating {
@@ -369,23 +378,23 @@
                     entry += `<span class="film-title">${film.title}</span>`;
                 }
 
-                // Build metadata parts
+                // Year and Director line
+                const detailsParts = [];
+                if (film.year) detailsParts.push(film.year);
+                if (film.director) detailsParts.push(`dir. ${film.director}`);
+
+                if (detailsParts.length > 0) {
+                    entry += `<div class="film-details">${detailsParts.join(', ')}</div>`;
+                }
+
+                // Rating and watch date line
                 const metaParts = [];
-                if (film.year) metaParts.push(film.year);
-                if (film.director) metaParts.push(film.director);
-
-                // Add metadata
-                if (metaParts.length > 0) {
-                    entry += ` <span class="film-meta">${metaParts.join(', ')}</span>`;
-                }
-
-                // Add rating
                 if (film.rating) {
-                    entry += ` <span class="film-rating">${film.rating}</span>`;
+                    metaParts.push(`<span class="film-rating">${film.rating}</span>`);
                 }
+                metaParts.push(film.watchDate);
 
-                // Add watch date
-                entry += ` <span class="film-meta">— ${film.watchDate}</span>`;
+                entry += `<div class="film-meta">${metaParts.join(' — ')}</div>`;
 
                 entry += '</div></div>';
 
