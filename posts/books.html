@@ -184,14 +184,40 @@
                 // Extract author from title (Goodreads format: "Title by Author")
                 let bookTitle = title;
                 let author = '';
+
+                // Try multiple patterns for author extraction
                 const byMatch = title.match(/^(.+?)\s+by\s+(.+)$/i);
                 if (byMatch) {
                     bookTitle = byMatch[1].trim();
                     author = byMatch[2].trim();
                 }
 
-                // Try to extract publication year from description
+                // If no author from title, try to extract from description
                 const descText = tempDiv.textContent || '';
+                if (!author) {
+                    // Look for "by Author Name" or "author: Author Name" in description
+                    const authorPatterns = [
+                        /by\s+([^\n(]+?)(?:\s+\(|$)/i,
+                        /author[:\s]+([^\n]+?)(?:\.|$)/i,
+                        /<strong>([^<]+)<\/strong>/i  // Goodreads often bolds author names
+                    ];
+
+                    for (const pattern of authorPatterns) {
+                        const match = descText.match(pattern);
+                        if (match && match[1]) {
+                            author = match[1].trim();
+                            // Clean up common suffixes and prefixes
+                            author = author.replace(/\s*\(.*?\)\s*/g, '').trim();
+                            if (author.length > 0 && author.length < 100) { // Sanity check
+                                break;
+                            } else {
+                                author = '';
+                            }
+                        }
+                    }
+                }
+
+                // Try to extract publication year from description
                 const yearMatch = descText.match(/published[:\s]+(\d{4})/i) ||
                                  descText.match(/\((\d{4})\)/) ||
                                  descText.match(/\b(19|20)\d{2}\b/);
