@@ -215,10 +215,12 @@
                     // Extract rating
                     let rating = '';
                     if (memberRating) {
-                        // Convert numeric rating (0-5) to stars
+                        // Convert numeric rating (0-5) to stars with half-star support
                         const numRating = parseFloat(memberRating);
                         if (numRating > 0) {
-                            rating = '★'.repeat(Math.round(numRating));
+                            const fullStars = Math.floor(numRating);
+                            const hasHalfStar = (numRating % 1) >= 0.5;
+                            rating = '★'.repeat(fullStars) + (hasHalfStar ? '½' : '');
                         }
                     }
 
