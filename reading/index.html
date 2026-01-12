@@ -48,6 +48,9 @@
         .book-info {
             flex: 1;
             line-height: 1.6;
+            min-width: 0; /* Allow text to wrap properly */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .book-title {
@@ -71,9 +74,13 @@
         .book-review {
             font-size: 13px;
             color: #888888;
-            margin-top: 6px;
+            margin-top: 8px;
+            margin-bottom: 6px;
             line-height: 1.5;
             font-style: italic;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
         }
 
         .book-meta {
@@ -415,6 +422,11 @@
 
             if (detailsParts.length > 0) {
                 entry += `<div class="book-details">${detailsParts.join(', ')}</div>`;
+            }
+
+            // Review text if available
+            if (book.review) {
+                entry += `<div class="book-review">${book.review}</div>`;
             }
 
             // Read date
