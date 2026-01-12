@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>library - sam diamond</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon yellow.ico">
+    <link rel="stylesheet" href="/posts/blog.css">
+    <style>
+        body {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .inner-container {
+            max-height: none;
+            padding-bottom: 40px;
+        }
+
+        .book-entry {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .book-cover {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            flex-shrink: 0;
+            opacity: 0.85;
+        }
+
+        .section-title {
+            font-size: 13px;
+            color: #888888;
+            margin-bottom: 20px;
+            margin-top: 35px;
+            font-style: italic;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .book-info {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .book-title {
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .book-title:hover {
+            color: #cccccc;
+        }
+
+        .book-details {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 3px;
+        }
+
+        .book-review {
+            font-size: 13px;
+            color: #888888;
+            margin-top: 6px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .book-meta {
+            color: #666666;
+            font-size: 13px;
+        }
+
+        .loading {
+            color: #666666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <h1>library</h1>
+
+            <div id="bookList" class="loading">loading books...</div>
+        </div>
+    </div>
+
+    <script>
+        let currentlyReading = [];
+        let readBooks = [];
+
+        // Improve Goodreads image quality
+        function improveImageUrl(url) {
+            if (!url) return '';
+            // Goodreads images often have size parameters - replace with larger size
+            return url.replace(/_SX\d+_/, '_SX200_').replace(/_SY\d+_/, '_SY300_');
+        }
+
+        // Fetch books from a specific shelf with multiple fallback proxies
+        async function fetchShelf(shelfName) {
+            // Add cache-busting parameter to force fresh data
+            const timestamp = Date.now();
+            const url = `https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&shelf=${shelfName}&_=${timestamp}`;
+
+            // Try multiple CORS proxies in order
+            const proxies = [
+                { name: 'corsproxy.io', url: 'https://corsproxy.io/?' + encodeURIComponent(url) },
+                { name: 'allorigins.win', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}` },
+                { name: 'direct', url: url }
+            ];
+
+            for (const proxy of proxies) {
+                try {
+                    console.log(`Trying ${proxy.name} for ${shelfName}...`);
+                    const response = await fetch(proxy.url, {
+                        cache: 'no-store',
+                        headers: { 'Cache-Control': 'no-cache' }
+                    });
+
+                    if (!response.ok) {
+                        console.warn(`${proxy.name} returned ${response.status}, trying next...`);
+                        continue;
+                    }
+
+                    const text = await response.text();
+
+                    // Verify it's valid XML
+                    if (!text.includes('<?xml') && !text.includes('<rss')) {
+                        console.warn(`${proxy.name} returned invalid data, trying next...`);
+                        continue;
+                    }
+
+                    console.log(`✓ Successfully fetched ${shelfName} via ${proxy.name} (${text.length} chars)`);
+                    return text;
+                } catch (error) {
+                    console.warn(`${proxy.name} failed:`, error.message);
+                }
+            }
+
+            throw new Error(`All proxy methods failed for ${shelfName}`);
+        }
+
+        // Parse RSS feed and extract book data
+        async function loadBooks() {
+            try {
+                // Fetch both shelves
+                document.getElementById('bookList').innerHTML = '<p style="color: #666;">loading books...</p>';
+
+                const [currentlyReadingText, readText] = await Promise.all([
+                    fetchShelf('currently-reading'),
+                    fetchShelf('read')
+                ]);
+
+                // Parse both feeds
+                const parser = new DOMParser();
+
+                currentlyReading = parseBookFeed(parser.parseFromString(currentlyReadingText, 'text/xml'));
+                readBooks = parseBookFeed(parser.parseFromString(readText, 'text/xml'));
+
+                console.log('Currently reading books:', currentlyReading.length);
+                console.log('Read books:', readBooks.length);
+
+                // Sort read books by read date (most recent first)
+                readBooks.sort((a, b) => b.timestamp - a.timestamp);
+
+                displayBooks();
+            } catch (error) {
+                console.error('Error loading books:', error);
+                document.getElementById('bookList').innerHTML = `
+                    <p style="color: #666;">unable to load books</p>
+                    <p style="color: #555; font-size: 12px; margin-top: 10px;">
+                        try refreshing the page<br>
+                        error: ${error.message || 'unknown error'}
+                    </p>
+                `;
+            }
+        }
+
+        // Parse a book feed XML
+        function parseBookFeed(xml) {
+            const books = [];
+
+            // Check for parse errors
+            const parseError = xml.querySelector('parsererror');
+            if (parseError) {
+                console.error('Failed to parse RSS feed');
+                return books;
+            }
+
+            const items = xml.querySelectorAll('item');
+            console.log(`Found ${items.length} items in feed`);
+
+            items.forEach((item, index) => {
+                console.log(`\n=== Processing item ${index + 1} ===`);
+                const title = item.querySelector('title')?.textContent || '';
+                const link = item.querySelector('link')?.textContent || '';
+                const description = item.querySelector('description')?.textContent || '';
+                const pubDate = item.querySelector('pubDate')?.textContent || '';
+
+                console.log('Raw title:', title);
+                console.log('Raw description (first 200 chars):', description.substring(0, 200));
+
+                // Log all available tags in the item
+                const allTags = Array.from(item.children).map(child => child.tagName);
+                console.log('Available XML tags:', allTags.join(', '));
+
+                // Extract book details from description HTML
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = description;
+
+                // Extract author from title (Goodreads format: "Title by Author")
+                let bookTitle = title;
+                let author = '';
+
+                // First, check for author/creator tags in the RSS item
+                const authorTag = item.querySelector('author_name')?.textContent ||
+                                 item.querySelector('author')?.textContent ||
+                                 item.querySelector('dc\\:creator')?.textContent ||
+                                 item.querySelector('creator')?.textContent || '';
+                if (authorTag) {
+                    author = authorTag.trim();
+                }
+
+                // Try to extract from title if no author tag
+                if (!author) {
+                    const byMatch = title.match(/^(.+?)\s+by\s+(.+)$/i);
+                    if (byMatch) {
+                        bookTitle = byMatch[1].trim();
+                        author = byMatch[2].trim();
+                    }
+                }
+
+                // If still no author, search in description HTML for bold/strong tags
+                if (!author) {
+                    const authorLinks = tempDiv.querySelectorAll('a[href*="/author/"]');
+                    if (authorLinks.length > 0) {
+                        author = authorLinks[0].textContent.trim();
+                    }
+                }
+
+                // If still no author, look for bold text that might be the author
+                if (!author) {
+                    const strongTags = tempDiv.querySelectorAll('strong, b');
+                    for (const tag of strongTags) {
+                        const text = tag.textContent.trim();
+                        // Author names are typically 2-50 characters
+                        if (text.length >= 2 && text.length < 50 && !text.match(/\d{4}/) && !text.toLowerCase().includes('rating')) {
+                            author = text;
+                            break;
+                        }
+                    }
+                }
+
+                // If still no author, try text patterns in description
+                const descText = tempDiv.textContent || '';
+                if (!author) {
+                    const authorPatterns = [
+                        /by\s+([^\n(]+?)(?:\s+\(|$)/i,
+                        /author[:\s]+([^\n]+?)(?:\.|$)/i
+                    ];
+
+                    for (const pattern of authorPatterns) {
+                        const match = descText.match(pattern);
+                        if (match && match[1]) {
+                            author = match[1].trim();
+                            // Clean up common suffixes and prefixes
+                            author = author.replace(/\s*\(.*?\)\s*/g, '').trim();
+                            if (author.length > 0 && author.length < 100) {
+                                break;
+                            } else {
+                                author = '';
+                            }
+                        }
+                    }
+                }
+
+                // Try to extract publication year from description
+                const yearMatch = descText.match(/published[:\s]+(\d{4})/i) ||
+                                 descText.match(/\((\d{4})\)/) ||
+                                 descText.match(/\b(19|20)\d{2}\b/);
+                const publicationYear = yearMatch ? yearMatch[1] : '';
+
+                // Extract book cover image and improve quality
+                let coverUrl = '';
+                const imgElement = tempDiv.querySelector('img');
+                if (imgElement) {
+                    coverUrl = improveImageUrl(imgElement.getAttribute('src') || '');
+
+                    // Try to extract author from image alt text if we don't have it yet
+                    if (!author) {
+                        const altText = imgElement.getAttribute('alt') || '';
+                        // Alt text format is often "Book Title by Author Name"
+                        const altMatch = altText.match(/by\s+(.+?)(?:\s*$)/i);
+                        if (altMatch) {
+                            author = altMatch[1].trim();
+                        }
+                    }
+                }
+
+                // Extract review text (Goodreads puts user review in description)
+                let review = '';
+                // Look for review text - it's usually after "Review:" or in specific paragraphs
+                const reviewMatch = descText.match(/Review[:\s]+(.*?)(?:Rating|$)/is);
+                if (reviewMatch) {
+                    review = reviewMatch[1].trim();
+                } else {
+                    // Try to extract just the text content, skip metadata
+                    const paragraphs = Array.from(tempDiv.querySelectorAll('p'));
+                    const reviewParagraph = paragraphs.find(p => {
+                        const text = p.textContent.trim();
+                        return text.length > 50 && !text.includes('Rating:') && !text.includes('published');
+                    });
+                    if (reviewParagraph) {
+                        review = reviewParagraph.textContent.trim();
+                    }
+                }
+
+                // Limit review length
+                if (review.length > 300) {
+                    review = review.substring(0, 300) + '...';
+                }
+
+                // Format date read
+                const readDate = new Date(pubDate);
+                const readYear = readDate.getFullYear();
+                const readDateStr = readDate.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                }).toLowerCase();
+
+                // Debug logging
+                console.log('FINAL EXTRACTED DATA:', {
+                    title: bookTitle,
+                    author: author || 'NO AUTHOR FOUND',
+                    publicationYear: publicationYear || 'NO YEAR',
+                    hasCover: !!coverUrl,
+                    hasReview: !!review
+                });
+
+                books.push({
+                    title: bookTitle,
+                    author: author,
+                    publicationYear: publicationYear,
+                    coverUrl: coverUrl,
+                    review: review,
+                    readDate: readDateStr,
+                    readYear: readYear,
+                    link: link,
+                    timestamp: readDate.getTime()
+                });
+            });
+
+            return books;
+        }
+
+        // Display books in separate sections
+        function displayBooks() {
+            let html = '';
+
+            // Currently Reading section
+            if (currentlyReading.length > 0) {
+                html += '<div class="section-title">currently reading</div>';
+                html += currentlyReading.map(book => formatBook(book)).join('');
+            }
+
+            // Read section
+            if (readBooks.length > 0) {
+                html += '<div class="section-title">read</div>';
+                html += readBooks.map(book => formatBook(book)).join('');
+            }
+
+            if (currentlyReading.length === 0 && readBooks.length === 0) {
+                html = '<p style="color: #666;">no books found</p>';
+            }
+
+            document.getElementById('bookList').innerHTML = html;
+        }
+
+        // Format a book entry
+        function formatBook(book) {
+            let entry = '<div class="book-entry">';
+
+            // Add cover if available
+            if (book.coverUrl) {
+                entry += `<img src="${book.coverUrl}" class="book-cover" alt="${book.title} cover">`;
+            }
+
+            // Book info container
+            entry += '<div class="book-info">';
+
+            // Title (clickable to Goodreads)
+            if (book.link) {
+                entry += `<a href="${book.link}" target="_blank" class="book-title">${book.title}</a>`;
+            } else {
+                entry += `<span class="book-title">${book.title}</span>`;
+            }
+
+            // Author and publication year line
+            const detailsParts = [];
+            if (book.author) detailsParts.push(book.author);
+            if (book.publicationYear) detailsParts.push(book.publicationYear);
+
+            if (detailsParts.length > 0) {
+                entry += `<div class="book-details">${detailsParts.join(', ')}</div>`;
+            }
+
+            // Review text if available
+            if (book.review) {
+                entry += `<div class="book-review">${book.review}</div>`;
+            }
+
+            // Read date
+            entry += `<div class="book-meta">${book.readDate}</div>`;
+
+            entry += '</div></div>';
+
+            return entry;
+        }
+
+        // Load books on page load
+        loadBooks();
+    </script>
+
+</body>
+
+</html>
