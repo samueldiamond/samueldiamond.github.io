@@ -159,16 +159,48 @@
         // Parse RSS feed and extract film data
         async function loadFilms() {
             try {
-                // Try direct fetch first (works in most browsers)
+                // Try multiple methods to fetch RSS feed
                 let text;
-                try {
-                    const directResponse = await fetch('https://letterboxd.com/sdiamond/rss/');
-                    text = await directResponse.text();
-                } catch (corsError) {
-                    console.log('Direct fetch failed, trying CORS proxy...');
-                    // Fallback to CORS proxy
-                    const proxyResponse = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://letterboxd.com/sdiamond/rss/'));
-                    text = await proxyResponse.text();
+                const rssUrl = 'https://letterboxd.com/sdiamond/rss/';
+
+                const proxies = [
+                    { name: 'direct', url: rssUrl },
+                    { name: 'corsproxy.io', url: 'https://corsproxy.io/?' + encodeURIComponent(rssUrl) },
+                    { name: 'allorigins.win', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}` }
+                ];
+
+                let lastError;
+                for (const proxy of proxies) {
+                    try {
+                        console.log(`Trying ${proxy.name}...`);
+                        const response = await fetch(proxy.url, {
+                            cache: 'no-store',
+                            headers: { 'Cache-Control': 'no-cache' }
+                        });
+
+                        if (!response.ok) {
+                            console.warn(`${proxy.name} returned ${response.status}, trying next...`);
+                            continue;
+                        }
+
+                        text = await response.text();
+
+                        // Verify it's valid XML
+                        if (!text.includes('<?xml') && !text.includes('<rss')) {
+                            console.warn(`${proxy.name} returned invalid data, trying next...`);
+                            continue;
+                        }
+
+                        console.log(`✓ Successfully fetched via ${proxy.name}`);
+                        break;
+                    } catch (error) {
+                        console.warn(`${proxy.name} failed:`, error.message);
+                        lastError = error;
+                    }
+                }
+
+                if (!text) {
+                    throw lastError || new Error('All fetch methods failed');
                 }
 
                 // Parse XML

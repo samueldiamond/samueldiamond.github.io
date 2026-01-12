@@ -108,31 +108,48 @@
             return url.replace(/_SX\d+_/, '_SX200_').replace(/_SY\d+_/, '_SY300_');
         }
 
-        // Fetch books from a specific shelf
+        // Fetch books from a specific shelf with multiple fallback proxies
         async function fetchShelf(shelfName) {
             // Add cache-busting parameter to force fresh data
             const timestamp = Date.now();
             const url = `https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&shelf=${shelfName}&_=${timestamp}`;
 
-            // Use CORS proxy directly to avoid CORS issues
-            console.log(`Fetching ${shelfName} shelf via CORS proxy...`);
-            const proxyResponse = await fetch('https://corsproxy.io/?' + encodeURIComponent(url), {
-                cache: 'no-store',
-                headers: {
-                    'Cache-Control': 'no-cache'
-                }
-            });
+            // Try multiple CORS proxies in order
+            const proxies = [
+                { name: 'corsproxy.io', url: 'https://corsproxy.io/?' + encodeURIComponent(url) },
+                { name: 'allorigins.win', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}` },
+                { name: 'direct', url: url }
+            ];
 
-            if (!proxyResponse.ok) {
-                console.error(`Failed to fetch ${shelfName}: ${proxyResponse.status} ${proxyResponse.statusText}`);
-                throw new Error(`HTTP ${proxyResponse.status}`);
+            for (const proxy of proxies) {
+                try {
+                    console.log(`Trying ${proxy.name} for ${shelfName}...`);
+                    const response = await fetch(proxy.url, {
+                        cache: 'no-store',
+                        headers: { 'Cache-Control': 'no-cache' }
+                    });
+
+                    if (!response.ok) {
+                        console.warn(`${proxy.name} returned ${response.status}, trying next...`);
+                        continue;
+                    }
+
+                    const text = await response.text();
+
+                    // Verify it's valid XML
+                    if (!text.includes('<?xml') && !text.includes('<rss')) {
+                        console.warn(`${proxy.name} returned invalid data, trying next...`);
+                        continue;
+                    }
+
+                    console.log(`✓ Successfully fetched ${shelfName} via ${proxy.name} (${text.length} chars)`);
+                    return text;
+                } catch (error) {
+                    console.warn(`${proxy.name} failed:`, error.message);
+                }
             }
 
-            const text = await proxyResponse.text();
-            console.log(`Received ${text.length} characters for ${shelfName} shelf`);
-            console.log(`First 300 chars of ${shelfName} response:`, text.substring(0, 300));
-
-            return text;
+            throw new Error(`All proxy methods failed for ${shelfName}`);
         }
 
         // Parse RSS feed and extract book data
