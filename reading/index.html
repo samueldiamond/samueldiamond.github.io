@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>library - sam diamond</title>
+    <title>reading - sam diamond</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon yellow.ico">
     <link rel="stylesheet" href="/posts/blog.css">
     <style>
@@ -91,7 +91,7 @@
 <body>
     <div class="container">
         <div class="inner-container">
-            <h1>library</h1>
+            <h1>reading</h1>
 
             <div id="bookList" class="loading">loading books...</div>
         </div>
@@ -415,11 +415,6 @@
 
             if (detailsParts.length > 0) {
                 entry += `<div class="book-details">${detailsParts.join(', ')}</div>`;
-            }
-
-            // Review text if available
-            if (book.review) {
-                entry += `<div class="book-review">${book.review}</div>`;
             }
 
             // Read date
