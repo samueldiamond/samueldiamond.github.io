@@ -334,11 +334,6 @@
                     }
                 }
 
-                // Limit review length
-                if (review.length > 300) {
-                    review = review.substring(0, 300) + '...';
-                }
-
                 // Format date read
                 const readDate = new Date(pubDate);
                 const readYear = readDate.getFullYear();
