@@ -198,7 +198,7 @@
                 document.getElementById('sun-times').textContent = `sunrise ${sunrise} / sunset ${sunset}`;
 
                 // Celestial info: moon phase and monthly sky events
-                document.getElementById('celestial').textContent = `${getMoonPhase()} / ${getCelestialObject()}`;
+                document.getElementById('celestial').innerHTML = `🌙 ${getMoonPhase()}<br>${getCelestialObject()}`;
             } catch (error) {
                 console.error('Error getting weather:', error);
                 document.getElementById('weather').textContent = '';
