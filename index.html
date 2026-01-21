@@ -143,6 +143,26 @@
             return 'new moon';
         }
 
+        // Get prominent celestial object based on month
+        function getCelestialObject() {
+            const month = new Date().getMonth();
+            const celestialCalendar = [
+                'orion visible',        // January
+                'sirius brightest',     // February
+                'venus evening',        // March
+                'mars visible',         // April
+                'jupiter rising',       // May
+                'saturn visible',       // June
+                'milky way peak',       // July
+                'perseid meteors',      // August
+                'harvest moon',         // September
+                'orionids active',      // October
+                'taurids active',       // November
+                'geminids peak'         // December
+            ];
+            return celestialCalendar[month];
+        }
+
         // Get Berlin weather and info
         async function getBerlinWeather() {
             try {
@@ -177,8 +197,8 @@
                 });
                 document.getElementById('sun-times').textContent = `sunrise ${sunrise} / sunset ${sunset}`;
 
-                // Moon phase (updates with weather)
-                document.getElementById('celestial').textContent = getMoonPhase();
+                // Celestial info: moon phase and monthly sky events
+                document.getElementById('celestial').textContent = `${getMoonPhase()} / ${getCelestialObject()}`;
             } catch (error) {
                 console.error('Error getting weather:', error);
                 document.getElementById('weather').textContent = '';
