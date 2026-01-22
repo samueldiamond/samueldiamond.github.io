@@ -52,40 +52,64 @@
         </div>
     </div>
 
-    <!-- Minimalist info widget -->
+    <!-- Minimalist info widget - Bloomberg ticker style -->
     <div class="info-widget">
-        <div class="time" id="time"></div>
-        <div class="date" id="date"></div>
-        <div class="location" id="location">52.52°n, 13.405°e</div>
-        <div class="weather" id="weather"></div>
-        <div class="weather-desc" id="weather-desc"></div>
-        <div class="sun-times" id="sun-times"></div>
-        <div class="celestial" id="celestial"></div>
+        <div class="ticker-content" id="ticker"></div>
     </div>
 
     <script>
+        // Ticker data storage
+        let tickerData = {
+            time: '',
+            date: '',
+            location: '52.52°n, 13.405°e',
+            weather: '',
+            weatherDesc: '',
+            sunTimes: '',
+            moonPhase: '',
+            celestial: ''
+        };
+
+        // Update ticker display
+        function updateTicker() {
+            const items = [
+                tickerData.time,
+                tickerData.date,
+                tickerData.location,
+                `${tickerData.weather} ${tickerData.weatherDesc}`.trim(),
+                tickerData.sunTimes,
+                `☾ ${tickerData.moonPhase}`,
+                tickerData.celestial
+            ].filter(item => item); // Remove empty items
+
+            // Duplicate content for seamless loop
+            const ticker = document.getElementById('ticker');
+            ticker.innerHTML = items.map(item => `<span class="ticker-item">${item}</span>`).join('') +
+                              items.map(item => `<span class="ticker-item">${item}</span>`).join('');
+        }
+
         // Update time every second (Berlin timezone)
         function updateTime() {
             const now = new Date();
             // Format time in Berlin timezone
-            const berlinTime = new Intl.DateTimeFormat('en-US', {
+            tickerData.time = new Intl.DateTimeFormat('en-US', {
                 timeZone: 'Europe/Berlin',
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit',
                 hour12: false
             }).format(now);
-            document.getElementById('time').textContent = berlinTime;
 
             // Format date in Berlin timezone
-            const berlinDate = new Intl.DateTimeFormat('en-US', {
+            tickerData.date = new Intl.DateTimeFormat('en-US', {
                 timeZone: 'Europe/Berlin',
                 weekday: 'short',
                 month: 'short',
                 day: 'numeric',
                 year: 'numeric'
             }).format(now).toLowerCase();
-            document.getElementById('date').textContent = berlinDate;
+
+            updateTicker();
         }
 
         // Weather code descriptions
@@ -166,21 +190,17 @@
         // Get Berlin weather and info
         async function getBerlinWeather() {
             try {
-                // Set location coordinates
-                document.getElementById('location').textContent = '52.52°n, 13.405°e';
-
                 // Get weather for Berlin (52.52°N, 13.405°E) with daily data
                 const weatherResponse = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.405&current_weather=true&daily=sunrise,sunset&temperature_unit=celsius&timezone=Europe/Berlin');
                 const weatherData = await weatherResponse.json();
 
                 // Current temperature
                 const temp = Math.round(weatherData.current_weather.temperature);
-                document.getElementById('weather').textContent = `${temp}°c`;
+                tickerData.weather = `${temp}°c`;
 
                 // Weather description
                 const weatherCode = weatherData.current_weather.weathercode;
-                const description = weatherDescriptions[weatherCode] || 'clear';
-                document.getElementById('weather-desc').textContent = description;
+                tickerData.weatherDesc = weatherDescriptions[weatherCode] || 'clear';
 
                 // Sunrise and sunset
                 const sunrise = new Date(weatherData.daily.sunrise[0]).toLocaleTimeString('en-US', {
@@ -195,13 +215,15 @@
                     minute: '2-digit',
                     hour12: false
                 });
-                document.getElementById('sun-times').textContent = `sunrise ${sunrise} / sunset ${sunset}`;
+                tickerData.sunTimes = `sunrise ${sunrise} / sunset ${sunset}`;
 
                 // Celestial info: moon phase and monthly sky events
-                document.getElementById('celestial').innerHTML = `☾ ${getMoonPhase()}<br>${getCelestialObject()}`;
+                tickerData.moonPhase = getMoonPhase();
+                tickerData.celestial = getCelestialObject();
+
+                updateTicker();
             } catch (error) {
                 console.error('Error getting weather:', error);
-                document.getElementById('weather').textContent = '';
             }
         }
 
