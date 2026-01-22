@@ -13,7 +13,6 @@ body {
     height: 100vh;
     padding: 60px;
     padding-left: 15%;
-    padding-bottom: 80px;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -79,58 +78,33 @@ a:hover {
     font-style: italic;
 }
 
-/* Minimalist info widget - Bloomberg ticker style */
+/* Minimalist info widget */
 .info-widget {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    background-color: #000000;
-    border-top: 1px solid #1a1a1a;
-    overflow: hidden;
+    bottom: 30px;
+    left: 30px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     font-size: 11px;
     color: #666666;
+    line-height: 1.6;
     font-weight: 400;
     letter-spacing: 0.02em;
-    display: flex;
-    align-items: center;
-}
-
-.ticker-content {
-    display: flex;
-    white-space: nowrap;
-    animation: scroll 45s linear infinite;
-    padding-left: 100%;
-}
-
-.ticker-item {
-    padding: 0 30px;
-    color: #666666;
-}
-
-.ticker-item:not(:last-child)::after {
-    content: '•';
-    margin-left: 30px;
-    color: #333333;
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
 }
 
 .info-widget .time {
+    font-size: 12px;
     color: #888888;
+    margin-bottom: 2px;
 }
 
+.info-widget .date,
+.info-widget .location,
+.info-widget .weather,
+.info-widget .weather-desc,
+.info-widget .sun-times,
 .info-widget .celestial {
     color: #666666;
+    font-size: 11px;
 }
 
 /* Media Query for smaller screens/mobile */
@@ -167,15 +141,12 @@ a:hover {
     }
 
     .info-widget {
-        height: 25px;
+        bottom: 20px;
+        left: 20px;
         font-size: 10px;
     }
 
-    .ticker-item {
-        padding: 0 20px;
-    }
-
-    .ticker-item:not(:last-child)::after {
-        margin-left: 20px;
+    .info-widget .time {
+        font-size: 11px;
     }
 }
