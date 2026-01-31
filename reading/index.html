@@ -115,6 +115,21 @@
             return url.replace(/_SX\d+_/, '_SX200_').replace(/_SY\d+_/, '_SY300_');
         }
 
+        // Convert rss2json format to RSS XML
+        function convertJsonToRss(json) {
+            let xml = '<?xml version="1.0"?><rss version="2.0"><channel>';
+            json.items.forEach(item => {
+                xml += '<item>';
+                xml += `<title><![CDATA[${item.title || ''}]]></title>`;
+                xml += `<link>${item.link || ''}</link>`;
+                xml += `<description><![CDATA[${item.description || ''}]]></description>`;
+                xml += `<pubDate>${item.pubDate || ''}</pubDate>`;
+                xml += '</item>';
+            });
+            xml += '</channel></rss>';
+            return xml;
+        }
+
         // Fetch books from a specific shelf with multiple fallback proxies
         async function fetchShelf(shelfName) {
             // Add cache-busting parameter to force fresh data
@@ -123,6 +138,7 @@
 
             // Try multiple CORS proxies in order (mobile-friendly options first)
             const proxies = [
+                { name: 'rss2json', url: `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`, isJson: true },
                 { name: 'allorigins.win', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}` },
                 { name: 'corsproxy.io', url: 'https://corsproxy.io/?' + encodeURIComponent(url) },
                 { name: 'thingproxy', url: `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(url)}` },
@@ -135,7 +151,7 @@
 
                     // Add timeout to prevent hanging
                     const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+                    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
 
                     const response = await fetch(proxy.url, {
                         cache: 'no-store',
@@ -150,7 +166,19 @@
                         continue;
                     }
 
-                    const text = await response.text();
+                    let text;
+                    if (proxy.isJson) {
+                        // rss2json returns JSON, convert back to XML
+                        const json = await response.json();
+                        if (json.status !== 'ok' || !json.items) {
+                            console.warn(`${proxy.name} returned error, trying next...`);
+                            continue;
+                        }
+                        // Convert JSON back to RSS XML format
+                        text = convertJsonToRss(json);
+                    } else {
+                        text = await response.text();
+                    }
 
                     // Verify it's valid XML
                     if (!text.includes('<?xml') && !text.includes('<rss')) {
