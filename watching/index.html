@@ -164,19 +164,28 @@
                 const rssUrl = 'https://letterboxd.com/sdiamond/rss/';
 
                 const proxies = [
-                    { name: 'direct', url: rssUrl },
+                    { name: 'allorigins.win', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}` },
                     { name: 'corsproxy.io', url: 'https://corsproxy.io/?' + encodeURIComponent(rssUrl) },
-                    { name: 'allorigins.win', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}` }
+                    { name: 'thingproxy', url: `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(rssUrl)}` },
+                    { name: 'direct', url: rssUrl }
                 ];
 
                 let lastError;
                 for (const proxy of proxies) {
                     try {
                         console.log(`Trying ${proxy.name}...`);
+
+                        // Add timeout to prevent hanging
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
                         const response = await fetch(proxy.url, {
                             cache: 'no-store',
-                            headers: { 'Cache-Control': 'no-cache' }
+                            headers: { 'Cache-Control': 'no-cache' },
+                            signal: controller.signal
                         });
+
+                        clearTimeout(timeoutId);
 
                         if (!response.ok) {
                             console.warn(`${proxy.name} returned ${response.status}, trying next...`);
