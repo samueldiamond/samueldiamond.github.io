@@ -78,9 +78,17 @@ center {
 
 /* Media Query for smaller screens/mobile */
 @media screen and (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+    }
+
     .container {
         padding: 30px;
         padding-left: 30px;
+        height: auto;
+        min-height: 100vh;
     }
 
     .inner-container {
