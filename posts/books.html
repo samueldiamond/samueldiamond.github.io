@@ -114,20 +114,29 @@
             const timestamp = Date.now();
             const url = `https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&shelf=${shelfName}&_=${timestamp}`;
 
-            // Try multiple CORS proxies in order
+            // Try multiple CORS proxies in order (mobile-friendly options first)
             const proxies = [
-                { name: 'corsproxy.io', url: 'https://corsproxy.io/?' + encodeURIComponent(url) },
                 { name: 'allorigins.win', url: `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}` },
+                { name: 'corsproxy.io', url: 'https://corsproxy.io/?' + encodeURIComponent(url) },
+                { name: 'thingproxy', url: `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(url)}` },
                 { name: 'direct', url: url }
             ];
 
             for (const proxy of proxies) {
                 try {
                     console.log(`Trying ${proxy.name} for ${shelfName}...`);
+
+                    // Add timeout to prevent hanging
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
                     const response = await fetch(proxy.url, {
                         cache: 'no-store',
-                        headers: { 'Cache-Control': 'no-cache' }
+                        headers: { 'Cache-Control': 'no-cache' },
+                        signal: controller.signal
                     });
+
+                    clearTimeout(timeoutId);
 
                     if (!response.ok) {
                         console.warn(`${proxy.name} returned ${response.status}, trying next...`);
