@@ -1,0 +1,52 @@
+name: Update RSS Feeds
+
+on:
+  schedule:
+    # Run every hour
+    - cron: '0 * * * *'
+  workflow_dispatch: # Allow manual trigger
+  push:
+    branches:
+      - main
+
+jobs:
+  update-feeds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch and convert RSS feeds
+        run: |
+          mkdir -p data
+
+          # Fetch Goodreads currently-reading
+          echo "Fetching Goodreads currently-reading..."
+          curl -s "https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&shelf=currently-reading" \
+            -o data/goodreads-currently-reading.xml || echo "Failed to fetch currently-reading"
+
+          # Fetch Goodreads read
+          echo "Fetching Goodreads read..."
+          curl -s "https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&shelf=read" \
+            -o data/goodreads-read.xml || echo "Failed to fetch read"
+
+          # Fetch Letterboxd
+          echo "Fetching Letterboxd..."
+          curl -s "https://letterboxd.com/sdiamond/rss/" \
+            -o data/letterboxd.xml || echo "Failed to fetch Letterboxd"
+
+          echo "Feeds fetched successfully"
+          ls -lh data/
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update RSS feeds [skip ci]" && git push)
