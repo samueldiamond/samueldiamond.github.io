@@ -85,12 +85,39 @@
             color: #666666;
             font-size: 12px;
         }
+
+        .back-link {
+            display: inline-block;
+            color: #666666;
+            font-size: 13px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+        }
+
+        .month-divider {
+            font-size: 12px;
+            color: #555555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-style: italic;
+            text-transform: lowercase;
+        }
+
+        .month-divider:first-of-type {
+            margin-top: 20px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="inner-container">
+            <a href="/" class="back-link">← back</a>
             <h1>watching</h1>
 
             <div class="year-filter" id="yearFilter">
@@ -361,7 +388,25 @@
                 return;
             }
 
-            const html = filtered.map(film => {
+            // Group films by month and year
+            let html = '';
+            let currentMonth = '';
+
+            filtered.forEach(film => {
+                // Get month and year from watch date
+                const watchDate = new Date(film.timestamp);
+                const monthYear = watchDate.toLocaleDateString('en-US', {
+                    month: 'long',
+                    year: 'numeric'
+                }).toLowerCase();
+
+                // Add month divider if we're in a new month
+                if (monthYear !== currentMonth) {
+                    currentMonth = monthYear;
+                    html += `<div class="month-divider">${monthYear}</div>`;
+                }
+
+                // Add film entry
                 let entry = '<div class="film-entry">';
 
                 // Add poster if available
@@ -399,8 +444,8 @@
 
                 entry += '</div></div>';
 
-                return entry;
-            }).join('');
+                html += entry;
+            });
 
             document.getElementById('filmList').innerHTML = html;
         }

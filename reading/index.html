@@ -92,12 +92,26 @@
             color: #666666;
             font-size: 12px;
         }
+
+        .back-link {
+            display: inline-block;
+            color: #666666;
+            font-size: 13px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="inner-container">
+            <a href="/" class="back-link">← back</a>
             <h1>reading</h1>
 
             <div id="bookList" class="loading">loading books...</div>
