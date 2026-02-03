@@ -129,59 +129,7 @@
     </div>
 
     <script>
-        const TMDB_API_KEY = '012eea67ce972aaf460122deb6b45745';
-        const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-        const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w92'; // Small poster size
-
         let allFilms = [];
-
-        // Fetch film data from TMDB
-        async function fetchTMDBData(title, year) {
-            try {
-                // Search for the film
-                const searchUrl = `${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(title)}&year=${year}`;
-                const searchResponse = await fetch(searchUrl);
-                const searchData = await searchResponse.json();
-
-                if (!searchData.results || searchData.results.length === 0) {
-                    return null;
-                }
-
-                const movie = searchData.results[0];
-                const movieId = movie.id;
-
-                // Get movie details including credits
-                const detailsUrl = `${TMDB_BASE_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=credits,external_ids`;
-                const detailsResponse = await fetch(detailsUrl);
-                const details = await detailsResponse.json();
-
-                // Extract director from crew
-                let director = '';
-                if (details.credits && details.credits.crew) {
-                    const directorCredit = details.credits.crew.find(person => person.job === 'Director');
-                    if (directorCredit) {
-                        director = directorCredit.name;
-                    }
-                }
-
-                // Build Wikipedia URL from IMDB ID
-                let wikiUrl = '';
-                if (details.external_ids && details.external_ids.imdb_id) {
-                    // Use Wikipedia search with film title
-                    wikiUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(title.replace(/ /g, '_'))}`;
-                }
-
-                return {
-                    director: director,
-                    posterPath: movie.poster_path ? `${TMDB_IMAGE_BASE}${movie.poster_path}` : '',
-                    wikiUrl: wikiUrl,
-                    tmdbId: movieId
-                };
-            } catch (error) {
-                console.error('Error fetching TMDB data:', error);
-                return null;
-            }
-        }
 
         // Parse RSS feed and extract film data
         async function loadFilms() {
@@ -275,6 +223,13 @@
                     let cleanTitle = filmTitle || title.replace(/,\s*\d{4}.*$/, '').trim();
                     cleanTitle = cleanTitle.replace(/^★+\s*/, '').trim();
 
+                    // Extract poster image from description HTML
+                    let posterUrl = '';
+                    const imgElement = tempDiv.querySelector('img');
+                    if (imgElement) {
+                        posterUrl = imgElement.getAttribute('src') || '';
+                    }
+
                     // Try to extract director from description text
                     const descText = tempDiv.textContent || '';
                     let director = '';
@@ -317,32 +272,12 @@
                         watchYear: watchYear,
                         link: link,
                         timestamp: watchDate.getTime(),
-                        posterPath: '',
-                        wikiUrl: '',
-                        tmdbFetched: false
+                        posterUrl: posterUrl
                     });
                 });
 
                 // Sort by watch date (most recent first)
                 allFilms.sort((a, b) => b.timestamp - a.timestamp);
-
-                // Fetch TMDB data for all films
-                document.getElementById('filmList').innerHTML = '<p style="color: #666;">loading film details...</p>';
-
-                for (let i = 0; i < allFilms.length; i++) {
-                    const film = allFilms[i];
-                    if (film.year) {
-                        const tmdbData = await fetchTMDBData(film.title, film.year);
-                        if (tmdbData) {
-                            film.director = tmdbData.director || film.director;
-                            film.posterPath = tmdbData.posterPath;
-                            film.wikiUrl = tmdbData.wikiUrl;
-                            film.tmdbFetched = true;
-                        }
-                        // Small delay to avoid rate limiting
-                        await new Promise(resolve => setTimeout(resolve, 100));
-                    }
-                }
 
                 // Get unique years
                 const years = [...new Set(allFilms.map(f => f.watchYear))].sort((a, b) => b - a);
@@ -410,16 +345,16 @@
                 let entry = '<div class="film-entry">';
 
                 // Add poster if available
-                if (film.posterPath) {
-                    entry += `<img src="${film.posterPath}" class="film-poster" alt="${film.title} poster">`;
+                if (film.posterUrl) {
+                    entry += `<img src="${film.posterUrl}" class="film-poster" alt="${film.title} poster">`;
                 }
 
                 // Film info container
                 entry += '<div class="film-info">';
 
-                // Title (clickable to Wikipedia if available)
-                if (film.wikiUrl) {
-                    entry += `<a href="${film.wikiUrl}" target="_blank" class="film-title">${film.title}</a>`;
+                // Title (clickable to Letterboxd)
+                if (film.link) {
+                    entry += `<a href="${film.link}" target="_blank" class="film-title">${film.title}</a>`;
                 } else {
                     entry += `<span class="film-title">${film.title}</span>`;
                 }
