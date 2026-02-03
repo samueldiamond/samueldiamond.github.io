@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=read" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: read]]></description>
     <language>en-US</language>
-    <lastBuildDate>Tue, 03 Feb 2026 09:05:20 -0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Feb 2026 12:48:34 -0800</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: read</title>
@@ -19,6 +19,46 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8273908288?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Tue, 03 Feb 2026 12:48:34 -0800]]></pubDate>
+    <title>Wuthering Heights</title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8273908288?utm_medium=api&utm_source=rss]]></link>
+    <book_id>32929156</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY475_.jpg]]></book_large_image_url>
+    <book_description><![CDATA[<i>An alternative cover edition for this ISBN can be found <a href="https://www.goodreads.com/book/show/348914.Wuthering_Heights" rel="nofollow noopener">here</a>.</i><br /><br />Emily Brontë's only novel, a work of tremendous and far-reaching influence, the Penguin Classics edition of Wuthering Heights is the definitive edition of the text, edited with an introduction by Pauline Nestor. Lockwood, the new tenant of Thrushcross Grange, situated on the bleak Yorkshire moors, is forced to seek shelter one night at Wuthering Heights, the home of his landlord. There he discovers the history of the tempestuous events that took place years before; of the intense relationship between the gypsy foundling Heathcliff and Catherine Earnshaw; and how Catherine, forced to choose between passionate, tortured Heathcliff and gentle, well-bred Edgar Linton, surrendered to the expectations of her class. As Heathcliff's bitterness and vengeance at his betrayal is visited upon the next generation, their innocent heirs must struggle to escape the legacy of the past.]]></book_description>
+    <book id="32929156">
+      <num_pages>359</num_pages>
+    </book>
+    <author_name>Emily Brontë</author_name>
+    <isbn>0141439556</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at><![CDATA[Tue, 3 Feb 2026 00:00:00 +0000]]></user_read_at>
+    <user_date_added><![CDATA[Tue, 03 Feb 2026 12:48:34 -0800]]></user_date_added>
+    <user_date_created><![CDATA[Sun, 18 Jan 2026 00:56:26 -0800]]></user_date_created>
+    <user_shelves></user_shelves>
+    <user_review></user_review>
+    <average_rating>3.99</average_rating>
+    <book_published>1847</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/32929156-wuthering-heights?utm_medium=api&amp;utm_source=rss"><img alt="Wuthering Heights" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY75_.jpg" /></a><br/>
+                                      author: Emily Brontë<br/>
+                                      name: Sam<br/>
+                                      average rating: 3.99<br/>
+                                      book published: 1847<br/>
+                                      rating: 0<br/>
+                                      read at: 2026/02/03<br/>
+                                      date added: 2026/02/03<br/>
+                                      shelves: <br/>
+                                      review: <br/><br/>
+                                      ]]>
+    </description>
+  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8273909084?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Tue, 03 Feb 2026 09:05:20 -0800]]></pubDate>
