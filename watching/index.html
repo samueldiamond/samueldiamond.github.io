@@ -129,7 +129,30 @@
     </div>
 
     <script>
+        const TMDB_API_KEY = '012eea67ce972aaf460122deb6b45745';
+        const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+
         let allFilms = [];
+
+        // Fetch director from TMDB using movie ID
+        async function fetchDirector(tmdbId) {
+            try {
+                const url = `${TMDB_BASE_URL}/movie/${tmdbId}?api_key=${TMDB_API_KEY}&append_to_response=credits`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.credits && data.credits.crew) {
+                    const directorCredit = data.credits.crew.find(person => person.job === 'Director');
+                    if (directorCredit) {
+                        return directorCredit.name;
+                    }
+                }
+                return '';
+            } catch (error) {
+                console.error('Error fetching director:', error);
+                return '';
+            }
+        }
 
         // Parse RSS feed and extract film data
         async function loadFilms() {
@@ -181,6 +204,8 @@
                                    item.querySelector('letterboxd\\:filmYear')?.textContent || '';
                     const memberRating = item.querySelector('memberRating')?.textContent ||
                                        item.querySelector('letterboxd\\:memberRating')?.textContent || '';
+                    const tmdbId = item.querySelector('movieId')?.textContent ||
+                                 item.querySelector('tmdb\\:movieId')?.textContent || '';
 
                     // Extract film details from description HTML
                     const tempDiv = document.createElement('div');
@@ -230,30 +255,6 @@
                         posterUrl = imgElement.getAttribute('src') || '';
                     }
 
-                    // Try to extract director from description text
-                    const descText = tempDiv.textContent || '';
-                    let director = '';
-
-                    // Letterboxd format: "Watched [Film Title] [Year] Directed by [Director]"
-                    const directorPatterns = [
-                        /Directed by ([^\n.]+?)(?:\.|$)/i,
-                        /Director:\s*([^\n.]+?)(?:\.|$)/i,
-                        /\b(\w+\s+\w+)\s+\(director\)/i
-                    ];
-
-                    for (const pattern of directorPatterns) {
-                        const match = descText.match(pattern);
-                        if (match) {
-                            director = match[1].trim()
-                                .replace(/\s+/g, ' ')
-                                .replace(/\.$/, '')
-                                .trim();
-                            // Clean up common suffixes
-                            director = director.split(/[,\n]/)[0].trim();
-                            break;
-                        }
-                    }
-
                     // Format date watched
                     const watchDate = new Date(pubDate);
                     const watchYear = watchDate.getFullYear();
@@ -266,18 +267,32 @@
                     allFilms.push({
                         title: cleanTitle,
                         year: year,
-                        director: director,
+                        director: '',
                         rating: rating,
                         watchDate: watchDateStr,
                         watchYear: watchYear,
                         link: link,
                         timestamp: watchDate.getTime(),
-                        posterUrl: posterUrl
+                        posterUrl: posterUrl,
+                        tmdbId: tmdbId
                     });
                 });
 
                 // Sort by watch date (most recent first)
                 allFilms.sort((a, b) => b.timestamp - a.timestamp);
+
+                // Fetch directors from TMDB in background
+                Promise.all(
+                    allFilms.map(async (film) => {
+                        if (film.tmdbId) {
+                            film.director = await fetchDirector(film.tmdbId);
+                        }
+                    })
+                ).then(() => {
+                    // Re-render after directors are loaded
+                    const currentYear = document.querySelector('.year-filter a.active')?.getAttribute('data-year') || 'all';
+                    displayFilms(currentYear);
+                });
 
                 // Get unique years
                 const years = [...new Set(allFilms.map(f => f.watchYear))].sort((a, b) => b - a);
