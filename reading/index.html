@@ -303,23 +303,8 @@
                     }
                 }
 
-                // Extract review text (Goodreads puts user review in description)
-                let review = '';
-                // Look for review text - it's usually after "Review:" or in specific paragraphs
-                const reviewMatch = descText.match(/Review[:\s]+(.*?)(?:Rating|$)/is);
-                if (reviewMatch) {
-                    review = reviewMatch[1].trim();
-                } else {
-                    // Try to extract just the text content, skip metadata
-                    const paragraphs = Array.from(tempDiv.querySelectorAll('p'));
-                    const reviewParagraph = paragraphs.find(p => {
-                        const text = p.textContent.trim();
-                        return text.length > 50 && !text.includes('Rating:') && !text.includes('published');
-                    });
-                    if (reviewParagraph) {
-                        review = reviewParagraph.textContent.trim();
-                    }
-                }
+                // Extract review text from user_review XML tag
+                let review = item.querySelector('user_review')?.textContent?.trim() || '';
 
                 // Format date read
                 const readDate = new Date(pubDate);
