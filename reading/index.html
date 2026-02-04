@@ -319,8 +319,12 @@
                 // Extract review text from user_review XML tag
                 let review = item.querySelector('user_review')?.textContent?.trim() || '';
 
+                // Get actual read date from user_read_at (for finished books) or use pubDate as fallback
+                const userReadAt = item.querySelector('user_read_at')?.textContent?.trim() || '';
+                const dateToUse = userReadAt || pubDate;
+
                 // Format date read
-                const readDate = new Date(pubDate);
+                const readDate = new Date(dateToUse);
                 const readYear = readDate.getFullYear();
                 const readDateStr = readDate.toLocaleDateString('en-US', {
                     month: 'short',
