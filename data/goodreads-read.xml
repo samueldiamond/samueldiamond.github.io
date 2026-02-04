@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=read" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: read]]></description>
     <language>en-US</language>
-    <lastBuildDate>Wed, 04 Feb 2026 07:24:52 -0800</lastBuildDate>
+    <lastBuildDate>Wed, 04 Feb 2026 07:46:29 -0800</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: read</title>
@@ -19,6 +19,86 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8273909084?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Wed, 04 Feb 2026 07:46:29 -0800]]></pubDate>
+    <title><![CDATA[The Odyssey: A New Translation by Daniel Mendelsohn]]></title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8273909084?utm_medium=api&utm_source=rss]]></link>
+    <book_id>217293390</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SY475_.jpg]]></book_large_image_url>
+    <book_description><![CDATA[<b>A TELEGRAPH BEST POETRY BOOK OF 2025<br /><br />A magnificent new translation of the <i>Odyssey</i> by best-selling author and classicist Daniel Mendelsohn</b><br /><br /><i>'This may be the best translation of The Odyssey yet. Daniel Mendelsohn’s rendering of Homer’s text is both highly readable and faithful to the original metre. It’s impressive, thrilling stuff... a sonorous new translation'</i><b> - </b>Edith Hall, <i>The Telegraph</i><br /><br />With his <i>Odyssey</i>, best-selling author and classicist Daniel Mendelsohn has created a momentous new work, hailed by classicists and poets alike – a translation to stand with those of E. V. Rieu and Robert Fagles.<br /><br />Setting aside the streamlining, modernizing approach of many recent translations, Mendelsohn artfully reproduces the epic’s formal qualities – meter, enjambment, alliteration, assonance – and in so doing restores to Homer’s master work its archaic grandeur. His expansive six-beat line, far closer to the original than that of other recent translations, allows him to capture each of Homer’s verses line for line, without sacrificing the amplitude and shadings of the original.<br /><br />The result is the richest, most precise, and most musical <i>Odyssey</i> in English, one that fully conveys its oral poetics while bringing to vivid life the gripping adventure, profound human insight and powerful themes that make Homer’s work resonate some twenty-eight centuries after its composition. Supported by an extensive introduction and the fullest notes and commentary currently available, Mendelsohn’s <i>Odyssey</i> is poised to become the authoritative English-language version of this magnificent, endlessly enjoyable masterpiece.]]></book_description>
+    <book id="217293390">
+      <num_pages>541</num_pages>
+    </book>
+    <author_name>Homer</author_name>
+    <isbn>1802068104</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at><![CDATA[Tue, 3 Feb 2026 00:00:00 +0000]]></user_read_at>
+    <user_date_added><![CDATA[Wed, 04 Feb 2026 07:46:29 -0800]]></user_date_added>
+    <user_date_created><![CDATA[Sun, 18 Jan 2026 00:57:01 -0800]]></user_date_created>
+    <user_shelves></user_shelves>
+    <user_review><![CDATA[A lot more psychedelic than I expected. Book 11, in which Odysseus goes to the land of the dead to see Tiresias and is confronted with the ghost of everyone he’s ever loved, is incredible. Tiresias clearly the best character in all of Greek mythology, by the way. ]]></user_review>
+    <average_rating>4.48</average_rating>
+    <book_published>-800</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/217293390-the-odyssey?utm_medium=api&amp;utm_source=rss"><img alt="The Odyssey: A New Translation by Daniel Mendelsohn" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SY75_.jpg" /></a><br/>
+                                      author: Homer<br/>
+                                      name: Sam<br/>
+                                      average rating: 4.48<br/>
+                                      book published: -800<br/>
+                                      rating: 0<br/>
+                                      read at: 2026/02/03<br/>
+                                      date added: 2026/02/04<br/>
+                                      shelves: <br/>
+                                      review: <br/>A lot more psychedelic than I expected. Book 11, in which Odysseus goes to the land of the dead to see Tiresias and is confronted with the ghost of everyone he’s ever loved, is incredible. Tiresias clearly the best character in all of Greek mythology, by the way. <br/>
+                                      ]]>
+    </description>
+  </item>
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8273908288?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Wed, 04 Feb 2026 07:44:06 -0800]]></pubDate>
+    <title>Wuthering Heights</title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8273908288?utm_medium=api&utm_source=rss]]></link>
+    <book_id>32929156</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY475_.jpg]]></book_large_image_url>
+    <book_description><![CDATA[<i>An alternative cover edition for this ISBN can be found <a href="https://www.goodreads.com/book/show/348914.Wuthering_Heights" rel="nofollow noopener">here</a>.</i><br /><br />Emily Brontë's only novel, a work of tremendous and far-reaching influence, the Penguin Classics edition of Wuthering Heights is the definitive edition of the text, edited with an introduction by Pauline Nestor. Lockwood, the new tenant of Thrushcross Grange, situated on the bleak Yorkshire moors, is forced to seek shelter one night at Wuthering Heights, the home of his landlord. There he discovers the history of the tempestuous events that took place years before; of the intense relationship between the gypsy foundling Heathcliff and Catherine Earnshaw; and how Catherine, forced to choose between passionate, tortured Heathcliff and gentle, well-bred Edgar Linton, surrendered to the expectations of her class. As Heathcliff's bitterness and vengeance at his betrayal is visited upon the next generation, their innocent heirs must struggle to escape the legacy of the past.]]></book_description>
+    <book id="32929156">
+      <num_pages>359</num_pages>
+    </book>
+    <author_name>Emily Brontë</author_name>
+    <isbn>0141439556</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at><![CDATA[Tue, 3 Feb 2026 00:00:00 +0000]]></user_read_at>
+    <user_date_added><![CDATA[Wed, 04 Feb 2026 07:44:06 -0800]]></user_date_added>
+    <user_date_created><![CDATA[Sun, 18 Jan 2026 00:56:26 -0800]]></user_date_created>
+    <user_shelves></user_shelves>
+    <user_review><![CDATA[We have lost the ability to write like this. It’s a real shame. Also this is unhinged. Everyone is either totally evil or frail to the point of death or both. Enjoyed very much. ]]></user_review>
+    <average_rating>3.99</average_rating>
+    <book_published>1847</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/32929156-wuthering-heights?utm_medium=api&amp;utm_source=rss"><img alt="Wuthering Heights" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY75_.jpg" /></a><br/>
+                                      author: Emily Brontë<br/>
+                                      name: Sam<br/>
+                                      average rating: 3.99<br/>
+                                      book published: 1847<br/>
+                                      rating: 0<br/>
+                                      read at: 2026/02/03<br/>
+                                      date added: 2026/02/04<br/>
+                                      shelves: <br/>
+                                      review: <br/>We have lost the ability to write like this. It’s a real shame. Also this is unhinged. Everyone is either totally evil or frail to the point of death or both. Enjoyed very much. <br/>
+                                      ]]>
+    </description>
+  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8250510663?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Wed, 04 Feb 2026 07:24:52 -0800]]></pubDate>
@@ -96,86 +176,6 @@
                                       date added: 2026/02/04<br/>
                                       shelves: <br/>
                                       review: <br/>What a terrible writer but also so good, really good. He is trying to solve the problem of Death and might well succeed.<br/>
-                                      ]]>
-    </description>
-  </item>
-  <item>
-    <guid><![CDATA[https://www.goodreads.com/review/show/8273908288?utm_medium=api&utm_source=rss]]></guid>
-    <pubDate><![CDATA[Tue, 03 Feb 2026 12:48:34 -0800]]></pubDate>
-    <title>Wuthering Heights</title>
-    <link><![CDATA[https://www.goodreads.com/review/show/8273908288?utm_medium=api&utm_source=rss]]></link>
-    <book_id>32929156</book_id>
-    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY75_.jpg]]></book_image_url>
-    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY75_.jpg]]></book_small_image_url>
-    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SX98_.jpg]]></book_medium_image_url>
-    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY475_.jpg]]></book_large_image_url>
-    <book_description><![CDATA[<i>An alternative cover edition for this ISBN can be found <a href="https://www.goodreads.com/book/show/348914.Wuthering_Heights" rel="nofollow noopener">here</a>.</i><br /><br />Emily Brontë's only novel, a work of tremendous and far-reaching influence, the Penguin Classics edition of Wuthering Heights is the definitive edition of the text, edited with an introduction by Pauline Nestor. Lockwood, the new tenant of Thrushcross Grange, situated on the bleak Yorkshire moors, is forced to seek shelter one night at Wuthering Heights, the home of his landlord. There he discovers the history of the tempestuous events that took place years before; of the intense relationship between the gypsy foundling Heathcliff and Catherine Earnshaw; and how Catherine, forced to choose between passionate, tortured Heathcliff and gentle, well-bred Edgar Linton, surrendered to the expectations of her class. As Heathcliff's bitterness and vengeance at his betrayal is visited upon the next generation, their innocent heirs must struggle to escape the legacy of the past.]]></book_description>
-    <book id="32929156">
-      <num_pages>359</num_pages>
-    </book>
-    <author_name>Emily Brontë</author_name>
-    <isbn>0141439556</isbn>
-    <user_name>Sam</user_name>
-    <user_rating>0</user_rating>
-    <user_read_at><![CDATA[Tue, 3 Feb 2026 00:00:00 +0000]]></user_read_at>
-    <user_date_added><![CDATA[Tue, 03 Feb 2026 12:48:34 -0800]]></user_date_added>
-    <user_date_created><![CDATA[Sun, 18 Jan 2026 00:56:26 -0800]]></user_date_created>
-    <user_shelves></user_shelves>
-    <user_review></user_review>
-    <average_rating>3.99</average_rating>
-    <book_published>1847</book_published>
-    <description>
-      <![CDATA[
-      <a href="https://www.goodreads.com/book/show/32929156-wuthering-heights?utm_medium=api&amp;utm_source=rss"><img alt="Wuthering Heights" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1478641029l/32929156._SY75_.jpg" /></a><br/>
-                                      author: Emily Brontë<br/>
-                                      name: Sam<br/>
-                                      average rating: 3.99<br/>
-                                      book published: 1847<br/>
-                                      rating: 0<br/>
-                                      read at: 2026/02/03<br/>
-                                      date added: 2026/02/03<br/>
-                                      shelves: <br/>
-                                      review: <br/><br/>
-                                      ]]>
-    </description>
-  </item>
-  <item>
-    <guid><![CDATA[https://www.goodreads.com/review/show/8273909084?utm_medium=api&utm_source=rss]]></guid>
-    <pubDate><![CDATA[Tue, 03 Feb 2026 09:05:20 -0800]]></pubDate>
-    <title><![CDATA[The Odyssey: A New Translation by Daniel Mendelsohn]]></title>
-    <link><![CDATA[https://www.goodreads.com/review/show/8273909084?utm_medium=api&utm_source=rss]]></link>
-    <book_id>217293390</book_id>
-    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SY75_.jpg]]></book_image_url>
-    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SY75_.jpg]]></book_small_image_url>
-    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SX98_.jpg]]></book_medium_image_url>
-    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SY475_.jpg]]></book_large_image_url>
-    <book_description><![CDATA[<b>A TELEGRAPH BEST POETRY BOOK OF 2025<br /><br />A magnificent new translation of the <i>Odyssey</i> by best-selling author and classicist Daniel Mendelsohn</b><br /><br /><i>'This may be the best translation of The Odyssey yet. Daniel Mendelsohn’s rendering of Homer’s text is both highly readable and faithful to the original metre. It’s impressive, thrilling stuff... a sonorous new translation'</i><b> - </b>Edith Hall, <i>The Telegraph</i><br /><br />With his <i>Odyssey</i>, best-selling author and classicist Daniel Mendelsohn has created a momentous new work, hailed by classicists and poets alike – a translation to stand with those of E. V. Rieu and Robert Fagles.<br /><br />Setting aside the streamlining, modernizing approach of many recent translations, Mendelsohn artfully reproduces the epic’s formal qualities – meter, enjambment, alliteration, assonance – and in so doing restores to Homer’s master work its archaic grandeur. His expansive six-beat line, far closer to the original than that of other recent translations, allows him to capture each of Homer’s verses line for line, without sacrificing the amplitude and shadings of the original.<br /><br />The result is the richest, most precise, and most musical <i>Odyssey</i> in English, one that fully conveys its oral poetics while bringing to vivid life the gripping adventure, profound human insight and powerful themes that make Homer’s work resonate some twenty-eight centuries after its composition. Supported by an extensive introduction and the fullest notes and commentary currently available, Mendelsohn’s <i>Odyssey</i> is poised to become the authoritative English-language version of this magnificent, endlessly enjoyable masterpiece.]]></book_description>
-    <book id="217293390">
-      <num_pages>541</num_pages>
-    </book>
-    <author_name>Homer</author_name>
-    <isbn>1802068104</isbn>
-    <user_name>Sam</user_name>
-    <user_rating>0</user_rating>
-    <user_read_at><![CDATA[Tue, 3 Feb 2026 00:00:00 +0000]]></user_read_at>
-    <user_date_added><![CDATA[Tue, 03 Feb 2026 09:05:20 -0800]]></user_date_added>
-    <user_date_created><![CDATA[Sun, 18 Jan 2026 00:57:01 -0800]]></user_date_created>
-    <user_shelves></user_shelves>
-    <user_review></user_review>
-    <average_rating>4.48</average_rating>
-    <book_published>-800</book_published>
-    <description>
-      <![CDATA[
-      <a href="https://www.goodreads.com/book/show/217293390-the-odyssey?utm_medium=api&amp;utm_source=rss"><img alt="The Odyssey: A New Translation by Daniel Mendelsohn" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1727512433l/217293390._SY75_.jpg" /></a><br/>
-                                      author: Homer<br/>
-                                      name: Sam<br/>
-                                      average rating: 4.48<br/>
-                                      book published: -800<br/>
-                                      rating: 0<br/>
-                                      read at: 2026/02/03<br/>
-                                      date added: 2026/02/03<br/>
-                                      shelves: <br/>
-                                      review: <br/><br/>
                                       ]]>
     </description>
   </item>
