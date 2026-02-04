@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=currently-reading" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: currently-reading]]></description>
     <language>en-US</language>
-    <lastBuildDate>Sun, 11 Jan 2026 12:30:50 -0800</lastBuildDate>
+    <lastBuildDate>Wed, 04 Feb 2026 00:39:40 -0800</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: currently-reading</title>
@@ -19,6 +19,46 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8330091276?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Wed, 04 Feb 2026 00:39:40 -0800]]></pubDate>
+    <title>Correction</title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8330091276?utm_medium=api&utm_source=rss]]></link>
+    <book_id>92573</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1649360181l/92573._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1649360181l/92573._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1649360181l/92573._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1649360181l/92573._SY475_.jpg]]></book_large_image_url>
+    <book_description><![CDATA[Publicada en 1975, «Corrección» es muy probablemente la suma y culminación de la obra de Thomas Bernhard (1931-1989). Tras el suicidio de su amigo Roithamer, el anónimo narrador de la novela llega a la casa del taxidermista Höller, en cuya buhardilla el suicida ha permanecido durante seis años entregado a la tarea de planear y construir, en el centro geométrico exacto del bosque de Kobernauss, un Cono que, desafiando las leyes de la construcción tradicional, estaba destinado a ser residencia y «felicidad suprema» de su hermana. Urdida en torno a un proceso obsesivo de creación y destrucción que se plasma en un afán de constante corrección, la novela es una reflexión sobre los problemas del hombre contemporáneo, enfrentado a la deshumanización, el desamor y la soledad.]]></book_description>
+    <book id="92573">
+      <num_pages>253</num_pages>
+    </book>
+    <author_name>Thomas Bernhard</author_name>
+    <isbn>009944254X</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at></user_read_at>
+    <user_date_added><![CDATA[Wed, 04 Feb 2026 00:39:40 -0800]]></user_date_added>
+    <user_date_created><![CDATA[Wed, 04 Feb 2026 00:39:40 -0800]]></user_date_created>
+    <user_shelves>currently-reading</user_shelves>
+    <user_review></user_review>
+    <average_rating>4.26</average_rating>
+    <book_published>1975</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/92573.Correction?utm_medium=api&amp;utm_source=rss"><img alt="Correction" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1649360181l/92573._SY75_.jpg" /></a><br/>
+                                      author: Thomas Bernhard<br/>
+                                      name: Sam<br/>
+                                      average rating: 4.26<br/>
+                                      book published: 1975<br/>
+                                      rating: 0<br/>
+                                      read at: <br/>
+                                      date added: 2026/02/04<br/>
+                                      shelves: currently-reading<br/>
+                                      review: <br/><br/>
+                                      ]]>
+    </description>
+  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8251319975?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Sun, 11 Jan 2026 12:30:50 -0800]]></pubDate>
