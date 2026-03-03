@@ -52,7 +52,7 @@
     <div class="info-widget">
         <div class="time" id="time"></div>
         <div class="date" id="date"></div>
-        <div class="location" id="location">38.91°n, 1.43°e</div>
+        <div class="location" id="location">51.51°n, 0.13°w</div>
         <div class="weather" id="weather"></div>
         <div class="weather-desc" id="weather-desc"></div>
         <div class="sun-times" id="sun-times"></div>
@@ -60,28 +60,28 @@
     </div>
 
     <script>
-        // Update time every second (Ibiza timezone)
+        // Update time every second (London timezone)
         function updateTime() {
             const now = new Date();
-            // Format time in Ibiza timezone
-            const ibizaTime = new Intl.DateTimeFormat('en-US', {
-                timeZone: 'Europe/Madrid',
+            // Format time in London timezone
+            const londonTime = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'Europe/London',
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit',
                 hour12: false
             }).format(now);
-            document.getElementById('time').textContent = ibizaTime;
+            document.getElementById('time').textContent = londonTime;
 
-            // Format date in Ibiza timezone
-            const ibizaDate = new Intl.DateTimeFormat('en-US', {
-                timeZone: 'Europe/Madrid',
+            // Format date in London timezone
+            const londonDate = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'Europe/London',
                 weekday: 'short',
                 month: 'short',
                 day: 'numeric',
                 year: 'numeric'
             }).format(now).toLowerCase();
-            document.getElementById('date').textContent = ibizaDate;
+            document.getElementById('date').textContent = londonDate;
         }
 
         // Weather code descriptions
@@ -159,14 +159,14 @@
             return celestialCalendar[month];
         }
 
-        // Get Berlin weather and info
+        // Get London weather and info
         async function getBerlinWeather() {
             try {
                 // Set location coordinates
-                document.getElementById('location').textContent = '38.91°n, 1.43°e';
+                document.getElementById('location').textContent = '51.51°n, 0.13°w';
 
-                // Get weather for Ibiza (38.91°N, 1.43°E) with daily data
-                const weatherResponse = await fetch('https://api.open-meteo.com/v1/forecast?latitude=38.91&longitude=1.43&current_weather=true&daily=sunrise,sunset&temperature_unit=celsius&timezone=Europe/Madrid');
+                // Get weather for London (51.51°N, 0.13°W) with daily data
+                const weatherResponse = await fetch('https://api.open-meteo.com/v1/forecast?latitude=51.51&longitude=-0.13&current_weather=true&daily=sunrise,sunset&temperature_unit=celsius&timezone=Europe/London');
                 const weatherData = await weatherResponse.json();
 
                 // Current temperature
@@ -180,13 +180,13 @@
 
                 // Sunrise and sunset
                 const sunrise = new Date(weatherData.daily.sunrise[0]).toLocaleTimeString('en-US', {
-                    timeZone: 'Europe/Madrid',
+                    timeZone: 'Europe/London',
                     hour: '2-digit',
                     minute: '2-digit',
                     hour12: false
                 });
                 const sunset = new Date(weatherData.daily.sunset[0]).toLocaleTimeString('en-US', {
-                    timeZone: 'Europe/Madrid',
+                    timeZone: 'Europe/London',
                     hour: '2-digit',
                     minute: '2-digit',
                     hour12: false
