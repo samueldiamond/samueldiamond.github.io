@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=currently-reading" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: currently-reading]]></description>
     <language>en-US</language>
-    <lastBuildDate>Mon, 16 Mar 2026 01:04:32 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 11 Jan 2026 12:30:50 -0800</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: currently-reading</title>
@@ -19,46 +19,6 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
-  <item>
-    <guid><![CDATA[https://www.goodreads.com/review/show/8441392355?utm_medium=api&utm_source=rss]]></guid>
-    <pubDate><![CDATA[Mon, 16 Mar 2026 01:04:32 -0700]]></pubDate>
-    <title><![CDATA[Hyperpolitics: Extreme Politicization without Political Consequences]]></title>
-    <link><![CDATA[https://www.goodreads.com/review/show/8441392355?utm_medium=api&utm_source=rss]]></link>
-    <book_id>233717440</book_id>
-    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753932297l/233717440._SY75_.jpg]]></book_image_url>
-    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753932297l/233717440._SY75_.jpg]]></book_small_image_url>
-    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753932297l/233717440._SX98_.jpg]]></book_medium_image_url>
-    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753932297l/233717440._SY475_.jpg]]></book_large_image_url>
-    <book_description><![CDATA[<b>After a decade of surging political activism, why have mass movements managed to change so little? A brilliant cultural analysis by the influential columnist.</b><br /><br />“Hyperpolitics” describes the paradoxical state of affairs today, in which politicization seemingly has few political consequences. Anton Jager's incisive appraisal sets the benchmark by which future histories of the present will be judged. Politics is back.<br /><br />After the posthistorical lull of the 1990s and the false dawn of millennial technocracy, contestation has returned centre-stage. Protests, riots and jacqueries bring citizens off their couches and into the streets, even as social media overruns the embankments of the public and personal. Such actions politicize an ever greater share of experience while lowering the costs of engagement. Yet this spate of activism has seldom translated into more durable forms of collective action—parties, trade unions and civic associations continue to atrophy, even as advertisements of commitment proliferate.]]></book_description>
-    <book id="233717440">
-      <num_pages>128</num_pages>
-    </book>
-    <author_name>Anton Jäger</author_name>
-    <isbn>183674207X</isbn>
-    <user_name>Sam</user_name>
-    <user_rating>0</user_rating>
-    <user_read_at></user_read_at>
-    <user_date_added><![CDATA[Mon, 16 Mar 2026 01:04:32 -0700]]></user_date_added>
-    <user_date_created><![CDATA[Mon, 16 Mar 2026 01:04:32 -0700]]></user_date_created>
-    <user_shelves>currently-reading</user_shelves>
-    <user_review></user_review>
-    <average_rating>3.82</average_rating>
-    <book_published>2023</book_published>
-    <description>
-      <![CDATA[
-      <a href="https://www.goodreads.com/book/show/233717440-hyperpolitics?utm_medium=api&amp;utm_source=rss"><img alt="Hyperpolitics: Extreme Politicization without Political Consequences" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1753932297l/233717440._SY75_.jpg" /></a><br/>
-                                      author: Anton Jäger<br/>
-                                      name: Sam<br/>
-                                      average rating: 3.82<br/>
-                                      book published: 2023<br/>
-                                      rating: 0<br/>
-                                      read at: <br/>
-                                      date added: 2026/03/16<br/>
-                                      shelves: currently-reading<br/>
-                                      review: <br/><br/>
-                                      ]]>
-    </description>
-  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8251319975?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Sun, 11 Jan 2026 12:30:50 -0800]]></pubDate>
