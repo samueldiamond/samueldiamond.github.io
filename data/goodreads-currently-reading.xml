@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=currently-reading" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: currently-reading]]></description>
     <language>en-US</language>
-    <lastBuildDate>Mon, 30 Mar 2026 13:10:21 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 11 Jan 2026 12:30:50 -0800</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: currently-reading</title>
@@ -19,46 +19,6 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
-  <item>
-    <guid><![CDATA[https://www.goodreads.com/review/show/8480842891?utm_medium=api&utm_source=rss]]></guid>
-    <pubDate><![CDATA[Mon, 30 Mar 2026 13:10:21 -0700]]></pubDate>
-    <title><![CDATA[The Third Realm (Morgenstjernen, #3)]]></title>
-    <link><![CDATA[https://www.goodreads.com/review/show/8480842891?utm_medium=api&utm_source=rss]]></link>
-    <book_id>204640602</book_id>
-    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1711030269l/204640602._SY75_.jpg]]></book_image_url>
-    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1711030269l/204640602._SY75_.jpg]]></book_small_image_url>
-    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1711030269l/204640602._SX98_.jpg]]></book_medium_image_url>
-    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1711030269l/204640602._SY475_.jpg]]></book_large_image_url>
-    <book_description><![CDATA[<b>From bestselling author Karl Ove Knausgaard, a kaleidoscopic novel about human nature in the face of enormous change—and the warring impulses between light and dark that live in all of us</b><br /><br />Shapeshifting visitors, unsolved murders in the forest, black metal bands, and an online bank of thousands of people’s dreams—the star is back. Karl Ove Knausgaard’s The Morning Star kept readers up all night, immersed with nine characters whose individual lives are heightened by the sudden appearance of a blazing new star, and The Wolves of Eternity portrayed the intimate experiences of two estranged half-siblings decades before the star rises. In The Third Realm, the effects of the star are felt around the world, as people start to reckon with what it might possibly mean.<br /><br />With this next novel, the limitless scale and ambition of Knausgaard’s new universe are clear. This is life, death, the human condition, and the real-time creation of an epic and utterly immersive world.]]></book_description>
-    <book id="204640602">
-      <num_pages>512</num_pages>
-    </book>
-    <author_name>Karl Ove Knausgård</author_name>
-    <isbn>0593655214</isbn>
-    <user_name>Sam</user_name>
-    <user_rating>0</user_rating>
-    <user_read_at></user_read_at>
-    <user_date_added><![CDATA[Mon, 30 Mar 2026 13:10:21 -0700]]></user_date_added>
-    <user_date_created><![CDATA[Mon, 30 Mar 2026 13:10:21 -0700]]></user_date_created>
-    <user_shelves>currently-reading</user_shelves>
-    <user_review></user_review>
-    <average_rating>4.31</average_rating>
-    <book_published>2022</book_published>
-    <description>
-      <![CDATA[
-      <a href="https://www.goodreads.com/book/show/204640602-the-third-realm?utm_medium=api&amp;utm_source=rss"><img alt="The Third Realm (Morgenstjernen, #3)" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1711030269l/204640602._SY75_.jpg" /></a><br/>
-                                      author: Karl Ove Knausgård<br/>
-                                      name: Sam<br/>
-                                      average rating: 4.31<br/>
-                                      book published: 2022<br/>
-                                      rating: 0<br/>
-                                      read at: <br/>
-                                      date added: 2026/03/30<br/>
-                                      shelves: currently-reading<br/>
-                                      review: <br/><br/>
-                                      ]]>
-    </description>
-  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8251319975?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Sun, 11 Jan 2026 12:30:50 -0800]]></pubDate>
