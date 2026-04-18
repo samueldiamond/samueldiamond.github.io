@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=read" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: read]]></description>
     <language>en-US</language>
-    <lastBuildDate>Wed, 08 Apr 2026 13:24:14 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2026 07:36:59 -0700</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: read</title>
@@ -19,6 +19,46 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8511684798?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Sat, 18 Apr 2026 07:36:59 -0700]]></pubDate>
+    <title>The School of Night</title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8511684798?utm_medium=api&utm_source=rss]]></link>
+    <book_id>222683896</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747797782l/222683896._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747797782l/222683896._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747797782l/222683896._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747797782l/222683896._SY475_.jpg]]></book_large_image_url>
+    <book_description><![CDATA[<b>Karl Ove Knausgaard’s most daring and macabre novel yet, <i>The School of Night</i> is an indelible tale about dark temptations and moral depravity, and what we forget when we bargain with the devil</b><br /><br />It’s 1985, and the young and ambitious Kristian Hadeland is moving from Norway to London to study photography. He throws himself headfirst into the bustling art scene and finds himself at a crossroads—ultimately deciding to pay any price for success in his early career, willing to sacrifice everything and to stop at nothing.<br /><br />Twenty-four years later, Kristian has achieved everything he’s ever desired. Now an art photographer with a major retrospective in New York City, he sees his world around him begin to crumble as his past catches up to him and he faces his evil fate.<br /><br />In a thrilling twist on Christopher Marlowe’s <i>Doctor Faustus</i>, and set in the occult universe of <i>The Morning Star</i>, <i>The Wolves of Eternity</i>, and <i>The Third Realm</i>, Knausgaard masterfully spins a dark cautionary tale about the lengths we will go to achieve success—and how far we are willing to fall.]]></book_description>
+    <book id="222683896">
+      <num_pages>512</num_pages>
+    </book>
+    <author_name>Karl Ove Knausgård</author_name>
+    <isbn>0593832809</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at><![CDATA[Sat, 18 Apr 2026 00:00:00 +0000]]></user_read_at>
+    <user_date_added><![CDATA[Sat, 18 Apr 2026 07:36:59 -0700]]></user_date_added>
+    <user_date_created><![CDATA[Fri, 10 Apr 2026 10:44:20 -0700]]></user_date_created>
+    <user_shelves></user_shelves>
+    <user_review></user_review>
+    <average_rating>4.36</average_rating>
+    <book_published>2023</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/222683896-the-school-of-night?utm_medium=api&amp;utm_source=rss"><img alt="The School of Night" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1747797782l/222683896._SY75_.jpg" /></a><br/>
+                                      author: Karl Ove Knausgård<br/>
+                                      name: Sam<br/>
+                                      average rating: 4.36<br/>
+                                      book published: 2023<br/>
+                                      rating: 0<br/>
+                                      read at: 2026/04/18<br/>
+                                      date added: 2026/04/18<br/>
+                                      shelves: <br/>
+                                      review: <br/><br/>
+                                      ]]>
+    </description>
+  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8480842891?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Wed, 08 Apr 2026 13:24:14 -0700]]></pubDate>
