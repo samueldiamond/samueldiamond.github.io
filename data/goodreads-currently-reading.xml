@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=currently-reading" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: currently-reading]]></description>
     <language>en-US</language>
-    <lastBuildDate>Sun, 11 Jan 2026 12:30:50 -0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 Apr 2026 05:32:26 -0700</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: currently-reading</title>
@@ -19,6 +19,46 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8545204694?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Thu, 23 Apr 2026 05:32:26 -0700]]></pubDate>
+    <title><![CDATA[Swann’s Way (In Search of Lost Time, #1)]]></title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8545204694?utm_medium=api&utm_source=rss]]></link>
+    <book_id>12749</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1735845760l/12749._SX50_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1735845760l/12749._SX50_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1735845760l/12749._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1735845760l/12749.jpg]]></book_large_image_url>
+    <book_description><![CDATA[Marcel Proust’s <i>In Search of Lost Time</i> is one of the most entertaining reading experiences in any language and arguably the finest novel of the twentieth century. But since its original prewar translation there has been no completely new version in English. Now, Penguin Classics brings Proust’s masterpiece to new audiences throughout the world, beginning with Lydia Davis’s internationally acclaimed translation of the first volume, <i>Swann’s Way</i>.]]></book_description>
+    <book id="12749">
+      <num_pages>468</num_pages>
+    </book>
+    <author_name>Marcel Proust</author_name>
+    <isbn>0142437964</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at></user_read_at>
+    <user_date_added><![CDATA[Thu, 23 Apr 2026 05:32:26 -0700]]></user_date_added>
+    <user_date_created><![CDATA[Thu, 23 Apr 2026 05:32:25 -0700]]></user_date_created>
+    <user_shelves>currently-reading</user_shelves>
+    <user_review></user_review>
+    <average_rating>4.12</average_rating>
+    <book_published>1913</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/12749.Swann_s_Way?utm_medium=api&amp;utm_source=rss"><img alt="Swann’s Way (In Search of Lost Time, #1)" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1735845760l/12749._SX50_.jpg" /></a><br/>
+                                      author: Marcel Proust<br/>
+                                      name: Sam<br/>
+                                      average rating: 4.12<br/>
+                                      book published: 1913<br/>
+                                      rating: 0<br/>
+                                      read at: <br/>
+                                      date added: 2026/04/23<br/>
+                                      shelves: currently-reading<br/>
+                                      review: <br/><br/>
+                                      ]]>
+    </description>
+  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8251319975?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Sun, 11 Jan 2026 12:30:50 -0800]]></pubDate>
