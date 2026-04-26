@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5ZZ42C1M9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-B5ZZ42C1M9');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} — sam diamond</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon yellow.ico">
+    <link rel="stylesheet" href="/blog/blog.css">
+    <link rel="alternate" type="application/rss+xml" title="sam diamond — writing" href="/blog/feed.xml">
+    {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:type" content="article">
+    {% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
+</head>
+<body>
+    <div class="container">
+        <div class="inner-container">
+            {{ content | safe }}
+        </div>
+    </div>
+</body>
+</html>

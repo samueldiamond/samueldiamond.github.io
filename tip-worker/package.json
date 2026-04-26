@@ -1,0 +1,16 @@
+{
+  "name": "tip-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MPP-gated tip endpoint for samdiamond.xyz",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  },
+  "dependencies": {
+    "mppx": "^0.1.0"
+  }
+}

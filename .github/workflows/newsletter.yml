@@ -1,0 +1,97 @@
+name: send newsletter on new post
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "_blog/**.md"
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: detect new posts
+        id: changes
+        run: |
+          # Files added (status A) under _blog/ in this push.
+          NEW=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- '_blog/*.md' || true)
+          if [ -z "$NEW" ]; then
+            echo "no new posts; skipping"
+            echo "files=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          {
+            echo "files<<EOF"
+            echo "$NEW"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v4
+        if: steps.changes.outputs.files != ''
+        with:
+          node-version: 20
+
+      - name: install markdown renderer
+        if: steps.changes.outputs.files != ''
+        run: npm install --no-save markdown-it gray-matter
+
+      - name: send each new post to Buttondown
+        if: steps.changes.outputs.files != ''
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          SITE_URL: https://samdiamond.xyz
+          FILES: ${{ steps.changes.outputs.files }}
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const matter = require('gray-matter');
+          const MarkdownIt = require('markdown-it');
+          const md = new MarkdownIt({ html: true, linkify: true });
+
+          const apiKey = process.env.BUTTONDOWN_API_KEY;
+          if (!apiKey) {
+            console.error("BUTTONDOWN_API_KEY not set; aborting");
+            process.exit(1);
+          }
+          const siteUrl = process.env.SITE_URL.replace(/\/$/, '');
+          const files = (process.env.FILES || '').split('\n').filter(Boolean);
+
+          (async () => {
+            for (const file of files) {
+              const raw = fs.readFileSync(file, 'utf8');
+              const { data, content } = matter(raw);
+              if (data.draft) {
+                console.log(`skip draft: ${file}`);
+                continue;
+              }
+              const slug = path.basename(file, '.md');
+              const url = `${siteUrl}/blog/${slug}/`;
+              const bodyHtml = md.render(content);
+              const footer = `<hr><p><a href="${url}">read on the web</a></p>`;
+              const payload = {
+                subject: data.title,
+                body: bodyHtml + footer,
+                email_type: 'public',
+              };
+              const res = await fetch('https://api.buttondown.email/v1/emails', {
+                method: 'POST',
+                headers: {
+                  'Authorization': `Token ${apiKey}`,
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+              });
+              if (!res.ok) {
+                const text = await res.text();
+                console.error(`failed for ${file}: ${res.status} ${text}`);
+                process.exit(1);
+              }
+              console.log(`sent: ${file} (${data.title})`);
+            }
+          })();
+          EOF

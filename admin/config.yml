@@ -1,0 +1,35 @@
+backend:
+  name: github
+  repo: samueldiamond/samueldiamond.github.io
+  branch: main
+  base_url: https://decap-oauth.samdiamond.workers.dev
+  auth_endpoint: /auth
+
+# When iterating locally, run `npx decap-server` and uncomment the block below
+# (and comment out the `backend.name: github` line above) to bypass GitHub OAuth.
+# local_backend: true
+
+publish_mode: editorial_workflow
+media_folder: "images/blog"
+public_folder: "/images/blog"
+site_url: https://samdiamond.xyz
+display_url: https://samdiamond.xyz
+logo_url: https://samdiamond.xyz/images/favicon%20yellow.ico
+
+collections:
+  - name: blog
+    label: blog posts
+    folder: _blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    summary: "{{date | date('YYYY-MM-DD')}} · {{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: title, widget: string }
+      - { name: date, label: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+      - { name: description, label: description (one line, used for previews), widget: string, required: false }
+      - { name: tags, label: tags, widget: list, required: false, default: [] }
+      - { name: draft, label: draft, widget: boolean, default: false, required: false }
+      - { name: body, label: body, widget: markdown }

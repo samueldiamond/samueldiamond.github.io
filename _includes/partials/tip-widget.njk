@@ -1,0 +1,45 @@
+<div class="tip" data-amount-cents="{{ site.tip.amountCents }}">
+    <p>enjoyed this? send a tip:</p>
+    <div class="tip-buttons">
+        <button type="button" id="tip-mpp">ping {{ site.tip.amountCents }}¢ via mpp</button>
+        <a class="tip-link" href="{{ site.tip.stripePaymentLink }}" target="_blank" rel="noopener">tip via card</a>
+    </div>
+    <div class="tip-status" id="tip-status" aria-live="polite"></div>
+</div>
+
+<script>
+(function () {
+    const button = document.getElementById('tip-mpp');
+    const status = document.getElementById('tip-status');
+    if (!button) return;
+
+    const workerUrl = {{ site.tip.workerUrl | dump | safe }};
+
+    button.addEventListener('click', async function () {
+        status.textContent = '';
+        button.disabled = true;
+        try {
+            // First request: server replies 402 with an MPP challenge.
+            // An MPP-capable wallet (e.g. Alby) intercepts via service worker
+            // or a future browser API and retries with a payment Credential.
+            // If no wallet handles it, we surface a hint.
+            const res = await fetch(workerUrl, {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (res.status === 402) {
+                status.textContent = "no mpp wallet detected — try alby, or use the card option above.";
+            } else if (res.ok) {
+                status.textContent = "thanks. received.";
+            } else {
+                status.textContent = "couldn't process — try the card option.";
+            }
+        } catch (err) {
+            status.textContent = "network error — try the card option.";
+        } finally {
+            button.disabled = false;
+        }
+    });
+})();
+</script>

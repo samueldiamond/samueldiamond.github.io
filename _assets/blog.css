@@ -1,0 +1,303 @@
+/* Blog stylesheet — extends the site's monochrome aesthetic for long-form
+   reading. Lives at /blog/blog.css after build. The original posts/blog.css
+   is unchanged so existing single-screen post pages keep their layout. */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    min-height: 100vh;
+    padding: 60px;
+    padding-left: 15%;
+    padding-right: 15%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.inner-container {
+    text-align: left;
+    max-width: 600px;
+    padding-top: 60px;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.crumb {
+    font-size: 11px;
+    color: #666666;
+    margin-bottom: 30px;
+    text-transform: lowercase;
+}
+
+.crumb a {
+    color: #888888;
+    transition: color 0.6s ease;
+}
+
+.crumb a:hover {
+    color: #ffffff;
+}
+
+.post-meta {
+    font-size: 11px;
+    color: #666666;
+    margin-bottom: 6px;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+}
+
+h1 {
+    text-align: left;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: lowercase;
+    margin-top: 0;
+    margin-bottom: 36px;
+    color: #ffffff;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-transform: lowercase;
+    margin-top: 36px;
+    margin-bottom: 12px;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+a {
+    text-decoration: none;
+    color: #888888;
+    transition: color 0.6s ease;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+.post-content a {
+    color: #ffffff;
+    border-bottom: 1px solid #444444;
+}
+
+.post-content a:hover {
+    border-bottom-color: #ffffff;
+}
+
+blockquote {
+    border-left: 1px solid #444444;
+    margin: 24px 0;
+    padding-left: 18px;
+    color: #aaaaaa;
+}
+
+code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    background-color: #1a1a1a;
+    padding: 1px 5px;
+    border-radius: 2px;
+}
+
+pre {
+    background-color: #1a1a1a;
+    padding: 16px;
+    overflow-x: auto;
+    font-size: 13px;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 24px 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #333333;
+    margin: 48px 0;
+}
+
+/* Listing page (/blog/) */
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-list li {
+    margin-bottom: 14px;
+    display: flex;
+    gap: 18px;
+    align-items: baseline;
+}
+
+.post-list .date {
+    color: #666666;
+    font-size: 12px;
+    flex-shrink: 0;
+    width: 90px;
+    font-variant-numeric: tabular-nums;
+}
+
+.post-list .title {
+    color: #ffffff;
+}
+
+.post-list a {
+    color: #888888;
+}
+
+.post-list a:hover {
+    color: #ffffff;
+}
+
+.post-list a:hover .title {
+    color: #ffffff;
+}
+
+/* Newsletter signup */
+.newsletter {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid #333333;
+}
+
+.newsletter p {
+    font-size: 13px;
+    color: #888888;
+    margin-bottom: 12px;
+}
+
+.newsletter form {
+    display: flex;
+    gap: 8px;
+    max-width: 360px;
+}
+
+.newsletter input[type="email"] {
+    flex: 1;
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 8px 10px;
+    font: inherit;
+    font-size: 13px;
+    border-radius: 0;
+    outline: none;
+}
+
+.newsletter input[type="email"]:focus {
+    border-color: #888888;
+}
+
+.newsletter button {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #888888;
+    padding: 8px 14px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    text-transform: lowercase;
+    transition: color 0.6s ease, border-color 0.6s ease;
+}
+
+.newsletter button:hover {
+    color: #ffffff;
+    border-color: #888888;
+}
+
+/* Tip widget */
+.tip {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #333333;
+}
+
+.tip p {
+    font-size: 13px;
+    color: #888888;
+    margin-bottom: 12px;
+}
+
+.tip-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tip button,
+.tip .tip-link {
+    background-color: transparent;
+    border: 1px solid #333333;
+    color: #888888;
+    padding: 8px 14px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    text-transform: lowercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.6s ease, border-color 0.6s ease;
+}
+
+.tip button:hover,
+.tip .tip-link:hover {
+    color: #ffffff;
+    border-color: #888888;
+}
+
+.tip-status {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #666666;
+    min-height: 1em;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 30px;
+    }
+    .inner-container {
+        padding-top: 40px;
+        max-width: 100%;
+    }
+    h1 {
+        font-size: 20px;
+        margin-bottom: 28px;
+    }
+    p {
+        font-size: 15px;
+    }
+    .post-list li {
+        flex-direction: column;
+        gap: 2px;
+        margin-bottom: 18px;
+    }
+    .post-list .date {
+        width: auto;
+    }
+}

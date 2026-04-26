@@ -1,0 +1,16 @@
+---
+layout: base.njk
+---
+<div class="crumb">
+    <a href="/">sam diamond</a> / <a href="/blog/">writing</a>
+</div>
+
+<div class="post-meta">{{ page.date | readableDate }}</div>
+<h1>{{ title }}</h1>
+
+<div class="post-content">
+{{ content | safe }}
+</div>
+
+{% include "partials/newsletter-form.njk" %}
+{% include "partials/tip-widget.njk" %}

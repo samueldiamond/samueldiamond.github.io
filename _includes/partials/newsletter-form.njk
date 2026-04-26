@@ -1,0 +1,12 @@
+<div class="newsletter">
+    <p>get an email when something new goes up:</p>
+    <form action="https://buttondown.email/api/emails/embed-subscribe/{{ site.buttondown.username }}"
+          method="post"
+          target="popupwindow"
+          onsubmit="window.open('https://buttondown.email/{{ site.buttondown.username }}', 'popupwindow')"
+          class="embeddable-buttondown-form">
+        <input type="email" name="email" placeholder="your email" required>
+        <input type="hidden" value="1" name="embed">
+        <button type="submit">subscribe</button>
+    </form>
+</div>

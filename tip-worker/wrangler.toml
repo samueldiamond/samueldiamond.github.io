@@ -1,0 +1,26 @@
+name = "tip-worker"
+main = "worker.js"
+compatibility_date = "2026-04-01"
+
+# Map a custom subdomain. Requires the apex (samdiamond.xyz) to be on
+# Cloudflare DNS — once it is, this route claims tip.samdiamond.xyz.
+# Until then, the worker is reachable at https://tip-worker.<your-account>.workers.dev
+# routes = [
+#   { pattern = "tip.samdiamond.xyz/*", custom_domain = true }
+# ]
+
+# Optional KV namespace to log received tips. Create with:
+#   npx wrangler kv:namespace create TIPS
+# then paste the id below and uncomment.
+# [[kv_namespaces]]
+# binding = "TIPS"
+# id = "REPLACE_ME"
+
+# Recipient addresses for each payment rail. Fill in the ones you want to
+# accept; comment out the rest. Stored as plaintext config (these are public
+# receive addresses, not secrets).
+[vars]
+TEMPO_RECIPIENT = "0x0000000000000000000000000000000000000000"
+TEMPO_TOKEN = "0x20c0000000000000000000000000000000000000"
+LIGHTNING_LNURL = ""
+TIP_AMOUNT_USD = "0.05"

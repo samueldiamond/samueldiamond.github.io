@@ -1,0 +1,13 @@
+{
+  "url": "https://samdiamond.xyz",
+  "title": "sam diamond",
+  "author": "sam diamond",
+  "buttondown": {
+    "username": "samdiamond"
+  },
+  "tip": {
+    "workerUrl": "https://tip.samdiamond.xyz/tip",
+    "stripePaymentLink": "https://buy.stripe.com/REPLACE_ME",
+    "amountCents": 5
+  }
+}

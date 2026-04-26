@@ -1,0 +1,23 @@
+---
+layout: base.njk
+---
+<div class="crumb">
+    <a href="/">sam diamond</a> / writing
+</div>
+
+<h1>writing</h1>
+
+{% if collections.blogPosts.length === 0 %}
+<p>nothing here yet.</p>
+{% else %}
+<ul class="post-list">
+{% for post in collections.blogPosts %}
+    <li>
+        <span class="date">{{ post.date | isoDate }}</span>
+        <a href="{{ post.url }}"><span class="title">{{ post.data.title }}</span></a>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% include "partials/newsletter-form.njk" %}
