@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=currently-reading" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: currently-reading]]></description>
     <language>en-US</language>
-    <lastBuildDate>Sun, 11 Jan 2026 12:30:50 -0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jun 2026 04:46:12 -0700</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: currently-reading</title>
@@ -19,6 +19,46 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8660982425?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Fri, 05 Jun 2026 04:46:12 -0700]]></pubDate>
+    <title><![CDATA[In the Shadow of Young Girls in Flower]]></title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8660982425?utm_medium=api&utm_source=rss]]></link>
+    <book_id>28385</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1657565086l/28385._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1657565086l/28385._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1657565086l/28385._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1657565086l/28385._SY475_.jpg]]></book_large_image_url>
+    <book_description><![CDATA[<b>In the Shadow of Young Girls in Flower</b> is Proust’s spectacular dissection of male and female adolescence, charged with the narrator’s memories of Paris and the Normandy seaside. At the heart of the story lies his relationships with his grandmother and with the Swann family. As a meditation on different forms of love, <b>In the Shadow of Young Girls in Flower</b> has no equal. Here, Proust introduces some of his greatest comic inventions, from the magnificently dull M. de Norpois to the enchanting Robert de Saint-Loup. It is memorable as well for the first appearance of the two figures who for better or worse are to dominate the narrator’s life—the Baron de Charlus and the mysterious Albertine.<br />First time in Penguin Classics<br /><br /><br />A Penguin Classics Deluxe Edition<br /><br /><br />The first completely new translation of Proust's novel since the 1920s, following Lydia Davis's brilliant translation of <b>Swann's Way</b><br /><br /><br /> ]]></book_description>
+    <book id="28385">
+      <num_pages>533</num_pages>
+    </book>
+    <author_name>Marcel Proust</author_name>
+    <isbn>0143039075</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at></user_read_at>
+    <user_date_added><![CDATA[Fri, 05 Jun 2026 04:46:12 -0700]]></user_date_added>
+    <user_date_created><![CDATA[Fri, 05 Jun 2026 04:46:12 -0700]]></user_date_created>
+    <user_shelves>currently-reading</user_shelves>
+    <user_review></user_review>
+    <average_rating>4.42</average_rating>
+    <book_published>1919</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/28385.In_the_Shadow_of_Young_Girls_in_Flower?utm_medium=api&amp;utm_source=rss"><img alt="In the Shadow of Young Girls in Flower" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1657565086l/28385._SY75_.jpg" /></a><br/>
+                                      author: Marcel Proust<br/>
+                                      name: Sam<br/>
+                                      average rating: 4.42<br/>
+                                      book published: 1919<br/>
+                                      rating: 0<br/>
+                                      read at: <br/>
+                                      date added: 2026/06/05<br/>
+                                      shelves: currently-reading<br/>
+                                      review: <br/><br/>
+                                      ]]>
+    </description>
+  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8251319975?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Sun, 11 Jan 2026 12:30:50 -0800]]></pubDate>
