@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=read" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: read]]></description>
     <language>en-US</language>
-    <lastBuildDate>Thu, 04 Jun 2026 03:58:15 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jun 2026 22:14:59 -0700</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: read</title>
@@ -19,6 +19,46 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8251319975?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Thu, 18 Jun 2026 22:14:59 -0700]]></pubDate>
+    <title><![CDATA[Postwar: A History of Europe Since 1945]]></title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8251319975?utm_medium=api&utm_source=rss]]></link>
+    <book_id>29658</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388276992l/29658._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388276992l/29658._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388276992l/29658._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388276992l/29658.jpg]]></book_large_image_url>
+    <book_description><![CDATA[Tony Judt's Postwar makes one lament the overuse of the word "groundbreaking." It is an unprecedented accomplishment: the first truly European history of contemporary Europe, from Lisbon to Leningrad, based on research in six languages, covering thirty-four countries across sixty years in a single integrated narrative, using a great deal of material from newly available sources. Tony Judt has drawn on forty years of reading and writing about modern Europe to create a fully rounded, deep account of the continent's recent past. The book integrates international relations, domestic politics, ideas, social change, economic development, and culture--high and low--into a single grand narrative. Every country has its chance to play the lead, and although the big themes are superbly handled--including the cold war, the love/hate relationship with America, cultural and economic malaise and rebirth, and the myth and reality of unification--none of them is allowed to overshadow the rich pageant that is the whole. Vividly and clearly written for the general reader; witty, opinionated, and full of fresh and surprising stories and asides; visually rich and rewarding, with useful and provocative maps, photos, and cartoons throughout, <i>Postwar</i> is a movable feast for lovers of history and lovers of Europe alike. <br /><br /> A magnificent history of postwar Europe, East and West, by arguably the subject's most esteemed historian.]]></book_description>
+    <book id="29658">
+      <num_pages>933</num_pages>
+    </book>
+    <author_name>Tony Judt</author_name>
+    <isbn>0143037757</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at><![CDATA[Thu, 18 Jun 2026 00:00:00 +0000]]></user_read_at>
+    <user_date_added><![CDATA[Thu, 18 Jun 2026 22:14:59 -0700]]></user_date_added>
+    <user_date_created><![CDATA[Sun, 11 Jan 2026 12:30:50 -0800]]></user_date_created>
+    <user_shelves></user_shelves>
+    <user_review></user_review>
+    <average_rating>4.36</average_rating>
+    <book_published>2005</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/29658.Postwar?utm_medium=api&amp;utm_source=rss"><img alt="Postwar: A History of Europe Since 1945" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388276992l/29658._SY75_.jpg" /></a><br/>
+                                      author: Tony Judt<br/>
+                                      name: Sam<br/>
+                                      average rating: 4.36<br/>
+                                      book published: 2005<br/>
+                                      rating: 0<br/>
+                                      read at: 2026/06/18<br/>
+                                      date added: 2026/06/18<br/>
+                                      shelves: <br/>
+                                      review: <br/><br/>
+                                      ]]>
+    </description>
+  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8545204694?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Thu, 04 Jun 2026 03:58:15 -0700]]></pubDate>
