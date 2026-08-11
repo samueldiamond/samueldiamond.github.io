@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=read" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: read]]></description>
     <language>en-US</language>
-    <lastBuildDate>Thu, 18 Jun 2026 22:14:59 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 09:42:07 -0700</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: read</title>
@@ -19,6 +19,46 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8851010307?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Tue, 11 Aug 2026 09:42:07 -0700]]></pubDate>
+    <title>Distant Star</title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8851010307?utm_medium=api&utm_source=rss]]></link>
+    <book_id>63030</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743013877l/63030._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743013877l/63030._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743013877l/63030._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743013877l/63030._SY475_.jpg]]></book_large_image_url>
+    <book_description><![CDATA[The “star” of Roberto Bolaño’s hair-raising <i>Distant Star</i> is Alberto Ruiz-Tagle, who exploits the 1973 coup to launch his own version of the New Chilean Poetry: a multimedia enterprise involving sky-writing, poetry, torture, and photo exhibitions.<br /><br />Our unnamed narrator first encounters him in a college poetry workshop (where Ruiz-Tagle only has eyes for the beautiful Garmendia twins, Veronica and Angelica: unfortunately for them).<br /><br />The next sighting comes as the narrator stands in a prison camp for political undesirables, gazing up at a WWII Messerschmitt sky-writing over the Andes. The aviator is none other than Ruiz-Tagle, now serving in the Chilean air force under his actual name, Carlos Wieder. Behind any evil act in the darkness of Pinochet’s regime, our narrator, more and more obsessed, suspects Wieder’s silent hand.<br /><br />Within Bolaño’s darkest visions a corrosive, mocking humor sparkles. And while many Chilean authors have written about the “bloody events of the early Pinochet years, the abductions and murders,” Richard Eder commented in <i>The New York Times</i> (reviewing <i>By Night in Chile</i>): “None has done it in so dark and glittering a fashion as Roberto Bolaño.”]]></book_description>
+    <book id="63030">
+      <num_pages>150</num_pages>
+    </book>
+    <author_name>Roberto Bolaño</author_name>
+    <isbn>0811215865</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at><![CDATA[Tue, 11 Aug 2026 00:00:00 +0000]]></user_read_at>
+    <user_date_added><![CDATA[Tue, 11 Aug 2026 09:42:07 -0700]]></user_date_added>
+    <user_date_created><![CDATA[Tue, 11 Aug 2026 09:41:50 -0700]]></user_date_created>
+    <user_shelves></user_shelves>
+    <user_review></user_review>
+    <average_rating>3.99</average_rating>
+    <book_published>1996</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/63030.Distant_Star?utm_medium=api&amp;utm_source=rss"><img alt="Distant Star" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1743013877l/63030._SY75_.jpg" /></a><br/>
+                                      author: Roberto Bolaño<br/>
+                                      name: Sam<br/>
+                                      average rating: 3.99<br/>
+                                      book published: 1996<br/>
+                                      rating: 0<br/>
+                                      read at: 2026/08/11<br/>
+                                      date added: 2026/08/11<br/>
+                                      shelves: <br/>
+                                      review: <br/><br/>
+                                      ]]>
+    </description>
+  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8251319975?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Thu, 18 Jun 2026 22:14:59 -0700]]></pubDate>
