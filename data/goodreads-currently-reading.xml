@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=currently-reading" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: currently-reading]]></description>
     <language>en-US</language>
-    <lastBuildDate>Fri, 05 Jun 2026 04:46:12 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 04 Sep 2026 00:45:20 -0700</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: currently-reading</title>
@@ -19,6 +19,46 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/8917688673?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Fri, 04 Sep 2026 00:45:20 -0700]]></pubDate>
+    <title><![CDATA[The Hidden Globe: How Wealth Hacks the World]]></title>
+    <link><![CDATA[https://www.goodreads.com/review/show/8917688673?utm_medium=api&utm_source=rss]]></link>
+    <book_id>205062721</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1715644738l/205062721._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1715644738l/205062721._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1715644738l/205062721._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1715644738l/205062721._SY475_.jpg]]></book_large_image_url>
+    <book_description><![CDATA[<b>Borders draw one map of the world; money draws another. A journalist’s riveting account exposes a parallel universe that has become a haven for the rich and powerful.</b><br />  <br />A globe shows the world we think we neatly delineated sovereign nations that grant or restrict their citizens’ rights. Beneath, above, and tucked inside their borders, however, another universe has been engineered into existence. It consists of thousands of extraterritorial zones that operate largely autonomously, and increasingly for the benefit of the wealthiest individuals and corporations.<br /><br /> Atossa Abrahamian traces the rise of this hidden globe to thirteenth-century Switzerland, where poor cantons marketed their only bodies, in the form of mercenary fighters. Over time, economists, theorists, statesmen, and consultants evolved ever more sophisticated ways of exporting and exploiting statelessness, in the form of free trade zones, flags of convenience, offshore detention centers, charter cities controlled by foreign corporations, and even into outer space. By mapping this countergeography, which decides who wins and who loses in the new global order—and helping us to see how it might be otherwise—<i>The Hidden Globe</i> fascinates, enrages, and inspires.]]></book_description>
+    <book id="205062721">
+      <num_pages>333</num_pages>
+    </book>
+    <author_name>Atossa Araxia Abrahamian</author_name>
+    <isbn>0593329872</isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at></user_read_at>
+    <user_date_added><![CDATA[Fri, 04 Sep 2026 00:45:20 -0700]]></user_date_added>
+    <user_date_created><![CDATA[Fri, 04 Sep 2026 00:45:19 -0700]]></user_date_created>
+    <user_shelves>currently-reading</user_shelves>
+    <user_review></user_review>
+    <average_rating>3.60</average_rating>
+    <book_published>2024</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/205062721-the-hidden-globe?utm_medium=api&amp;utm_source=rss"><img alt="The Hidden Globe: How Wealth Hacks the World" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1715644738l/205062721._SY75_.jpg" /></a><br/>
+                                      author: Atossa Araxia Abrahamian<br/>
+                                      name: Sam<br/>
+                                      average rating: 3.60<br/>
+                                      book published: 2024<br/>
+                                      rating: 0<br/>
+                                      read at: <br/>
+                                      date added: 2026/09/04<br/>
+                                      shelves: currently-reading<br/>
+                                      review: <br/><br/>
+                                      ]]>
+    </description>
+  </item>
   <item>
     <guid><![CDATA[https://www.goodreads.com/review/show/8660982425?utm_medium=api&utm_source=rss]]></guid>
     <pubDate><![CDATA[Fri, 05 Jun 2026 04:46:12 -0700]]></pubDate>
