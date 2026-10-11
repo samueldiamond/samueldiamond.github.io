@@ -9,7 +9,7 @@
     <atom:link href="https://www.goodreads.com/review/list_rss/197659966?key=CT9AFJGT0_Ay5OmHR1mobm_6SkzbKOcRqvgKYNZ913_DgXUa&amp;shelf=currently-reading" rel="self" type="application/rss+xml" />
     <description><![CDATA[Sam's bookshelf: currently-reading]]></description>
     <language>en-US</language>
-    <lastBuildDate>Sun, 11 Oct 2026 08:59:22 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 11 Oct 2026 10:08:34 -0700</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <title>Sam's bookshelf: currently-reading</title>
@@ -19,6 +19,46 @@
       <url>https://www.goodreads.com/images/layout/goodreads_logo_144.jpg</url>
     </image>
     
+  <item>
+    <guid><![CDATA[https://www.goodreads.com/review/show/9017299004?utm_medium=api&utm_source=rss]]></guid>
+    <pubDate><![CDATA[Sun, 11 Oct 2026 10:08:34 -0700]]></pubDate>
+    <title><![CDATA[The Spy Who Came In from the Cold (George Smiley, #3)]]></title>
+    <link><![CDATA[https://www.goodreads.com/review/show/9017299004?utm_medium=api&utm_source=rss]]></link>
+    <book_id>19494</book_id>
+    <book_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327719782l/19494._SY75_.jpg]]></book_image_url>
+    <book_small_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327719782l/19494._SY75_.jpg]]></book_small_image_url>
+    <book_medium_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327719782l/19494._SX98_.jpg]]></book_medium_image_url>
+    <book_large_image_url><![CDATA[https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327719782l/19494.jpg]]></book_large_image_url>
+    <book_description><![CDATA[In this classic, John le Carre's third novel and the first to earn him international acclaim, he created a world unlike any previously experienced in suspense fiction. With unsurpassed knowledge culled from his years in British Intelligence, le Carre brings to light the shadowy dealings of international espionage in the tale of a British agent who longs to end his career but undertakes one final, bone-chilling assignment. When the last agent under his command is killed and Alec Leamas is called back to London, he hopes to come in from the cold for good. His spymaster, Control, however, has other plans. Determined to bring down the head of East German Intelligence and topple his organization, Control once more sends Leamas into the fray -- this time to play the part of the dishonored spy and lure the enemy to his ultimate defeat.]]></book_description>
+    <book id="19494">
+      <num_pages>212</num_pages>
+    </book>
+    <author_name>John le Carré</author_name>
+    <isbn></isbn>
+    <user_name>Sam</user_name>
+    <user_rating>0</user_rating>
+    <user_read_at></user_read_at>
+    <user_date_added><![CDATA[Sun, 11 Oct 2026 10:08:34 -0700]]></user_date_added>
+    <user_date_created><![CDATA[Sun, 11 Oct 2026 10:08:34 -0700]]></user_date_created>
+    <user_shelves>currently-reading</user_shelves>
+    <user_review></user_review>
+    <average_rating>4.07</average_rating>
+    <book_published>1963</book_published>
+    <description>
+      <![CDATA[
+      <a href="https://www.goodreads.com/book/show/19494.The_Spy_Who_Came_In_from_the_Cold?utm_medium=api&amp;utm_source=rss"><img alt="The Spy Who Came In from the Cold (George Smiley, #3)" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327719782l/19494._SY75_.jpg" /></a><br/>
+                                      author: John le Carré<br/>
+                                      name: Sam<br/>
+                                      average rating: 4.07<br/>
+                                      book published: 1963<br/>
+                                      rating: 0<br/>
+                                      read at: <br/>
+                                      date added: 2026/10/11<br/>
+                                      shelves: currently-reading<br/>
+                                      review: <br/><br/>
+                                      ]]>
+    </description>
+  </item>
 
   </channel>
 </rss>
