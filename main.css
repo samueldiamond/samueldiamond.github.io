@@ -78,6 +78,14 @@ a:hover {
     font-style: italic;
 }
 
+.intro {
+    font-size: 14px;
+    color: #888888;
+    line-height: 1.5;
+    max-width: 360px;
+    margin: -16px 0 36px;
+}
+
 .note {
     font-size: 13px;
     color: #666666;
