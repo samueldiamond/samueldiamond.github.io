@@ -78,6 +78,14 @@ a:hover {
     font-style: italic;
 }
 
+.note {
+    font-size: 13px;
+    color: #666666;
+    line-height: 1.5;
+    max-width: 320px;
+    margin: 0 0 14px;
+}
+
 /* Minimalist info widget */
 .info-widget {
     position: fixed;
