@@ -31,7 +31,6 @@ h1 {
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0;
-    text-transform: lowercase;
     margin-bottom: 30px;
     color: #ffffff;
     -webkit-font-smoothing: antialiased;
@@ -74,24 +73,31 @@ a:hover {
     font-size: 11px;
     color: #666666;
     margin-bottom: 8px;
-    text-transform: lowercase;
     font-style: italic;
 }
 
-.intro {
-    font-size: 14px;
-    color: #888888;
-    line-height: 1.5;
-    max-width: 360px;
-    margin: -16px 0 36px;
+.prose {
+    max-width: 440px;
+    margin-bottom: 36px;
 }
 
-.note {
-    font-size: 13px;
-    color: #666666;
-    line-height: 1.5;
-    max-width: 320px;
-    margin: 0 0 14px;
+.prose p {
+    font-size: 15px;
+    color: #999999;
+    line-height: 1.6;
+    margin: 0 0 12px;
+}
+
+.prose a {
+    display: inline;
+    margin: 0;
+    color: #ffffff;
+    border-bottom: 1px solid #444444;
+    transition: border-color 0.6s ease;
+}
+
+.prose a:hover {
+    border-color: #ffffff;
 }
 
 /* Minimalist info widget */
