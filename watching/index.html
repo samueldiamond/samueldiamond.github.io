@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>watching - sam diamond</title>
+    <title>Watching – Sam Diamond</title>
     <meta name="description" content="What Sam Diamond is watching.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://samdiamond.xyz/watching/">
-    <meta property="og:title" content="watching — sam diamond">
+    <meta property="og:title" content="Watching – Sam Diamond">
     <meta property="og:description" content="What Sam Diamond is watching.">
     <meta property="og:image" content="https://samdiamond.xyz/images/og.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -113,7 +113,6 @@
             margin-top: 30px;
             margin-bottom: 15px;
             font-style: italic;
-            text-transform: lowercase;
         }
 
         .month-divider:first-of-type {
@@ -126,13 +125,13 @@
     <div class="container">
         <div class="inner-container">
             <a href="/" class="back-link">← back</a>
-            <h1>watching</h1>
+            <h1>Watching</h1>
 
             <div class="year-filter" id="yearFilter">
-                <a class="active" data-year="all">all</a>
+                <a class="active" data-year="all">All</a>
             </div>
 
-            <div id="filmList" class="loading">loading films...</div>
+            <div id="filmList" class="loading">Loading films...</div>
         </div>
     </div>
 
@@ -270,7 +269,7 @@
                         month: 'short',
                         day: 'numeric',
                         year: 'numeric'
-                    }).toLowerCase();
+                    });
 
                     allFilms.push({
                         title: cleanTitle,
@@ -306,7 +305,7 @@
                 const years = [...new Set(allFilms.map(f => f.watchYear))].sort((a, b) => b - a);
 
                 // Create year filter
-                const yearFilterHTML = ['<a class="active" data-year="all">all</a>']
+                const yearFilterHTML = ['<a class="active" data-year="all">All</a>']
                     .concat(years.map(year => `<a data-year="${year}">${year}</a>`))
                     .join('');
 
@@ -326,7 +325,7 @@
             } catch (error) {
                 console.error('Error loading films:', error);
                 document.getElementById('filmList').innerHTML = `
-                    <p style="color: #666;">unable to load films</p>
+                    <p style="color: #666;">Unable to load films</p>
                     <p style="color: #555; font-size: 12px; margin-top: 10px;">
                         try refreshing the page<br>
                         error: ${error.message || 'unknown error'}
@@ -342,7 +341,7 @@
                 : allFilms.filter(f => f.watchYear.toString() === year);
 
             if (filtered.length === 0) {
-                document.getElementById('filmList').innerHTML = '<p style="color: #666;">no films found</p>';
+                document.getElementById('filmList').innerHTML = '<p style="color: #666;">No films found</p>';
                 return;
             }
 
@@ -356,7 +355,7 @@
                 const monthYear = watchDate.toLocaleDateString('en-US', {
                     month: 'long',
                     year: 'numeric'
-                }).toLowerCase();
+                });
 
                 // Add month divider if we're in a new month
                 if (monthYear !== currentMonth) {

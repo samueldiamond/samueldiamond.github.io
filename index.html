@@ -16,11 +16,11 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sam diamond</title>
+    <title>Sam Diamond</title>
     <meta name="description" content="Writer, editor, researcher and strategist working in finance and technology. Co-founder of Margin.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://samdiamond.xyz/">
-    <meta property="og:title" content="sam diamond">
+    <meta property="og:title" content="Sam Diamond">
     <meta property="og:description" content="Writer, editor, researcher and strategist working in finance and technology. Co-founder of Margin.">
     <meta property="og:image" content="https://samdiamond.xyz/images/og.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -37,13 +37,11 @@
 <body>
     <div class="container">
         <div class="inner-container">
-            <h1>sam diamond</h1>
-            <p class="intro">writer, editor, researcher and strategist working in finance and technology.</p>
+            <h1>Sam Diamond</h1>
 
-            <div class="section">
-                <a href="https://margineurope.com" target="_blank" rel="noopener">margin</a>
-                <p class="note">a new media and research studio based between london and berlin.</p>
-                <a href="https://europe2045.com" target="_blank" rel="noopener">europe 2045</a>
+            <div class="prose">
+                <p>Writer, editor, researcher and strategist working in finance and technology.</p>
+                <p>Currently working on <a href="https://margineurope.com" target="_blank" rel="noopener">Margin</a>, a new media and research studio based between London and Berlin. Read our first report at <a href="https://europe2045.com" target="_blank" rel="noopener">europe2045.com</a>.</p>
             </div>
 
             <div class="section">
@@ -64,7 +62,7 @@
     <div class="info-widget">
         <div class="time" id="time"></div>
         <div class="date" id="date"></div>
-        <div class="location" id="location">52.52°n, 13.41°e</div>
+        <div class="location" id="location">52.52°N, 13.41°E</div>
         <div class="weather" id="weather"></div>
         <div class="weather-desc" id="weather-desc"></div>
         <div class="sun-times" id="sun-times"></div>
@@ -92,9 +90,11 @@
                 month: 'short',
                 day: 'numeric',
                 year: 'numeric'
-            }).format(now).toLowerCase();
+            }).format(now);
             document.getElementById('date').textContent = berlinDate;
         }
+
+        const capitalise = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
         // Weather code descriptions
         const weatherDescriptions = {
@@ -155,18 +155,18 @@
         function getCelestialObject() {
             const month = new Date().getMonth();
             const celestialCalendar = [
-                'orion visible',        // January
-                'sirius brightest',     // February
-                'venus evening',        // March
-                'mars visible',         // April
-                'jupiter rising',       // May
-                'saturn visible',       // June
-                'milky way peak',       // July
-                'perseid meteors',      // August
-                'harvest moon',         // September
-                'orionids active',      // October
-                'taurids active',       // November
-                'geminids peak'         // December
+                'Orion visible',        // January
+                'Sirius brightest',     // February
+                'Venus evening',        // March
+                'Mars visible',         // April
+                'Jupiter rising',       // May
+                'Saturn visible',       // June
+                'Milky Way peak',       // July
+                'Perseid meteors',      // August
+                'Harvest moon',         // September
+                'Orionids active',      // October
+                'Taurids active',       // November
+                'Geminids peak'         // December
             ];
             return celestialCalendar[month];
         }
@@ -175,7 +175,7 @@
         async function getBerlinWeather() {
             try {
                 // Set location coordinates
-                document.getElementById('location').textContent = '52.52°n, 13.41°e';
+                document.getElementById('location').textContent = '52.52°N, 13.41°E';
 
                 // Get weather for Berlin (52.52°N, 13.41°E) with daily data
                 const weatherResponse = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true&daily=sunrise,sunset&temperature_unit=celsius&timezone=Europe/Berlin');
@@ -183,11 +183,11 @@
 
                 // Current temperature
                 const temp = Math.round(weatherData.current_weather.temperature);
-                document.getElementById('weather').textContent = `${temp}°c`;
+                document.getElementById('weather').textContent = `${temp}°C`;
 
                 // Weather description
                 const weatherCode = weatherData.current_weather.weathercode;
-                const description = weatherDescriptions[weatherCode] || 'clear';
+                const description = capitalise(weatherDescriptions[weatherCode] || 'clear');
                 document.getElementById('weather-desc').textContent = description;
 
                 // Sunrise and sunset
@@ -203,10 +203,10 @@
                     minute: '2-digit',
                     hour12: false
                 });
-                document.getElementById('sun-times').textContent = `sunrise ${sunrise} / sunset ${sunset}`;
+                document.getElementById('sun-times').textContent = `Sunrise ${sunrise} / sunset ${sunset}`;
 
                 // Celestial info: moon phase and monthly sky events
-                document.getElementById('celestial').innerHTML = `☾ ${getMoonPhase()}<br>${getCelestialObject()}`;
+                document.getElementById('celestial').innerHTML = `☾ ${capitalise(getMoonPhase())}<br>${getCelestialObject()}`;
             } catch (error) {
                 console.error('Error getting weather:', error);
                 document.getElementById('weather').textContent = '';

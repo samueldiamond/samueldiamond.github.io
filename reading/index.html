@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>reading - sam diamond</title>
+    <title>Reading – Sam Diamond</title>
     <meta name="description" content="What Sam Diamond is reading.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://samdiamond.xyz/reading/">
-    <meta property="og:title" content="reading — sam diamond">
+    <meta property="og:title" content="Reading – Sam Diamond">
     <meta property="og:description" content="What Sam Diamond is reading.">
     <meta property="og:image" content="https://samdiamond.xyz/images/og.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -120,7 +120,6 @@
             margin-top: 30px;
             margin-bottom: 15px;
             font-style: italic;
-            text-transform: lowercase;
         }
 
         .month-divider:first-of-type {
@@ -133,9 +132,9 @@
     <div class="container">
         <div class="inner-container">
             <a href="/" class="back-link">← back</a>
-            <h1>reading</h1>
+            <h1>Reading</h1>
 
-            <div id="bookList" class="loading">loading books...</div>
+            <div id="bookList" class="loading">Loading books...</div>
         </div>
     </div>
 
@@ -171,7 +170,7 @@
         async function loadBooks() {
             try {
                 // Fetch both shelves
-                document.getElementById('bookList').innerHTML = '<p style="color: #666;">loading books...</p>';
+                document.getElementById('bookList').innerHTML = '<p style="color: #666;">Loading books...</p>';
 
                 const [currentlyReadingText, readText] = await Promise.all([
                     fetchShelf('currently-reading'),
@@ -194,7 +193,7 @@
             } catch (error) {
                 console.error('Error loading books:', error);
                 document.getElementById('bookList').innerHTML = `
-                    <p style="color: #666;">unable to load books</p>
+                    <p style="color: #666;">Unable to load books</p>
                     <p style="color: #555; font-size: 12px; margin-top: 10px;">
                         try refreshing the page<br>
                         error: ${error.message || 'unknown error'}
@@ -338,7 +337,7 @@
                     month: 'short',
                     day: 'numeric',
                     year: 'numeric'
-                }).toLowerCase();
+                });
 
                 // Debug logging
                 console.log('FINAL EXTRACTED DATA:', {
@@ -371,13 +370,13 @@
 
             // Currently Reading section
             if (currentlyReading.length > 0) {
-                html += '<div class="section-title">currently reading</div>';
+                html += '<div class="section-title">Currently reading</div>';
                 html += currentlyReading.map(book => formatBook(book)).join('');
             }
 
             // Read section with month dividers
             if (readBooks.length > 0) {
-                html += '<div class="section-title">read</div>';
+                html += '<div class="section-title">Read</div>';
 
                 let currentMonth = '';
                 readBooks.forEach(book => {
@@ -386,7 +385,7 @@
                     const monthYear = readDate.toLocaleDateString('en-US', {
                         month: 'long',
                         year: 'numeric'
-                    }).toLowerCase();
+                    });
 
                     // Add month divider if we're in a new month
                     if (monthYear !== currentMonth) {
@@ -399,7 +398,7 @@
             }
 
             if (currentlyReading.length === 0 && readBooks.length === 0) {
-                html = '<p style="color: #666;">no books found</p>';
+                html = '<p style="color: #666;">No books found</p>';
             }
 
             document.getElementById('bookList').innerHTML = html;
